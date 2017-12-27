@@ -2,7 +2,7 @@ package Base;
 
 import java.awt.*;
 
-public class ResultItem {
+public class ResultItem implements Comparable<ResultItem>{
 
     String    _topicID;
     String    _topicName;
@@ -29,7 +29,7 @@ public class ResultItem {
     String    TopicID()     { return _topicID;   }
     String    TopicName()   { return _topicName; }
     String    QueryId()     { return _queryID;   }
-    float    Score()       { return _score;     }
+    float     Score()       { return _score;     }
     int       Iteration()   { return _iteration; }
     String    Method()      {return  _method;    }
 
@@ -52,5 +52,10 @@ public class ResultItem {
                       Integer.toString(_iteration)+ " "+
                       Float.toString(_score)+" "+
                       _method;
+    }
+
+    @Override
+    public int compareTo(ResultItem resultItem) {
+        return Float.compare(this._score, resultItem._score);
     }
 }
