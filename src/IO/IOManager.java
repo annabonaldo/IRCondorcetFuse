@@ -5,10 +5,13 @@ import Base.ResultSet;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static IO.IOSettings.DefaultOutPath;
 
 public class IOManager {
+
+    Scanner scanner = new Scanner(System.in);
 
     public ResultSet ReadResFile()
     {
@@ -16,8 +19,9 @@ public class IOManager {
 
         BufferedReader in = null;
         try {
-
-            in = new BufferedReader(new FileReader(IOSettings.DefaultInPath));
+            System.out.println("Enter the resource file to read (in terrier-core-4.2/var/res:");
+            String ResFile = scanner.next();
+            in = new BufferedReader(new FileReader(IOSettings.DefaultInPath + ResFile));
             String str=null;
             int i=0;
             while((str = in.readLine()) != null){
@@ -41,7 +45,9 @@ public class IOManager {
     {
         PrintWriter writer = null;
         try {
-            writer = new PrintWriter(IOSettings.DefaultOutPath, "UTF-8");
+            System.out.println("Enter name file to save output (in main dir):");
+            String OutFile = scanner.next();
+            writer = new PrintWriter(IOSettings.DefaultOutPath + OutFile, "UTF-8");
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
