@@ -5,13 +5,22 @@ import IO.IOManager;
 public class DataManager {
 
     ResultSet data;
+    IOManager ioManager = new IOManager();
 
     public void Import(){
-        IOManager ioManager = new IOManager();
-        data = ioManager.ReadResFile();
-        for(int i=0; i<10; i++)
-            data.get(i).Print();
 
+        data = ioManager.ReadResFile();
+        for(int i=0; i<data.size(); i++)
+            data.get(i).Print();
         ioManager.WriteToResFile(data);
+    }
+
+    public void NormalizeMinMax(){
+
+        data.normalizeSetMinMax();
+        for(int i=0; i<data.size(); i++)
+            data.get(i).Print();
+		ioManager.WriteToResFile(data);
+
     }
 }

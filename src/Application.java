@@ -5,7 +5,6 @@ public class Application {
         System.out.println("Application started...");
         DataManager dataManager = new DataManager();
         dataManager.Import();
-
-
+        dataManager.NormalizeMinMax();
     }
 }

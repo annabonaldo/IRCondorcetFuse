@@ -1,5 +1,7 @@
 package Base;
 
+import Normalization.MinMax;
+
 public class ResultItem implements Comparable<ResultItem>{
 
     String    _topicID;
@@ -8,6 +10,7 @@ public class ResultItem implements Comparable<ResultItem>{
 
     int       _rank;
     float     _score;
+    float     _normalizedScore;
     String    _runID;
 
     public ResultItem(String line)
@@ -28,17 +31,19 @@ public class ResultItem implements Comparable<ResultItem>{
     String    DocumentID()   { return _documentID; }
     String    QueryID()     { return _queryID;   }
     float     Score()       { return _score;     }
+    float     normalizedScore()       { return _normalizedScore; }
     int       Rank()   { return _rank; }
     String    RunID()      {return _runID;    }
 
     public void Print()
     {
-        System.out.print("| topic id: ");       System.out.print( _topicID);
-        System.out.print("| query id : ");      System.out.print(_queryID);
-        System.out.print("| iteration: ");      System.out.print(_rank);
-        System.out.print("| topic name: ");     System.out.print(_documentID);
-        System.out.print("| score: ");          System.out.print(_score);
-        System.out.print("| method : ");        System.out.print(_runID);
+        System.out.print("| topic id: ");      System.out.print( _topicID);
+        System.out.print("| query id : ");     System.out.print(_queryID);
+        System.out.print("| iteration: ");     System.out.print(_rank);
+        System.out.print("| topic name: ");    System.out.print(_documentID);
+        System.out.print("| score: ");         System.out.print(_score);
+        System.out.print("| norm score: ");    System.out.print(_normalizedScore);
+        System.out.print("| method : ");       System.out.print(_runID);
         System.out.print("\n");
     }
 
@@ -55,5 +60,10 @@ public class ResultItem implements Comparable<ResultItem>{
     @Override
     public int compareTo(ResultItem resultItem) {
         return Float.compare(this._score, resultItem._score);
+    }
+
+    public void NormalizeMinMax(MinMax minMax) {
+       System.out.print("normalizing..." + _score + " " + minMax.MinScore() + " " + minMax.MaxScore());
+        _normalizedScore = ( _score - minMax.MinScore() ) / (minMax.MaxScore() - minMax.MinScore());
     }
 }

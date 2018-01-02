@@ -3,3 +3,4 @@ terrier-core-4.2/*
 out/
 .idea/
 *.class
+.res
