@@ -19,7 +19,7 @@ public class IOManager {
 
         BufferedReader in = null;
         try {
-            System.out.println("Enter the resource file to read (in terrier-core-4.2/var/res:");
+            System.out.println("Enter the resource file to read (in terrier-core-4.2/var/res):");
             String ResFile = scanner.next();
             in = new BufferedReader(new FileReader(IOSettings.DefaultInPath + ResFile));
             String str=null;

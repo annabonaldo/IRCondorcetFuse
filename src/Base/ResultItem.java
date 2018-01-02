@@ -24,13 +24,12 @@ public class ResultItem implements Comparable<ResultItem>{
 
     }
 
-
     String    TopicID()     { return _topicID;   }
-    String    TopicName()   { return _documentID; }
-    String    QueryId()     { return _queryID;   }
+    String    DocumentID()   { return _documentID; }
+    String    QueryID()     { return _queryID;   }
     float     Score()       { return _score;     }
-    int       Iteration()   { return _rank; }
-    String    Method()      {return _runID;    }
+    int       Rank()   { return _rank; }
+    String    RunID()      {return _runID;    }
 
     public void Print()
     {
