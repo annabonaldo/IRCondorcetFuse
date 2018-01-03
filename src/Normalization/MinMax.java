@@ -10,7 +10,11 @@ public class MinMax {
         _maxScore = maxScore;
     }
 
-    public final float MinScore() { return _minScore; }
-    public final float MaxScore() { return _maxScore; }
+    public final float minScore() { return _minScore; }
+    public final float maxScore() { return _maxScore; }
+
+    public final float normalizeScore(float currScore) {
+        return ((currScore - _minScore ) / (_maxScore - _minScore));
+    }
 }
 

@@ -63,6 +63,6 @@ public class ResultItem implements Comparable<ResultItem>{
     }
 
     public void normalizeMinMax(MinMax minMax) {
-        _normalizedScore = ( _score - minMax.MinScore() ) / (minMax.MaxScore() - minMax.MinScore());
+        _normalizedScore = minMax.normalizeScore(_score);
     }
 }
