@@ -15,7 +15,7 @@ public class DataManager {
         ioManager.WriteToResFile(data);
     }
 
-    public void NormalizeMinMax(){
+    public void normalizeMinMax(){
 
         data.normalizeSetMinMax();
         for(int i=0; i<data.size(); i++)

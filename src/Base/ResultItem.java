@@ -27,13 +27,13 @@ public class ResultItem implements Comparable<ResultItem>{
 
     }
 
-    String    TopicID()     { return _topicID;   }
-    String    DocumentID()   { return _documentID; }
-    String    QueryID()     { return _queryID;   }
-    float     Score()       { return _score;     }
-    float     normalizedScore()       { return _normalizedScore; }
-    int       Rank()   { return _rank; }
-    String    RunID()      {return _runID;    }
+    String    TopicID()            { return _topicID; }
+    String    DocumentID()         { return _documentID; }
+    String    QueryID()            { return _queryID; }
+    float     Score()              { return _score; }
+    float     normalizedScore()    { return _normalizedScore; }
+    int       Rank()               { return _rank; }
+    String    RunID()              { return _runID; }
 
     public void Print()
     {
@@ -62,8 +62,7 @@ public class ResultItem implements Comparable<ResultItem>{
         return Float.compare(this._score, resultItem._score);
     }
 
-    public void NormalizeMinMax(MinMax minMax) {
-       System.out.print("normalizing..." + _score + " " + minMax.MinScore() + " " + minMax.MaxScore());
+    public void normalizeMinMax(MinMax minMax) {
         _normalizedScore = ( _score - minMax.MinScore() ) / (minMax.MaxScore() - minMax.MinScore());
     }
 }

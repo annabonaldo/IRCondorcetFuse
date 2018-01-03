@@ -22,7 +22,7 @@ public class ResultSet extends ArrayList<ResultItem> {
         minMax = new MinMax(min, max);
 
         for (ResultItem item : this) {
-            item.NormalizeMinMax(minMax);
+            item.normalizeMinMax(minMax);
         }
 
     }
