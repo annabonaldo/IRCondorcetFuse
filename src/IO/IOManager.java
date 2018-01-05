@@ -19,19 +19,14 @@ public class IOManager {
 
         BufferedReader in = null;
         try {
-            System.out.println("Enter the resource file to read (in terrier-core-4.2/var/res):");
+            System.out.println("Enter the resource file to read (in terrier-core-4.2/var/results):");
             String ResFile = scanner.next();
             in = new BufferedReader(new FileReader(IOSettings.DefaultInPath + ResFile));
             String str=null;
-            int i=0;
             while((str = in.readLine()) != null){
-                items.add(new ResultItem(str));
-                //if (i<10)
-                   // System.out.println(str);
-                //i++;
-
+                ResultItem resItem = new ResultItem(str);
+                items.add(resItem);
             }
-
         }
         catch(IOException e2)
         {
@@ -39,7 +34,6 @@ public class IOManager {
         }
         return  items;
     }
-
 
     public void WriteToResFile(ResultSet set)
     {
@@ -60,8 +54,6 @@ public class IOManager {
         {
             writer.println(set.get(i).getLine());
         }
-
-
     }
 }
 
