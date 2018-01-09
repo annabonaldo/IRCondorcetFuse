@@ -15,9 +15,13 @@ public class Condorcet
     RunSet RunSet() { return _runSet; }
     
     public Run Fuse() {
-        Set<String> documentIDs = _runSet.getDocumentIDs();
+        Set<String> documentIDs = _runSet.getDocList();
         String[] documentIDsArray = documentIDs.toArray(new String[documentIDs.size()]);
         quickSort(documentIDsArray,0,documentIDs.size()-1);
+
+
+        //TODO Stub retutn value
+        return new  Run();
     }
     
     private void quickSort(String[] documentIDs, int left, int right) {
@@ -45,11 +49,14 @@ public class Condorcet
                   j--;
                   
             }
-      };
+      }
       return i;
     }
     
     private boolean comparison(String doc1, String doc2) {
+
+        //TODO Stub retutn value
+        return false;
 
     }
     

@@ -18,6 +18,8 @@ public class RunSet {
       VALUE = list of _scores for each RUN
      */
     HashMap<String, ArrayList<RunLineScores>> _runset;
+    Set<String>  _docList;
+    Set<String>  _queryAndTopicList;
 
 
     //@desc
@@ -40,6 +42,12 @@ public class RunSet {
                 }
             }
 
+        // takes all unique 0 position item of key
+        _docList = ComputeSubkeyList(new int[]{0});
+        
+        // takes all unique 1&2 position item of key
+        _queryAndTopicList = ComputeSubkeyList(new int[]{1, 2});
+
     }
 
     public Set<String> getKeys()
@@ -47,17 +55,32 @@ public class RunSet {
        return  _runset.keySet();
     }
     
-    public Set<String> getDocumentsId() {
-        
-        Set<String> documentIDs = new HashSet<String>();
+    public Set<String> getDocList() { return  _docList; }
+
+    public Set<String> getQueryAndTopicList() {return _queryAndTopicList; }
+
+    protected HashSet<String> ComputeSubkeyList(int[] positions)
+    {
+        HashSet<String> list = new HashSet<String>();
         for(String key : _runset.keySet()) {
             String[] key_items = key.split(RunLine.sep);
-            documentIDs.add(key_items[1]);
+
+            String subKey = new String();
+
+           for(int i=0; i < positions.length; i++)
+           {
+               subKey = subKey + key_items[positions[i]];
+               if(i < (positions.length-1))
+                   subKey= subKey+RunLine.sep;
+
+           }
+
+            list.add(subKey);
         }
-        return documentIDs;
+        return list;
     }
 
-    public ArrayList<RunLineScores> getLineListAt(String key )
+    public ArrayList<RunLineScores> getLineList(String key )
     {
         return  _runset.get(key);
     }

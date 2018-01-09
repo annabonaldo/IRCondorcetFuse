@@ -17,7 +17,7 @@ public abstract class BaseFusionMethod {
 
         for(String key: keylist)
         {
-            ArrayList<RunLineScores> linescorelist = runSet.getLineListAt(key);
+            ArrayList<RunLineScores> linescorelist = runSet.getLineList(key);
 
             // ABSTRACT CALL
             RunLineScores linescores = FuseLine(linescorelist);
