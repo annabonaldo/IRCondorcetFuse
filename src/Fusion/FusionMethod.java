@@ -21,10 +21,11 @@ public abstract class FusionMethod {
             RunLineScores linescores = FuseLine(linescorelist);
             run.add(new RunLine(key, linescores));
         }
-
+        run.ComputeRanks();
         return run;
-
     }
 
     protected abstract RunLineScores FuseLine(List<RunLineScores> runLineList);
+
+
 }

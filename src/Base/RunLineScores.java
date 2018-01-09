@@ -16,7 +16,7 @@ public class RunLineScores {
     int       _rank;
     float     _score;
 
-    RunLineScores(String runID, int rank, float score )
+    public RunLineScores(String runID, int rank, float score )
     {
         _rank = rank;
         _score = score;
@@ -42,6 +42,11 @@ public class RunLineScores {
 
     public void setNormalizedScore(float _normalizedScore) {
         this._normalizedScore = _normalizedScore;
+    }
+
+    public void setRank(int rank)
+    {
+        _rank = rank;
     }
 
 }

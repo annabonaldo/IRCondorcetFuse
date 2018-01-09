@@ -1,6 +1,8 @@
 package Base;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import Normalization.*;
 
@@ -30,6 +32,15 @@ public class Run extends ArrayList<RunLine> {
     }
 
     public MinMax MinMax() { return minMax; }
+
+    public void ComputeRanks()
+    {
+        Collections.sort(this);
+        for(int i=0; i<this.size(); i++)
+        {
+            this.get(i)._scores.setRank(i);
+        }
+    }
 
 
 }

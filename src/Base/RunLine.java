@@ -7,7 +7,7 @@ import Normalization.MinMax;
 // topicID queryID documentID rank score runID
 //
 // this class contains also NORMALIZED RANK after normalization computation
-public class RunLine {
+public class RunLine implements Comparable<RunLine> {
 
     public static final String sep = "&";
     String    _topicID;
@@ -84,5 +84,10 @@ public class RunLine {
     }
 
 
-
+    @Override
+    public int compareTo(RunLine runLine) {
+       float f1=  this.NormalizedScore();
+       float f2=  runLine.NormalizedScore();
+       return Float.compare(f1, f2);
+    }
 }
