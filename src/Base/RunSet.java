@@ -1,7 +1,5 @@
 package Base;
 
-import jdk.internal.util.xml.impl.Pair;
-
 import java.util.*;
 
 
@@ -51,11 +49,10 @@ public class RunSet {
     
     public Set<String> getDocumentsId() {
         
-        Set<String> documentIDs = new Set<String>();
-        for(Run run : runList) {
-            for(RunLine line : run) {
-                documentIDs.add(line.DocumentID());
-            }
+        Set<String> documentIDs = new HashSet<String>();
+        for(String key : _runset.keySet()) {
+            String[] key_items = key.split(RunLine.sep);
+            documentIDs.add(key_items[1]);
         }
         return documentIDs;
     }

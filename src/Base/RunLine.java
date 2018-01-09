@@ -27,7 +27,7 @@ public class RunLine implements Comparable<RunLine> {
 
     public RunLine(String line)
     {
-        String[] line_items= line.split(" ");
+        String[] line_items= line.split(sep);
 
         _topicID   = line_items[0];
         _queryID   = line_items[1];
