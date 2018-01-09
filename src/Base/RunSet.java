@@ -4,11 +4,19 @@ import jdk.internal.util.xml.impl.Pair;
 
 import java.util.*;
 
+
+//@desc
+// this class A DICTIONARY computed on multiple Runs
+// (the list of run we want to merge later)
+
+// for each RunLine we remember only
+// one Key (***) and the list of LineScores
+
 public class RunSet {
 
     /*@desc
       This map contains
-      KEY =  line id : documentID+queryID+topicId
+      KEY =  line id : documentID+queryID+topicId (***)
       VALUE = list of _scores for each RUN
      */
     HashMap<String, ArrayList<RunLineScores>> _runset;

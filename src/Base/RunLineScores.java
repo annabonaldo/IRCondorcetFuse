@@ -1,5 +1,14 @@
 package Base;
 
+// @desc
+// this class rappresents only the "scoring part" of a Run Line
+// the "scoring part" is considered as made of
+// runID, rank, score
+
+// normalizedScore is added after run NORMALIZATION computaion
+// !!  and is null before it
+
+
 public class RunLineScores {
 
     float     _normalizedScore;

@@ -2,7 +2,11 @@ package Base;
 
 import Normalization.MinMax;
 
-
+// @desc rappresentation of a single line of a Run file
+// each line conains:
+// topicID queryID documentID rank score runID
+//
+// this class contains also NORMALIZED RANK after normalization computation
 public class RunLine {
 
     public static final String sep = "&";

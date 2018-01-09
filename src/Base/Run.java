@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import Normalization.*;
 
+// @desc Run file rappresentation
+// each ArrayList entry is a  file line
 public class Run extends ArrayList<RunLine> {
 
     private MinMax minMax;
