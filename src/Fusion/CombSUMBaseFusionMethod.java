@@ -1,12 +1,10 @@
 package Fusion;
 
-import Base.RunLine;
-import Base.Run;
 import Base.RunLineScores;
 
 import java.util.List;
 
-public class CombSUMFusionMethod extends FusionMethod {
+public class CombSUMBaseFusionMethod extends BaseFusionMethod {
 
     // Fuse() implements CombSUM fusion:
     // Combined Similarity = SUM(Individual Similarities)

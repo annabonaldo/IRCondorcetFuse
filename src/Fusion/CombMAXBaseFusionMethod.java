@@ -1,12 +1,10 @@
 package Fusion;
 
-import Base.RunLine;
-import Base.Run;
 import Base.RunLineScores;
 
 import java.util.List;
 
-public class CombMAXFusionMethod extends FusionMethod {
+public class CombMAXBaseFusionMethod extends BaseFusionMethod {
 
     // Fuse() implements CombMAX fusion:
     // Combined Similarity = MAX(Individual Similarities)

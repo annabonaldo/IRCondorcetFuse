@@ -1,12 +1,10 @@
 package Fusion;
 
-import Base.RunLine;
-import Base.Run;
 import Base.RunLineScores;
 
 import java.util.List;
 
-public class CombMNZFusionMethod extends FusionMethod {
+public class CombMNZBaseFusionMethod extends BaseFusionMethod {
 
     // Fuse() implements CombMNZ fusion:
     // Combined Similarity = SUM(Individual Similarities)*  Number of Nonzero Similarities

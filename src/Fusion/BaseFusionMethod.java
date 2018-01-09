@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public abstract class FusionMethod {
+public abstract class BaseFusionMethod {
 
     public Run  Fuse(RunSet runSet) {
         Run run = new Run();
