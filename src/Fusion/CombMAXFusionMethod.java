@@ -8,6 +8,8 @@ import java.util.List;
 
 public class CombMAXFusionMethod extends FusionMethod {
 
+    // Fuse() implements CombMAX fusion:
+    // Combined Similarity = MAX(Individual Similarities)
     @Override
     protected RunLineScores FuseLine(List<RunLineScores> runLineList) {
 

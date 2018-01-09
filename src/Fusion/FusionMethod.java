@@ -18,7 +18,11 @@ public abstract class FusionMethod {
         for(String key: keylist)
         {
             ArrayList<RunLineScores> linescorelist = runSet.getLineListAt(key);
+
+            // ABSTRACT CALL
             RunLineScores linescores = FuseLine(linescorelist);
+
+
             run.add(new RunLine(key, linescores));
         }
         run.ComputeRanks();
