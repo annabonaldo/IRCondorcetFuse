@@ -20,9 +20,10 @@ public class RunLine implements Comparable<RunLine> {
     {
         _scores = scores;
         String[] fields = globalID.split(sep);
-        _topicID = fields[0];
-        _documentID = fields[1];
-        _queryID = fields[2];
+       
+        _documentID = fields[0];
+        _queryID = fields[1];
+        _topicID = fields[2];
     }
 
     public RunLine(String line)
@@ -51,11 +52,11 @@ public class RunLine implements Comparable<RunLine> {
 
 
    // @use    GlobalID is the id we use to merge results of different runs
-    String    GlobalID()                 { return TopicID()+sep+DocumentID()+sep+QueryID(); }
+    String    GlobalID()                 { return DocumentID()+sep+QueryID()+sep+TopicID(); }
 
     public void Print()
     {
-        System.out.print("| topic id: ");      System.out.print( _topicID);
+        System.out.print("| topic id: ");      System.out.print(_topicID);
         System.out.print("| query id : ");     System.out.print(_queryID);
         System.out.print("| iteration: ");     System.out.print(_scores.Rank());
         System.out.print("| topic name: ");    System.out.print(_documentID);

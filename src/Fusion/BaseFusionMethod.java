@@ -11,7 +11,7 @@ import java.util.Set;
 
 public abstract class BaseFusionMethod {
 
-    public Run  Fuse(RunSet runSet) {
+    public Run Fuse(RunSet runSet) {
         Run run = new Run();
         Set<String> keylist = runSet.getKeys();
 
