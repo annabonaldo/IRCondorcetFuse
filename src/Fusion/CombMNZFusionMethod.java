@@ -1,11 +1,11 @@
 package Fusion;
 
-import Base.ResultItem;
-import Base.ResultSet;
+import Base.RunLine;
+import Base.Run;
 
 public class CombMNZFusionMethod implements FusionMethod {
     @Override
-    public ResultItem Fuse(ResultSet set) {
+    public RunLine Fuse(Run set) {
         return null;
     }
 }

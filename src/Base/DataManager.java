@@ -4,7 +4,7 @@ import IO.IOManager;
 
 public class DataManager {
 
-    ResultSet data;
+    Run data;
     IOManager ioManager = new IOManager();
 
     public void Import(){

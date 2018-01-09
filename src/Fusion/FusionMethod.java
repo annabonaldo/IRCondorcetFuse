@@ -1,9 +1,15 @@
 package Fusion;
 
-import Base.ResultItem;
-import Base.ResultSet;
+import Base.RunLine;
+import Base.Run;
 
 public interface FusionMethod {
 
-    public ResultItem Fuse(ResultSet set);
+    public RunLine Fuse(Run set);
+    /*
+    for each(query in RunLine)
+    {
+        prendo
+    }
+     */
 }

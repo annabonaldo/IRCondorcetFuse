@@ -1,21 +1,18 @@
 package IO;
 
-import Base.ResultItem;
-import Base.ResultSet;
+import Base.Run;
+import Base.RunLine;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Scanner;
-
-import static IO.IOSettings.DefaultOutPath;
 
 public class IOManager {
 
     Scanner scanner = new Scanner(System.in);
 
-    public ResultSet ReadResFile()
+    public Run ReadResFile()
     {
-        ResultSet items = new ResultSet();
+        Run items = new Run();
 
         BufferedReader in = null;
         try {
@@ -24,7 +21,7 @@ public class IOManager {
             in = new BufferedReader(new FileReader(IOSettings.DefaultInPath + ResFile));
             String str=null;
             while((str = in.readLine()) != null){
-                ResultItem resItem = new ResultItem(str);
+                RunLine resItem = new RunLine(str);
                 items.add(resItem);
             }
         }
@@ -35,7 +32,7 @@ public class IOManager {
         return  items;
     }
 
-    public void WriteToResFile(ResultSet set)
+    public void WriteToResFile(Run set)
     {
         PrintWriter writer = null;
         try {
