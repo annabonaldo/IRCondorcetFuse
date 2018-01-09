@@ -1,10 +1,30 @@
 package Fusion;
 
-import Base.RunLine;
 import Base.Run;
+import Base.RunLine;
+import Base.RunLineScores;
+import Base.RunSet;
 
-public interface FusionMethod {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
-    public RunLine Fuse(Run set);
+public abstract class FusionMethod {
 
+    public Run  Fuse(RunSet runSet) {
+        Run run = new Run();
+        Set<String> keylist = runSet.getKeys();
+
+        for(String key: keylist)
+        {
+            ArrayList<RunLineScores> linescorelist = runSet.getLineListAt(key);
+            RunLineScores linescores = FuseLine(linescorelist);
+            run.add(new RunLine(key, linescores));
+        }
+
+        return run;
+
+    }
+
+    protected abstract RunLineScores FuseLine(List<RunLineScores> runLineList);
 }

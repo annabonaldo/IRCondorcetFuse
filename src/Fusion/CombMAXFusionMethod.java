@@ -2,10 +2,13 @@ package Fusion;
 
 import Base.RunLine;
 import Base.Run;
+import Base.RunLineScores;
 
-public class CombMAXFusionMethod implements FusionMethod {
+import java.util.List;
+
+public class CombMAXFusionMethod extends FusionMethod {
     @Override
-    public RunLine Fuse(Run set) {
+    protected RunLineScores FuseLine(List<RunLineScores> runLineList) {
         return null;
     }
 }

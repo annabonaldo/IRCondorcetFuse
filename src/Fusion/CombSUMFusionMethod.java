@@ -2,13 +2,18 @@ package Fusion;
 
 import Base.RunLine;
 import Base.Run;
+import Base.RunLineScores;
 
-public class CombSUMFusionMethod implements FusionMethod {
+import java.util.List;
+
+public class CombSUMFusionMethod extends FusionMethod {
 
     // Fuse() implements CombMAX fusion:
     // Combined Similarity = MAX(Individual Similarities)
+
+
     @Override
-    public RunLine Fuse(Run set) {
+    protected RunLineScores FuseLine(List<RunLineScores> runLineList) {
         return null;
     }
 }

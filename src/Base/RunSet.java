@@ -1,5 +1,7 @@
 package Base;
 
+import jdk.internal.util.xml.impl.Pair;
+
 import java.util.*;
 
 public class RunSet {
@@ -9,7 +11,7 @@ public class RunSet {
       KEY =  line id : documentID+queryID+topicId
       VALUE = list of _scores for each RUN
      */
-    Map<String, ArrayList<RunLineScores>> _runset;
+    HashMap<String, ArrayList<RunLineScores>> _runset;
 
 
     //@desc
@@ -35,4 +37,16 @@ public class RunSet {
 
 
     }
+
+    public Set<String> getKeys()
+    {
+       return  _runset.keySet();
+    }
+
+    public ArrayList<RunLineScores> getLineListAt(String key )
+    {
+        return  _runset.get(key);
+    }
 }
+
+
