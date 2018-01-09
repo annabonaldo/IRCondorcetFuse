@@ -1,7 +1,7 @@
 package Fusion;
 
 import Base.*;
-import java.util.Set;
+import java.util.*;
 
 public class Condorcet
 {
@@ -20,7 +20,7 @@ public class Condorcet
         quickSort(documentIDsArray,0,documentIDs.size()-1);
 
 
-        //TODO Stub retutn value
+        //TODO Stub return value
         return new  Run();
     }
     
@@ -54,10 +54,25 @@ public class Condorcet
     }
     
     private boolean comparison(String doc1, String doc2) {
-
-        //TODO Stub retutn value
+        /*int count = 0;
+        Set<String> queryAndTopics = _runSet.getQueryAndTopicList();
+        Iterator<String> iterator = queryAndTopics.iterator();
+        while (iterator.hasNext()) {
+            String queryAndTopic = iterator.next();
+            String globalId1 = doc1 + queryAndTopic;
+            String globalId2 = doc2 + queryAndTopic;
+            ArrayList<RunLineScores> runLineScoresDoc1 = _runSet.getLineListAt(globalId1);
+            ArrayList<RunLineScores> runLineScoresDoc2 = _runSet.getLineListAt(globalId2);
+            for (RunLineScores runLineScore1 : runLineScoresDoc1) {
+                for (RunLineScores runLineScore2 : runLineScoresDoc2) {
+                    if (runLineScore1.Rank() > runLineScore2.Rank()) count ++;
+                    else count--;
+                }
+            }
+        }
+        if (count > 0) return true;
+        else return false; */
         return false;
-
     }
     
 }
