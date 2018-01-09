@@ -12,7 +12,7 @@ public class Run extends ArrayList<RunLine> {
 
     private MinMax minMax;
 
-    public void normalizeSetMinMax() {
+    public void normalizeRunMinMax() {
 
         float max = Float.NEGATIVE_INFINITY;
         float min = Float.POSITIVE_INFINITY;

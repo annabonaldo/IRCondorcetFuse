@@ -28,7 +28,6 @@ public class RunSet {
     public RunSet(List<Run> runList)
     {
 
-
         for(Run run : runList)
             for(RunLine line: run)
             {
@@ -43,18 +42,29 @@ public class RunSet {
                 }
             }
 
-
     }
 
     public Set<String> getKeys()
     {
        return  _runset.keySet();
     }
+    
+    public Set<String> getDocumentsId() {
+        
+        Set<String> documentIDs = new Set<String>();
+        for(Run run : runList) {
+            for(RunLine line : run) {
+                documentIDs.add(line.DocumentID());
+            }
+        }
+        return documentIDs;
+    }
 
     public ArrayList<RunLineScores> getLineListAt(String key )
     {
         return  _runset.get(key);
     }
+    
 }
 
 
