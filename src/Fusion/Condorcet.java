@@ -2,7 +2,8 @@ package Fusion;
 import Base.Run;
 import Base.RunLineScores;
 import Base.RunSet;
-import Fusion.CondorcetUtils.CondorcetGraph;
+import Fusion.CondorcetUtils.Doc;
+import Fusion.CondorcetUtils.SingleRetirievalCondorcet;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,8 +20,10 @@ class Condorcet
             HashMap<String, ArrayList<RunLineScores>> filteredList =
                     runSet.getDocsScoreListForQueryAndTopic(queryAndTopic);
 
-            CondorcetGraph graph = new CondorcetGraph(queryAndTopic, filteredList);
+            SingleRetirievalCondorcet condorcet =
+                    new SingleRetirievalCondorcet(queryAndTopic, filteredList);
 
+            ArrayList<Doc> result = condorcet.getCondorcetResultDocArray();
 
         }
 

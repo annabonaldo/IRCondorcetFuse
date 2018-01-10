@@ -1,14 +1,21 @@
 package Fusion.CondorcetUtils;
 
+import java.util.HashMap;
+import java.util.Set;
+
 public class Doc implements  Comparable<Doc>
 {
     int _rank;
+    int _score;
     String _docId;
+    SingleRetirievalCondorcet _parentCondorcet;
 
-    Doc(String docId, int rank)
+    Doc(String docId, int rank, SingleRetirievalCondorcet parent)
     {
         _docId = docId;
         _rank = rank;
+        _score = -1;
+        _parentCondorcet = parent;
     }
 
     public void setRank(int rank)
@@ -16,9 +23,27 @@ public class Doc implements  Comparable<Doc>
         _rank = rank;
     }
 
+    public void setScore(int score)
+    {
+        _score = score;
+    }
+
     @Override
-    public int compareTo(Doc i) {
-        return Integer.compare(this._rank, i._rank);
+    public int compareTo(Doc other) {
+        final int BEFORE = -1;
+        final int EQUAL = 0;
+        final int AFTER = 1;
+
+        boolean GREATERorEQUAL = _parentCondorcet.getLowerDocsMap().
+                                    get(other._docId).contains(this._docId);
+
+        boolean SMALLERorEQUAL = _parentCondorcet.getLowerDocsMap().
+                                    get(this._docId).contains(other._docId);
+
+        if(GREATERorEQUAL    && SMALLERorEQUAL)    return EQUAL;
+        if(GREATERorEQUAL    && (!SMALLERorEQUAL)) return AFTER;
+      //  if((!GREATERorEQUAL) && SMALLERorEQUAL)
+            return BEFORE;
     }
 
 }
