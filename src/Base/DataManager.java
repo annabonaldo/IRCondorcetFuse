@@ -26,11 +26,16 @@ public class DataManager {
         _runSet = new RunSet(listRun);
     }
 
-    public void normalizeMinMax() {
+    public void NormalizeMinMax() {
         if (_runSet != null) {
             for(int i=0; i<_setSize; i++) {
                 _runSet.NormalizeSetMinMax();
-            }   
+                Run run = _runSet.getRunList().get(i);
+                for(int j=0; j<run.size(); j++) {
+                    run.get(j).Print();
+                }
+                ioManager.WriteToResFile(run);
+            }
         }
     }
 

@@ -61,6 +61,8 @@ public class RunSet {
     public Set<String> getDocList() { return  _docList; }
 
     public Set<String> getQueryAndTopicList() {return _queryAndTopicList; }
+    
+    public List<Run> getRunList() { return _runList; }
 
     protected HashSet<String> ComputeSubkeyList(int[] positions)
     {

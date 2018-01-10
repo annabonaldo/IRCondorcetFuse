@@ -5,10 +5,24 @@ import Base.RunLine;
 
 import java.io.*;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class IOManager {
 
     Scanner scanner = new Scanner(System.in);
+    
+    public int ReadSetSize() {
+        int setSize;
+        do {
+            System.out.println("Enter a positive number of runs to read:");
+            while(!scanner.hasNextInt()) {
+                System.out.println("You didn't type a number. Please type again.");
+                scanner.next();
+            }
+            setSize = scanner.nextInt();
+        } while (setSize <= 0);
+        return setSize;
+    }
 
     public Run ReadResFile()
     {
@@ -21,6 +35,7 @@ public class IOManager {
             in = new BufferedReader(new FileReader(IOSettings.DefaultInPath + ResFile));
             String str=null;
             while((str = in.readLine()) != null){
+                System.out.println(str);
                 RunLine resItem = new RunLine(str);
                 items.add(resItem);
             }
