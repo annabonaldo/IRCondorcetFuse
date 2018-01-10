@@ -1,5 +1,6 @@
 package Fusion;
 import Base.Run;
+import Base.RunLine;
 import Base.RunLineScores;
 import Base.RunSet;
 import Fusion.CondorcetUtils.Doc;
@@ -11,6 +12,9 @@ import java.util.Set;
 
 class Condorcet
 {
+
+    public static final String  RunID ="CondFuse";
+
     public Run Fuse(RunSet runSet) {
         Run run = new Run();
         Set<String> queryAndTopicList = runSet.getQueryAndTopicList();
@@ -24,11 +28,21 @@ class Condorcet
                     new SingleRetirievalCondorcet(queryAndTopic, filteredList);
 
             ArrayList<Doc> result = condorcet.getCondorcetResultDocArray();
-
+            addResultToRun(run, result, queryAndTopic);
         }
 
-
         return run;
+    }
+
+    private  void addResultToRun(Run run, ArrayList<Doc> result, String queryAndTopic)
+    {
+        for(Doc doc : result) {
+
+            String globalID =doc.ID()+RunLine.sep+queryAndTopic;
+            RunLineScores scores = new RunLineScores(Condorcet.RunID, doc.Rank(), doc.Score());
+
+            run.add(new RunLine(globalID, scores));
+        }
     }
 
 

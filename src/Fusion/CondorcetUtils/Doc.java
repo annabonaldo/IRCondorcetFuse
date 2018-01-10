@@ -28,6 +28,12 @@ public class Doc implements  Comparable<Doc>
         _score = score;
     }
 
+    public String ID() { return  _docId; }
+
+    public int Rank() { return _rank;}
+
+    public float Score() {return _score; }
+
     @Override
     public int compareTo(Doc other) {
         final int BEFORE = -1;
