@@ -17,11 +17,10 @@ public class RunSet {
       KEY =  line id : documentID+queryID+topicId (***)
       VALUE = list of _scores for each RUN
      */
-    HashMap<String, ArrayList<RunLineScores>> _runset;
+    HashMap<String, ArrayList<RunLineScores>> _runset = new HashMap<String, ArrayList<RunLineScores>>();
     List<Run> _runList;
     Set<String>  _docList;
     Set<String>  _queryAndTopicList;
-
 
     //@desc
     //this constructor bulid the obj
