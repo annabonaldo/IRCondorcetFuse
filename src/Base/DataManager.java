@@ -19,11 +19,11 @@ public class DataManager {
         ArrayList<Run> listRun = new ArrayList<Run>();
         for(int i=0; i<_setSize; i++) {
             Run run = ioManager.ReadResFile();
+            System.out.println("Reading File...");
             for(int j=0; j<run.size(); j++) {
                 run.get(j).Print();
             }
             listRun.add(run);
-            ioManager.WriteToResFile(run);
         }
         _runSet = new RunSet(listRun);
     }
@@ -31,6 +31,7 @@ public class DataManager {
     public void NormalizeMinMax() {
         if (_runSet != null) {
             for(int i=0; i<_setSize; i++) {
+                System.out.println("Normalizing Min/Max...");
                 _runSet.NormalizeSetMinMax();
                 Run run = _runSet.getRunList().get(i);
                 for(int j=0; j<run.size(); j++) {
@@ -43,10 +44,13 @@ public class DataManager {
     
     public void Fuse() {
         if (_runSet != null) {
+            System.out.println("Fusion CombMAX...");
             baseFusionMethod = new CombMAXBaseFusionMethod();
             ioManager.WriteToResFile(baseFusionMethod.Fuse(_runSet));
+            System.out.println("Fusion CombMNZ...");
             baseFusionMethod = new CombMNZBaseFusionMethod();
             ioManager.WriteToResFile(baseFusionMethod.Fuse(_runSet));
+            System.out.println("Fusion CombSUM...");
             baseFusionMethod = new CombSUMBaseFusionMethod();
             ioManager.WriteToResFile(baseFusionMethod.Fuse(_runSet));
         }

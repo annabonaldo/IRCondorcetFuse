@@ -9,5 +9,6 @@ public class Application {
         DataManager dataManager = new DataManager(setSize);
         dataManager.Import();
         dataManager.NormalizeMinMax();
+        dataManager.Fuse();
     }
 }

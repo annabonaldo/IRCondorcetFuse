@@ -35,7 +35,6 @@ public class IOManager {
             in = new BufferedReader(new FileReader(IOSettings.DefaultInPath + ResFile));
             String str=null;
             while((str = in.readLine()) != null){
-                System.out.println(str);
                 RunLine resItem = new RunLine(str);
                 items.add(resItem);
             }
