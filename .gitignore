@@ -14,7 +14,6 @@ terrier-core-4.2/README.md
 out/
 .idea/
 *.class
-*.res
 *.iml
 terrier-core-4.2/.settings
 terrier-core-4.2/.classpath

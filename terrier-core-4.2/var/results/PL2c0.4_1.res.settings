@@ -1,5 +1,5 @@
 # Settings of Terrier (TRECQuerying) generated for run /home/anna/Desktop/IRCondorcetFuse/terrier-core-4.2/var/results/PL2c0.4_1.res
-#Wed Jan 10 13:32:00 CET 2018
+#Wed Jan 10 15:57:49 CET 2018
 trec.topics=/home/anna/Desktop/IRCondorcetFuse/data/topics.351-400_trec7.txt
 trec.runtag=PL2c0.4
 tokeniser=org.terrier.indexing.tokenisation.EnglishTokeniser
@@ -67,7 +67,7 @@ querying.preprocesses.order=
 trec.manager=Manager
 querying.postprocesses.order=QueryExpansion
 # topicfile: /home/anna/Desktop/IRCondorcetFuse/data/topics.351-400_trec7.txt
-# run started at: 1515587519213
-# run finished at 1515587520296
+# run started at: 1515596268677
+# run finished at 1515596269736
 # c=0.4 c_set=true
 # model=PL2
