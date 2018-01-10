@@ -87,7 +87,24 @@ public class RunSet {
     {
         return  _runset.get(key);
     }
-    
+
+    public HashMap<String, ArrayList<RunLineScores>> getDocsScoreListForQueryAndTopic(String queryAndTopic)
+    {
+        Set<String> docList = this.getDocList();
+
+        HashMap<String, ArrayList<RunLineScores>> out = new HashMap<>();
+        for(String doc: docList)
+        {
+            String key = doc+RunLine.sep+queryAndTopic;
+            if(_runset.containsKey(key)) {
+                out.put(key, this._runset.get(key));
+            }
+        }
+
+        return out;
+    }
+
+
     public void NormalizeSetMinMax() {
         for(Run run : _runList) { run.normalizeRunMinMax(); }
     }
