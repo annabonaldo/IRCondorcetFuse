@@ -9,7 +9,7 @@ import Normalization.MinMax;
 // this class contains also NORMALIZED RANK after normalization computation
 public class RunLine implements Comparable<RunLine> {
 
-    public static final String sep = "&";
+    public static final String sep = " ";
     String    _topicID;
     String    _queryID;
     String    _documentID;

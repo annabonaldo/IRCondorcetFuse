@@ -1,6 +1,7 @@
 package Base;
 
 import IO.IOManager;
+import Fusion.*;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -9,6 +10,7 @@ public class DataManager {
     RunSet _runSet;
     int _setSize;
     IOManager ioManager = new IOManager();
+    BaseFusionMethod baseFusionMethod;
     
     public DataManager(int setSize) { _setSize = setSize; }
 
@@ -36,6 +38,17 @@ public class DataManager {
                 }
                 ioManager.WriteToResFile(run);
             }
+        }
+    }
+    
+    public void Fuse() {
+        if (_runSet != null) {
+            baseFusionMethod = new CombMAXBaseFusionMethod();
+            ioManager.WriteToResFile(baseFusionMethod.Fuse(_runSet));
+            baseFusionMethod = new CombMNZBaseFusionMethod();
+            ioManager.WriteToResFile(baseFusionMethod.Fuse(_runSet));
+            baseFusionMethod = new CombSUMBaseFusionMethod();
+            ioManager.WriteToResFile(baseFusionMethod.Fuse(_runSet));
         }
     }
 
