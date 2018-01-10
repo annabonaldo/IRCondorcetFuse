@@ -19,7 +19,6 @@ public class Condorcet
         String[] documentIDsArray = documentIDs.toArray(new String[documentIDs.size()]);
         quickSort(documentIDsArray,0,documentIDs.size()-1);
 
-
         //TODO Stub return value
         return new  Run();
     }

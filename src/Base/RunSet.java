@@ -18,6 +18,7 @@ public class RunSet {
       VALUE = list of _scores for each RUN
      */
     HashMap<String, ArrayList<RunLineScores>> _runset;
+    List<Run> _runList;
     Set<String>  _docList;
     Set<String>  _queryAndTopicList;
 
@@ -27,6 +28,8 @@ public class RunSet {
     // computing  the map form a run list
     public RunSet(List<Run> runList)
     {
+        
+        _runList = runList;
 
         for(Run run : runList)
             for(RunLine line: run)
@@ -54,7 +57,7 @@ public class RunSet {
     {
        return  _runset.keySet();
     }
-    
+
     public Set<String> getDocList() { return  _docList; }
 
     public Set<String> getQueryAndTopicList() {return _queryAndTopicList; }
@@ -72,7 +75,6 @@ public class RunSet {
                subKey = subKey + key_items[positions[i]];
                if(i < (positions.length-1))
                    subKey= subKey+RunLine.sep;
-
            }
 
             list.add(subKey);
@@ -85,6 +87,10 @@ public class RunSet {
         return  _runset.get(key);
     }
     
+    public void NormalizeSetMinMax() {
+        for(Run run : _runList) { run.normalizeRunMinMax(); }
+    }
+
 }
 
 

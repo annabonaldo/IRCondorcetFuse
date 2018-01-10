@@ -1,5 +1,7 @@
 package Base;
 
+import Normalization.MinMax;
+
 // @desc
 // this class rappresents only the "scoring part" of a Run Line
 // the "scoring part" is considered as made of
@@ -22,7 +24,6 @@ public class RunLineScores {
         _score = score;
         _runID = runID;
     }
-
 
     public int Rank() {
         return _rank;
