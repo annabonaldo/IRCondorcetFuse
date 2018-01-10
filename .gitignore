@@ -16,4 +16,7 @@ out/
 *.class
 *.res
 *.iml
+terrier-core-4.2/.settings
+terrier-core-4.2/.classpath
+terrier-core-4.2/.project
 pom.xml
