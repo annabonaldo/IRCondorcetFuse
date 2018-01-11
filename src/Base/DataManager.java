@@ -11,6 +11,7 @@ public class DataManager {
     int _setSize;
     IOManager ioManager = new IOManager();
     BaseFusionMethod baseFusionMethod;
+    Condorcet condorcet;
     
     public DataManager(int setSize) { _setSize = setSize; }
 
@@ -34,9 +35,9 @@ public class DataManager {
                 System.out.println("Normalizing Min/Max...");
                 _runSet.NormalizeSetMinMax();
                 Run run = _runSet.getRunList().get(i);
-                for(int j=0; j<run.size(); j++) {
+                /*for(int j=0; j<run.size(); j++) {
                     run.get(j).Print();
-                }
+                }*/
                 ioManager.WriteToResFile(run);
             }
         }
@@ -53,6 +54,9 @@ public class DataManager {
             System.out.println("Fusion CombSUM...");
             baseFusionMethod = new CombSUMBaseFusionMethod();
             ioManager.WriteToResFile(baseFusionMethod.Fuse(_runSet));
+            condorcet = new Condorcet();
+            System.out.println("Fusion CombSUM...");
+            ioManager.WriteToResFile(condorcet.Fuse(_runSet));
         }
     }
 

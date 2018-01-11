@@ -9,7 +9,7 @@ public class SingleRetirievalCondorcet {
     HashMap<String, Set<String>> _lowerDocs;
     String _queryAndTopic;
 
-    ArrayList<Doc> _docArray;
+    ArrayList<Doc> _docArray = new ArrayList<Doc>();
 
 
     public SingleRetirievalCondorcet(String queryAndTopic,
@@ -37,9 +37,11 @@ public class SingleRetirievalCondorcet {
 
     public void DocumentPairCondorcet(String doc1name, String doc2name, ArrayList<RunLineScores> scores1, ArrayList<RunLineScores> scores2)
     {
+        System.out.println("scores1.size(): " + scores1.size() + "scores2.size():" + scores2.size());
         int eval =0;
-        for(int i=0; i< scores1.size(); i++)
-        {
+        int min = (scores1.size() < scores2.size() ? scores1.size() : scores2.size());
+        for(int i = 0; i < min; i++) // @TODO IndexOutOfBound exception: scores1.size may be greater than scores2.size!
+        { 
             if(scores1.get(i).Rank() < scores2.get(i).Rank()) eval ++;
             if(scores1.get(i).Rank() > scores2.get(i).Rank()) eval --;
 

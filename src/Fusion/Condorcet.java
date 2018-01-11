@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
-class Condorcet
+public class Condorcet
 {
 
     public static final String  RunID ="CondFuse";
