@@ -68,12 +68,13 @@ public class RunLine implements Comparable<RunLine> {
 
     public String getLine()
     {
-        return  _topicID.toString()+" "+
-                      _queryID.toString()+" "+
-                _documentID +" "+
-                      Integer.toString(_scores.Rank())+ " "+
-                      Float.toString(_scores.Score())+" "+
-                _scores.RunID();
+        return  "topic id: " + _topicID.toString() + " " +
+                "query id: " + _queryID.toString() + " " +
+                "document id: " + _documentID + " " +
+                "rank: " + Integer.toString(_scores.Rank()) + " " +
+                "score: " + Float.toString(_scores.Score()) + " " +
+                "normalized score: " + _scores.NormalizedScore() + " " +
+                "score id: " + _scores.RunID();
     }
 
     public RunLineScores RunLineScores() {

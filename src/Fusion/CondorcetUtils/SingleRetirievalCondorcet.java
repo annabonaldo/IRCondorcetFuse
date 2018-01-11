@@ -41,11 +41,11 @@ public class SingleRetirievalCondorcet {
         for(int i=0; i< scores1.size(); i++)
         {
             if(scores1.get(i).Rank() < scores2.get(i).Rank()) eval ++;
-            if(scores1.get(i).Rank() < scores2.get(i).Rank()) eval ++;
+            if(scores1.get(i).Rank() > scores2.get(i).Rank()) eval --;
 
-            if(this._lowerDocs.containsKey(doc1name))
+            if(!this._lowerDocs.containsKey(doc1name))
                 this._lowerDocs.put(doc1name, new HashSet<String>());
-            if(this._lowerDocs.containsKey(doc2name))
+            if(!this._lowerDocs.containsKey(doc2name))
                 this._lowerDocs.put(doc2name, new HashSet<String>());
 
             if(eval >= 0)
