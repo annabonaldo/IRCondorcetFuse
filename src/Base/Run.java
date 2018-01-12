@@ -11,6 +11,13 @@ import Normalization.*;
 public class Run extends ArrayList<RunLine> {
 
     private MinMax minMax;
+    private String _name;
+
+    public Run(String name)
+    {
+        super();
+        _name = name;
+    }
 
     public void normalizeRunMinMax() {
 
@@ -33,7 +40,7 @@ public class Run extends ArrayList<RunLine> {
 
     public MinMax MinMax() { return minMax; }
 
-    public void ComputeRanks()
+    public void computeRanks()
     {
         Collections.sort(this);
         for(int i=0; i<this.size(); i++)
@@ -41,6 +48,8 @@ public class Run extends ArrayList<RunLine> {
             this.get(i)._scores.setRank(i);
         }
     }
+
+    public String getName() {return _name;}
 
 }
 

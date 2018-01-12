@@ -22,10 +22,12 @@ public class RunSet {
     Set<String>  _docList;
     Set<String>  _queryAndTopicList;
 
+    String _name;
+
     //@desc
     //this constructor bulid the obj
     // computing  the map form a run list
-    public RunSet(List<Run> runList)
+    public RunSet(List<Run> runList, String name)
     {
         
         _runList = runList;
@@ -49,8 +51,11 @@ public class RunSet {
         
         // takes all unique 1&2 position item of key
         _queryAndTopicList = ComputeSubkeyList(new int[]{1, 2});
+        _name = name;
 
     }
+
+    public String getName(){return _name;}
 
     public Set<String> getKeys()
     {

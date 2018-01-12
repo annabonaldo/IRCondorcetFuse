@@ -46,7 +46,7 @@ public class RunLine implements Comparable<RunLine> {
     String    DocumentID()         { return _documentID; }
     String    QueryID()            { return _queryID; }
     float     Score()              { return _scores.Score(); }
-    float     NormalizedScore()    { return _scores.NormalizedScore(); }
+   // float     NormalizedScore()    { return _scores.NormalizedScore(); }
     int       Rank()               { return _scores.Rank(); }
     String    RunID()              { return _scores.RunID(); }
 
@@ -61,7 +61,7 @@ public class RunLine implements Comparable<RunLine> {
         System.out.print("| iteration: ");     System.out.print(_scores.Rank());
         System.out.print("| topic name: ");    System.out.print(_documentID);
         System.out.print("| score: ");         System.out.print(_scores.Score());
-        System.out.print("| norm score: ");    System.out.print(_scores.NormalizedScore());
+      //  System.out.print("| norm score: ");    System.out.print(_scores.NormalizedScore());
         System.out.print("| method : ");       System.out.print(_scores.RunID());
         System.out.print("\n");
     }
@@ -73,7 +73,7 @@ public class RunLine implements Comparable<RunLine> {
                 "document id: " + _documentID + " " +
                 "rank: " + Integer.toString(_scores.Rank()) + " " +
                 "score: " + Float.toString(_scores.Score()) + " " +
-                "normalized score: " + _scores.NormalizedScore() + " " +
+              //  "normalized score: " + _scores.NormalizedScore() + " " +
                 "score id: " + _scores.RunID();
     }
 
@@ -82,14 +82,14 @@ public class RunLine implements Comparable<RunLine> {
     }
 
     public void normalizeMinMax(MinMax minMax) {
-        _scores.setNormalizedScore(minMax.normalizeScore(_scores.Score()));
+        _scores.NormalizeScore(minMax.normalizeScore(_scores.Score()));
     }
 
 
     @Override
     public int compareTo(RunLine runLine) {
-       float f1=  this.NormalizedScore();
-       float f2=  runLine.NormalizedScore();
+       float f1=  this.Score();
+       float f2=  runLine.Score();
        return Float.compare(f1, f2);
     }
 }

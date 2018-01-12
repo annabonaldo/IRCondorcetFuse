@@ -2,69 +2,86 @@ package IO;
 
 import Base.Run;
 import Base.RunLine;
+import Base.RunSet;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
 public class IOManager {
+    static final String DefaultInPath = "../../results/FusionIn/";
+    static final String DefaultOutPath = "../../results/FusionOut/";
 
-    Scanner scanner = new Scanner(System.in);
-    
-    public int ReadSetSize() {
-        int setSize;
-        do {
-            System.out.println("Enter a positive number of runs to read:");
-            while(!scanner.hasNextInt()) {
-                System.out.println("You didn't type a number. Please type again.");
-                scanner.next();
-            }
-            setSize = scanner.nextInt();
-        } while (setSize <= 0);
-        return setSize;
+    BatchRunSet[] _batch;
+
+
+    public IOManager()
+    {
+        _batch = getBatchSets();
     }
 
-    public Run ReadResFile()
-    {
-        Run items = new Run();
+    public List<RunSet> readRunSetList() {
+        List<RunSet> runSets = new ArrayList<>();
 
-        BufferedReader in = null;
-        try {
-            System.out.println("Enter the resource file to read (in terrier-core-4.2/var/results):");
-            String ResFile = scanner.next();
-            in = new BufferedReader(new FileReader(IOSettings.DefaultInPath + ResFile));
-            String str=null;
-            while((str = in.readLine()) != null){
-                RunLine resItem = new RunLine(str);
-                items.add(resItem);
+        for(BatchRunSet batchSet : _batch)
+        {
+            try {
+                runSets.add(batchSet.read());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-        catch(IOException e2)
-        {
-            e2.printStackTrace();
-        }
-        return  items;
+        return  runSets;
+
     }
 
-    public void WriteToResFile(Run set)
+    public void writeRunSet(RunSet runSet)
     {
-        PrintWriter writer = null;
         try {
-            System.out.println("Enter name file to save output (in main dir):");
-            String OutFile = scanner.next();
-            writer = new PrintWriter(IOSettings.DefaultOutPath + OutFile, "UTF-8");
-        }
-        catch (FileNotFoundException e) {
+            BatchRunSet.write(runSet);
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-        catch (UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-        }
-
-        for(int i=0; i<set.size(); i++)
-        {
-            writer.println(set.get(i).getLine());
         }
     }
+    public void writeRunSetList(List<RunSet> runSetList)
+    {
+       for(RunSet runSet:runSetList)
+           writeRunSet(runSet);
+    }
+
+    private  BatchRunSet[] getBatchSets()
+    {
+        File mainFolder = new File(DefaultInPath);
+        String[] TestDirNames =  mainFolder.list(new FilenameFilter() {
+            @Override
+            public boolean accept(File current, String name) {
+                return new File(current, name).isDirectory();
+            }
+        });
+        _batch = new BatchRunSet[TestDirNames.length];
+
+        int i=0;
+        for(String dirName: TestDirNames)
+        {
+            File dir = new File(dirName);
+            String[] runFiles = dir.list(new FilenameFilter() {
+                @Override
+                public boolean accept(File file, String name) {
+                    return ((!file.isDirectory()) && (name.contains(".res")));
+                }
+            });
+
+            _batch[i]= new BatchRunSet(runFiles, dirName);
+            i++;
+        }
+        return _batch;
+
+    }
+
+
 }
 

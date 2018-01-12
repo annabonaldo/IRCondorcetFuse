@@ -6,28 +6,34 @@ import java.util.List;
 
 public class CombMNZBaseFusionMethod extends BaseFusionMethod {
 
+    static String fusionId = "CombMNZ";
     // Fuse() implements CombMNZ fusion:
     // Combined Similarity = SUM(Individual Similarities)*  Number of Nonzero Similarities
 
     @Override
     protected RunLineScores FuseLine(List<RunLineScores> runLineList) {
 
-        String runID = "CombMNZ";
+
         int rank = -1;
         float sumNormScore = 0.0F;
         int nonZeroScores = 0;
 
         //compute the Sum Normalized score values
         for(RunLineScores score : runLineList) {
-            sumNormScore += score.NormalizedScore();
-            if(score.NormalizedScore() > 0)
+            sumNormScore += score.Score();
+            if(score.Score() > 0)
                 nonZeroScores++;
         }
         sumNormScore *= nonZeroScores;
 
-        RunLineScores fusedScores = new RunLineScores(runID, rank, sumNormScore);
-        fusedScores.setNormalizedScore(sumNormScore);
+        RunLineScores fusedScores = new RunLineScores(fusionId, rank, sumNormScore);
+        fusedScores.NormalizeScore(sumNormScore);
 
         return fusedScores;
+    }
+
+    @Override
+    protected String FusionName() {
+        return CombMNZBaseFusionMethod.fusionId;
     }
 }
