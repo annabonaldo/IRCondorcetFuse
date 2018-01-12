@@ -1,7 +1,6 @@
 package Base;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 import Normalization.*;
@@ -10,7 +9,7 @@ import Normalization.*;
 // each ArrayList entry is a  file line
 public class Run extends ArrayList<RunLine> {
 
-    private MinMax minMax;
+    private MinMax _minMax;
     private String _name;
 
     public Run(String name)
@@ -20,29 +19,11 @@ public class Run extends ArrayList<RunLine> {
         normalizeRunMinMax();
     }
 
-    void normalizeRunMinMax() {
+    public MinMax MinMax() { return _minMax; }
 
-        float max = Float.NEGATIVE_INFINITY;
-        float min = Float.POSITIVE_INFINITY;
-        
-        for (RunLine item : this) {
-            float currScore = item.Score();
-            if (currScore < min) min = currScore;
-            if (currScore > max) max = currScore;
-        }
-        
-        minMax = new MinMax(min, max);
+    public String Name() {return _name;}
 
-        for (RunLine item : this) {
-            item.normalizeMinMax(minMax);
-        }
-
-    }
-
-    public MinMax MinMax() { return minMax; }
-
-    public void computeRanks()
-    {
+    public void computeRanks() {
         Collections.sort(this);
         for(int i=0; i<this.size(); i++)
         {
@@ -50,11 +31,28 @@ public class Run extends ArrayList<RunLine> {
         }
     }
 
-    public String getName() {return _name;}
-
-    public void PrintInfo()
+    public void printInfo()
     {
-        System.out.println("Run name : "+getName()+ " lines: "+this.size());
+        System.out.println("Run name : "+ Name()+ " lines: "+this.size());
+    }
+
+    void normalizeRunMinMax() {
+
+        float max = Float.NEGATIVE_INFINITY;
+        float min = Float.POSITIVE_INFINITY;
+
+        for (RunLine item : this) {
+            float currScore = item.Score();
+            if (currScore < min) min = currScore;
+            if (currScore > max) max = currScore;
+        }
+
+        _minMax = new MinMax(min, max);
+
+        for (RunLine item : this) {
+            item.normalizeMinMax(_minMax);
+        }
+
     }
 
 }

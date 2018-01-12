@@ -17,7 +17,7 @@ public class RunSet {
       KEY =  line id : documentID+queryID+topicId (***)
       VALUE = list of _scores for each RUN
      */
-    HashMap<String, ArrayList<RunLineScores>> _runset = new HashMap<String, ArrayList<RunLineScores>>();
+    HashMap<String, ArrayList<RunLineScores>> _runScoreMap = new HashMap<String, ArrayList<RunLineScores>>();
     List<Run> _runList;
     Set<String>  _docList;
     Set<String>  _queryAndTopicList;
@@ -35,43 +35,43 @@ public class RunSet {
         for(Run run : runList)
             for(RunLine line: run)
             {
-                if(_runset.containsKey(line.GlobalID())) {
-                    ArrayList<RunLineScores> lineList = _runset.get(line.GlobalID());
-                    lineList.add(line.RunLineScores());
+                if(_runScoreMap.containsKey(line.GlobalID())) {
+                    ArrayList<RunLineScores> lineList = _runScoreMap.get(line.GlobalID());
+                    lineList.add(line.getRunLineScores());
                 }
                 else {
                     ArrayList<RunLineScores> lineList = new ArrayList<>();
-                    lineList.add(line.RunLineScores());
-                    _runset.put(line.GlobalID(), lineList);
+                    lineList.add(line.getRunLineScores());
+                    _runScoreMap.put(line.GlobalID(), lineList);
                 }
             }
 
         // takes all unique 0 position item of key
-        _docList = ComputeSubkeyList(new int[]{0});
+        _docList = computeSubkeyList(new int[]{0});
         
         // takes all unique 1&2 position item of key
-        _queryAndTopicList = ComputeSubkeyList(new int[]{1, 2});
+        _queryAndTopicList = computeSubkeyList(new int[]{1, 2});
         _name = name;
 
     }
 
-    public String getName(){return _name;}
+    public String      Name(){return _name;}
 
-    public Set<String> getKeys()
+    public Set<String> Keys()
     {
-       return  _runset.keySet();
+       return  _runScoreMap.keySet();
     }
 
-    public Set<String> getDocList() { return  _docList; }
+    public Set<String> DocList() { return  _docList; }
 
-    public Set<String> getQueryAndTopicList() {return _queryAndTopicList; }
+    public Set<String> QueryAndTopicList() {return _queryAndTopicList; }
     
-    public List<Run> getRunList() { return _runList; }
+    public List<Run>   RunList() { return _runList; }
 
-    protected HashSet<String> ComputeSubkeyList(int[] positions)
+    protected HashSet<String> computeSubkeyList(int[] positions)
     {
         HashSet<String> list = new HashSet<String>();
-        for(String key : _runset.keySet()) {
+        for(String key : _runScoreMap.keySet()) {
             String[] key_items = key.split(RunLine.sep);
 
             String subKey = new String();
@@ -90,31 +90,31 @@ public class RunSet {
 
     public ArrayList<RunLineScores> getLineList(String key )
     {
-        return  _runset.get(key);
+        return  _runScoreMap.get(key);
     }
 
     public HashMap<String, ArrayList<RunLineScores>> getDocsScoreListForQueryAndTopic(String queryAndTopic)
     {
-        Set<String> docList = this.getDocList();
+        Set<String> docList = this.DocList();
 
         HashMap<String, ArrayList<RunLineScores>> out = new HashMap<>();
         for(String doc: docList)
         {
             String key = doc+RunLine.sep+queryAndTopic;
-            if(_runset.containsKey(key)) {
-                out.put(key, this._runset.get(key));
+            if(_runScoreMap.containsKey(key)) {
+                out.put(key, this._runScoreMap.get(key));
             }
         }
 
         return out;
     }
 
-    public void PrintInfo()
+    public void printInfo()
     {
-        System.out.println("Run "+this.getName()+" N elem:"+this._runset.size());
+        System.out.println("Run "+this.Name()+" N elem:"+this._runScoreMap.size());
         for(Run run:_runList)
         {
-            run.PrintInfo();
+            run.printInfo();
         }
     }
 }

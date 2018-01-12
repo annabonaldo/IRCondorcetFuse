@@ -7,11 +7,11 @@ import java.util.List;
 public class CombMNZBaseFusionMethod extends BaseFusionMethod {
 
     static String fusionId = "CombMNZ";
-    // Fuse() implements CombMNZ fusion:
+    // fuse() implements CombMNZ fusion:
     // Combined Similarity = SUM(Individual Similarities)*  Number of Nonzero Similarities
 
     @Override
-    protected RunLineScores FuseLine(List<RunLineScores> runLineList) {
+    protected RunLineScores fuseLine(List<RunLineScores> runLineList) {
 
 
         int rank = -1;

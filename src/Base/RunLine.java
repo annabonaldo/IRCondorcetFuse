@@ -20,7 +20,6 @@ public class RunLine implements Comparable<RunLine> {
     {
         _scores = scores;
         String[] fields = globalID.split(sep);
-       
         _documentID = fields[0];
         _queryID = fields[1];
         _topicID = fields[2];
@@ -46,15 +45,14 @@ public class RunLine implements Comparable<RunLine> {
     String    DocumentID()         { return _documentID; }
     String    QueryID()            { return _queryID; }
     float     Score()              { return _scores.Score(); }
-   // float     NormalizedScore()    { return _scores.NormalizedScore(); }
     int       Rank()               { return _scores.Rank(); }
     String    RunID()              { return _scores.RunID(); }
 
 
    // @use    GlobalID is the id we use to merge results of different runs
-    String    GlobalID()                 { return DocumentID()+sep+QueryID()+sep+TopicID(); }
+    String    GlobalID()                 { return DocumentID()+sep+QueryID()+sep+ TopicID(); }
 
-    public void Print()
+    public void printRunInfo()
     {
         System.out.print("| topic id: ");      System.out.print(_topicID);
         System.out.print("| query id : ");     System.out.print(_queryID);
@@ -65,17 +63,17 @@ public class RunLine implements Comparable<RunLine> {
         System.out.print("\n");
     }
 
-    public String getLine()
+    public String getRunAsLine()
     {
-        return  "topic id: " + _topicID.toString() + " " +
-                "query id: " + _queryID.toString() + " " +
-                "document id: " + _documentID + " " +
-                "rank: " + Integer.toString(_scores.Rank()) + " " +
-                "score: " + Float.toString(_scores.Score()) + " " +
-                "score id: " + _scores.RunID();
+        return  _topicID.toString() + " " +
+                _queryID.toString() + " " +
+                _documentID + " " +
+                Integer.toString(_scores.Rank()) + " " +
+                Float.toString(_scores.Score()) + " " +
+                _scores.RunID();
     }
 
-    public RunLineScores RunLineScores() {
+    public RunLineScores getRunLineScores() {
         return _scores;
     }
 

@@ -39,12 +39,15 @@ public class RunLineScores {
         return _runID;
     }
 
- /*   public float NormalizedScore() {
-        return _score;
-    }*/
 
     public void NormalizeScore(float normalizedScore) {
         this._score = normalizedScore;
+        _normalized = true;
+    }
+
+    public boolean isNormalized()
+    {
+        return _normalized;
     }
 
     public void setRank(int rank)
