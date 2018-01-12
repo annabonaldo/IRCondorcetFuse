@@ -3,7 +3,6 @@ package IO;
 import Base.Run;
 import Base.RunLine;
 import Base.RunSet;
-
 import java.io.*;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -39,8 +38,6 @@ class BatchRunSet {
 
     }
 
-
-
     File[] getFileNames(){ return _files; }
 
     public RunSet read() throws IOException {
@@ -66,17 +63,17 @@ class BatchRunSet {
     public static void write(RunSet runSet) throws FileNotFoundException, UnsupportedEncodingException {
 
 
-        File directory = new File(getOutDir(runSet.getName()));
+        File directory = new File(getOutDir(runSet.Name()));
         if(!directory.exists())
             directory.mkdir();
 
-        for(Run run :runSet.getRunList()) {
-           PrintWriter writer = new PrintWriter( (getOutDir(runSet.getName())+run.getName()), "UTF-8");
+        for(Run run :runSet.RunList()) {
+           PrintWriter writer = new PrintWriter( (getOutDir(runSet.Name())+run.Name()), "UTF-8");
 
             String str = null;
             for(int i=0; i<run.size(); i++)
             {
-                writer.println(run.get(i).getLine());
+                writer.println(run.get(i).getRunAsLine());
             }
 
         }

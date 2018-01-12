@@ -11,16 +11,16 @@ import java.util.Set;
 
 public abstract class BaseFusionMethod {
 
-    public Run Fuse(RunSet runSet) {
+    public Run fuse(RunSet runSet) {
         Run run = new Run(FusionName());
-        Set<String> keylist = runSet.getKeys();
+        Set<String> keylist = runSet.Keys();
 
         for(String key: keylist)
         {
             ArrayList<RunLineScores> linescorelist = runSet.getLineList(key);
 
             // ABSTRACT CALL
-            RunLineScores linescores = FuseLine(linescorelist);
+            RunLineScores linescores = fuseLine(linescorelist);
 
 
             run.add(new RunLine(key, linescores));
@@ -29,7 +29,7 @@ public abstract class BaseFusionMethod {
         return run;
     }
 
-    protected abstract RunLineScores FuseLine(List<RunLineScores> runLineList);
+    protected abstract RunLineScores fuseLine(List<RunLineScores> runLineList);
 
     protected abstract String FusionName();
 

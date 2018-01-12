@@ -14,9 +14,9 @@ public class Condorcet {
 
     public static final String fusionID = "CondFuse";
 
-    public Run Fuse(RunSet runSet) {
+    public Run fuse(RunSet runSet) {
         Run run = new Run(Condorcet.fusionID);
-        Set<String> queryAndTopicList = runSet.getQueryAndTopicList();
+        Set<String> queryAndTopicList = runSet.QueryAndTopicList();
 
         for (String queryAndTopic : queryAndTopicList) {
             HashMap<String, ArrayList<RunLineScores>> filteredList =

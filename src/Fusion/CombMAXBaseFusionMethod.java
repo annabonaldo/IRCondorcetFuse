@@ -7,10 +7,10 @@ import java.util.List;
 public class CombMAXBaseFusionMethod extends BaseFusionMethod {
 
     static String fusionId = "CombMAX";
-    // Fuse() implements CombMAX fusion:
+    // fuse() implements CombMAX fusion:
     // Combined Similarity = MAX(Individual Similarities)
     @Override
-    protected RunLineScores FuseLine(List<RunLineScores> runLineList) {
+    protected RunLineScores fuseLine(List<RunLineScores> runLineList) {
 
 
         int rank = -1;

@@ -1,17 +1,10 @@
 package IO;
-
-import Base.Run;
-import Base.RunLine;
 import Base.RunSet;
-
-import javax.sql.rowset.spi.SyncResolver;
 import java.io.*;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import java.util.InputMismatchException;
+
 
 public class IOManager {
     static final String DefaultInPath = "/results/FusionIn/";
@@ -28,11 +21,9 @@ public class IOManager {
     public List<RunSet> readRunSetList() {
         List<RunSet> runSets = new ArrayList<>();
 
-        int i =0;
         for(BatchRunSet batchSet : _batch)
         {
             try {
-                System.out.println("Batch Set read n*"+i);
                 runSets.add(batchSet.read());
             } catch (IOException e) {
                 e.printStackTrace();
@@ -60,7 +51,6 @@ public class IOManager {
 
     private  BatchRunSet[] getBatchSets(){
         String path = Paths.get("").toAbsolutePath().toString();
-
         File[] directories = new File(path+DefaultInPath).listFiles(File::isDirectory);
 
         if(directories != null && directories.length >0 ) {

@@ -6,13 +6,13 @@ import java.util.List;
 
 public class CombSUMBaseFusionMethod extends BaseFusionMethod {
 
-    // Fuse() implements CombSUM fusion:
+    // fuse() implements CombSUM fusion:
     // Combined Similarity = SUM(Individual Similarities)
 
     static String fusionId = "CombSUM";
 
     @Override
-    protected RunLineScores FuseLine(List<RunLineScores> runLineList) {
+    protected RunLineScores fuseLine(List<RunLineScores> runLineList) {
 
         int rank = -1;
         float sumNormScore = 0.0F;

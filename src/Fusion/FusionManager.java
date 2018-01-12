@@ -23,30 +23,29 @@ public class FusionManager {
 
         for(RunSet set:_runSetList)
         {
-            set.PrintInfo();
+            set.printInfo();
         }
     }
 
     public void Fuse() {
 
-           System.out.println("Fuse()");
+           System.out.println("fuse()");
             for(RunSet runSet : _runSetList) {
                 List<Run> runList = new ArrayList<>();
                 baseFusionMethod = new CombMAXBaseFusionMethod();
-                runList.add(baseFusionMethod.Fuse(runSet));
-/*
+                runList.add(baseFusionMethod.fuse(runSet));
                 baseFusionMethod = new CombMNZBaseFusionMethod();
-                runList.add(baseFusionMethod.Fuse(runSet));
+                runList.add(baseFusionMethod.fuse(runSet));
 
                 baseFusionMethod = new CombSUMBaseFusionMethod();
-                runList.add(baseFusionMethod.Fuse(runSet));
+                runList.add(baseFusionMethod.fuse(runSet));
                 condorcet = new Condorcet();
-                runList.add(condorcet.Fuse(runSet));
-*/
-                RunSet result = new RunSet(runList, runSet.getName());
+                runList.add(condorcet.fuse(runSet));
+
+                RunSet result = new RunSet(runList, runSet.Name());
                 ioManager.writeRunSet(result);
             }
-        System.out.println("End Fuse()");
+        System.out.println("End fuse()");
     }
 
 }
