@@ -109,11 +109,14 @@ public class RunSet {
         return out;
     }
 
-
-    public void NormalizeSetMinMax() {
-        for(Run run : _runList) { run.normalizeRunMinMax(); }
+    public void PrintInfo()
+    {
+        System.out.println("Run "+this.getName()+" N elem:"+this._runset.size());
+        for(Run run:_runList)
+        {
+            run.PrintInfo();
+        }
     }
-
 }
 
 

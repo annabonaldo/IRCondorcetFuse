@@ -17,9 +17,10 @@ public class Run extends ArrayList<RunLine> {
     {
         super();
         _name = name;
+        normalizeRunMinMax();
     }
 
-    public void normalizeRunMinMax() {
+    void normalizeRunMinMax() {
 
         float max = Float.NEGATIVE_INFINITY;
         float min = Float.POSITIVE_INFINITY;
@@ -50,6 +51,11 @@ public class Run extends ArrayList<RunLine> {
     }
 
     public String getName() {return _name;}
+
+    public void PrintInfo()
+    {
+        System.out.println("Run name : "+getName()+ " lines: "+this.size());
+    }
 
 }
 

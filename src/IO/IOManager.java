@@ -4,15 +4,18 @@ import Base.Run;
 import Base.RunLine;
 import Base.RunSet;
 
+import javax.sql.rowset.spi.SyncResolver;
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
 public class IOManager {
-    static final String DefaultInPath = "../../results/FusionIn/";
-    static final String DefaultOutPath = "../../results/FusionOut/";
+    static final String DefaultInPath = "/results/FusionIn/";
+    static final String DefaultOutPath = "/results/FusionOut/";
 
     BatchRunSet[] _batch;
 
@@ -25,9 +28,11 @@ public class IOManager {
     public List<RunSet> readRunSetList() {
         List<RunSet> runSets = new ArrayList<>();
 
+        int i =0;
         for(BatchRunSet batchSet : _batch)
         {
             try {
+                System.out.println("Batch Set read n*"+i);
                 runSets.add(batchSet.read());
             } catch (IOException e) {
                 e.printStackTrace();
@@ -53,30 +58,20 @@ public class IOManager {
            writeRunSet(runSet);
     }
 
-    private  BatchRunSet[] getBatchSets()
-    {
-        File mainFolder = new File(DefaultInPath);
-        String[] TestDirNames =  mainFolder.list(new FilenameFilter() {
-            @Override
-            public boolean accept(File current, String name) {
-                return new File(current, name).isDirectory();
+    private  BatchRunSet[] getBatchSets(){
+        String path = Paths.get("").toAbsolutePath().toString();
+
+        File[] directories = new File(path+DefaultInPath).listFiles(File::isDirectory);
+
+        if(directories != null && directories.length >0 ) {
+            _batch = new BatchRunSet[directories.length];
+            int i = 0;
+            for (File dir : directories) {
+
+                File[] runFiles = new File(dir.getAbsolutePath()).listFiles(File::isFile);
+                _batch[i] = new BatchRunSet(runFiles, dir.getName());
+                i++;
             }
-        });
-        _batch = new BatchRunSet[TestDirNames.length];
-
-        int i=0;
-        for(String dirName: TestDirNames)
-        {
-            File dir = new File(dirName);
-            String[] runFiles = dir.list(new FilenameFilter() {
-                @Override
-                public boolean accept(File file, String name) {
-                    return ((!file.isDirectory()) && (name.contains(".res")));
-                }
-            });
-
-            _batch[i]= new BatchRunSet(runFiles, dirName);
-            i++;
         }
         return _batch;
 
