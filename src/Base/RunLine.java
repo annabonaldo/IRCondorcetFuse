@@ -61,7 +61,6 @@ public class RunLine implements Comparable<RunLine> {
         System.out.print("| iteration: ");     System.out.print(_scores.Rank());
         System.out.print("| topic name: ");    System.out.print(_documentID);
         System.out.print("| score: ");         System.out.print(_scores.Score());
-      //  System.out.print("| norm score: ");    System.out.print(_scores.NormalizedScore());
         System.out.print("| method : ");       System.out.print(_scores.RunID());
         System.out.print("\n");
     }
@@ -73,7 +72,6 @@ public class RunLine implements Comparable<RunLine> {
                 "document id: " + _documentID + " " +
                 "rank: " + Integer.toString(_scores.Rank()) + " " +
                 "score: " + Float.toString(_scores.Score()) + " " +
-              //  "normalized score: " + _scores.NormalizedScore() + " " +
                 "score id: " + _scores.RunID();
     }
 

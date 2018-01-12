@@ -9,7 +9,6 @@ public class Application {
 
         FusionManager fusionManager = new FusionManager();
         fusionManager.Import();
-        fusionManager.NormalizeMinMax();
         fusionManager.Fuse();
     }
 }
