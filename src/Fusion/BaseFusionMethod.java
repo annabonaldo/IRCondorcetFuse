@@ -12,7 +12,7 @@ import java.util.Set;
 public abstract class BaseFusionMethod {
 
     public Run Fuse(RunSet runSet) {
-        Run run = new Run();
+        Run run = new Run(FusionName());
         Set<String> keylist = runSet.getKeys();
 
         for(String key: keylist)
@@ -25,11 +25,13 @@ public abstract class BaseFusionMethod {
 
             run.add(new RunLine(key, linescores));
         }
-        run.ComputeRanks();
+        run.computeRanks();
         return run;
     }
 
     protected abstract RunLineScores FuseLine(List<RunLineScores> runLineList);
+
+    protected abstract String FusionName();
 
 
 }

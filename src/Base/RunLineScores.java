@@ -13,16 +13,18 @@ import Normalization.MinMax;
 
 public class RunLineScores {
 
-    float     _normalizedScore;
+  //  float     _normalizedScore;
     String    _runID;
     int       _rank;
     float     _score;
+    boolean   _normalized;
 
     public RunLineScores(String runID, int rank, float score )
     {
         _rank = rank;
         _score = score;
         _runID = runID;
+        _normalized = false;
     }
 
     public int Rank() {
@@ -37,12 +39,12 @@ public class RunLineScores {
         return _runID;
     }
 
-    public float NormalizedScore() {
-        return _normalizedScore;
-    }
+ /*   public float NormalizedScore() {
+        return _score;
+    }*/
 
-    public void setNormalizedScore(float _normalizedScore) {
-        this._normalizedScore = _normalizedScore;
+    public void NormalizeScore(float normalizedScore) {
+        this._score = normalizedScore;
     }
 
     public void setRank(int rank)
