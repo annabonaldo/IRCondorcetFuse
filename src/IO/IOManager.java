@@ -22,9 +22,9 @@ public class IOManager {
     public List<RunSet> deserializeAll() {
         List<RunSet> runSets = new ArrayList<>();
 
-        for(IORunSet batchSet : __ioRunSet)
+        for(IORunSet inputSet : __ioRunSet)
         {
-            try { runSets.add(batchSet.deserialize()); }
+            try { runSets.add(inputSet.deserialize()); }
 
             catch (IOException e) {
                 e.printStackTrace();
