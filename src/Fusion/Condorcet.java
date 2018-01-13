@@ -4,7 +4,8 @@ import Base.RunLine;
 import Base.RunLineScores;
 import Base.RunSet;
 import Fusion.CondorcetUtils.Doc;
-import Fusion.CondorcetUtils.SingleRetirievalCondorcet;
+import Fusion.CondorcetUtils.QueryCondorcet;
+import IO.Settings;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,18 +16,33 @@ public class Condorcet {
     public static final String fusionID = "CondFuse";
 
     public Run fuse(RunSet runSet) {
+
         Run run = new Run(Condorcet.fusionID);
-        Set<String> queryAndTopicList = runSet.QueryAndTopicList();
 
-        for (String queryAndTopic : queryAndTopicList) {
+        Set<String> queryKeys = runSet.QueryKeys();
+
+
+        for (String query : queryKeys) {
+
             HashMap<String, ArrayList<RunLineScores>> filteredList =
-                    runSet.getDocsScoreListForQueryAndTopic(queryAndTopic);
+                    runSet.filterOnQuery(query);
 
-            SingleRetirievalCondorcet condorcet =
-                    new SingleRetirievalCondorcet(queryAndTopic, filteredList);
+            if(Settings.RUN_FUSION_DETAIL)
+                System.out.println("QUERY id "+query+ " -- doc n ="+filteredList.size());
+
+            for(String doc : filteredList.keySet())
+            {
+                ArrayList<RunLineScores> scores = filteredList.get(doc);
+                if(Settings.RUN_FUSION_DETAIL)
+                    System.out.println("----------DOCUMENT id "+doc+ " run num ="+scores.size());
+
+            }
+
+            QueryCondorcet condorcet =
+                    new QueryCondorcet(query, filteredList);
 
             ArrayList<Doc> result = condorcet.getCondorcetResultDocArray();
-            addResultToRun(run, result, queryAndTopic);
+            addResultToRun(run, result, query);
         }
 
         return run;

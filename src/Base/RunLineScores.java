@@ -41,4 +41,8 @@ public class RunLineScores {
     public boolean isNormalized() { return _normalized; }
 
 
+    public void PrintInline() {
+
+        System.out.print("|| RUN "+this._runID+ "= "+ Float.toString(Score()));
+    }
 }

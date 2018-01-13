@@ -34,21 +34,29 @@ public class FusionManager {
             for(RunSet runSet : _runSetList) {
                 List<Run> runList = new ArrayList<>();
 
-                baseFusionMethod = new CombMAXBaseFusionMethod();
-                runList.add(baseFusionMethod.fuse(runSet));
-                out("Fuse():: CombMAX performed ");
+                if(Settings.FuseMAX) {
+                    baseFusionMethod = new CombMAXBaseFusionMethod();
+                    runList.add(baseFusionMethod.fuse(runSet));
+                    out("Fuse():: CombMAX performed ");
+                }
 
-                baseFusionMethod = new CombMNZBaseFusionMethod();
-                runList.add(baseFusionMethod.fuse(runSet));
-                out("Fuse():: CombMNZ performed ");
+                if(Settings.FuseMNZ) {
+                    baseFusionMethod = new CombMNZBaseFusionMethod();
+                    runList.add(baseFusionMethod.fuse(runSet));
+                    out("Fuse():: CombMNZ performed ");
+                }
 
-                baseFusionMethod = new CombSUMBaseFusionMethod();
-                runList.add(baseFusionMethod.fuse(runSet));
-                out("Fuse():: CombSUM performed ");
+                if(Settings.FuseSUM) {
+                    baseFusionMethod = new CombSUMBaseFusionMethod();
+                    runList.add(baseFusionMethod.fuse(runSet));
+                    out("Fuse():: CombSUM performed ");
+                }
 
-                condorcet = new Condorcet();
-                runList.add(condorcet.fuse(runSet));
-                out("Fuse():: Condorcet performed ");
+               if(Settings.FuseCONDORCET){
+                   condorcet = new Condorcet();
+                   runList.add(condorcet.fuse(runSet));
+                   out("Fuse():: Condorcet performed ");
+               }
 
                 RunSet result = new RunSet(runList, runSet.Name());
                 ioManager.serialize(result);

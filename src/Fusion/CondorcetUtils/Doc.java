@@ -1,16 +1,13 @@
 package Fusion.CondorcetUtils;
 
-import java.util.HashMap;
-import java.util.Set;
-
 public class Doc implements  Comparable<Doc>
 {
     int _rank;
     int _score;
     String _docId;
-    SingleRetirievalCondorcet _parentCondorcet;
+    QueryCondorcet _parentCondorcet;
 
-    Doc(String docId, int rank, SingleRetirievalCondorcet parent)
+    Doc(String docId, int rank, QueryCondorcet parent)
     {
         _docId = docId;
         _rank = rank;

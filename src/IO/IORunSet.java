@@ -81,10 +81,12 @@ public class IORunSet {
 
     public static void serializeAsNormlized(RunSet runSet) throws FileNotFoundException, UnsupportedEncodingException {
 
-        String normDirRelPath = runSet.Name()+"/"+ normPrefix+runSet.Name();File parentDir = new File(IORunSet.getOutDir(runSet.Name()));
+        String normDirRelPath = runSet.Name()+"/"+ normPrefix+runSet.Name();
+        File parentDir = new File(IORunSet.getOutDir(runSet.Name()));
         if(!parentDir.exists()) parentDir.mkdir();
 
         File normDir = new File(IORunSet.getOutDir(normDirRelPath));
+        if(Settings.PATH_NORM_OUT) System.out.println("normDir "+normDir);
         if(!normDir.exists()) normDir.mkdir();
 
         for(Run run :runSet.RunList()) {
