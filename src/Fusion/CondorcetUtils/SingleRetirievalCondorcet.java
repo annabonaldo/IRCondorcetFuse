@@ -6,6 +6,7 @@ import java.util.*;
 
 public class SingleRetirievalCondorcet {
 
+    static  int totalScoreSizeErrors = 0;
     HashMap<String, Set<String>> _lowerDocs;
     String _queryAndTopic;
 
@@ -31,16 +32,20 @@ public class SingleRetirievalCondorcet {
                 DocumentPairCondorcet(doc1name, doc2name, list.get(doc1name), list.get(doc2name));
             }
         }
-
+        System.out.println("TOTAL SIZE ERROR "+totalScoreSizeErrors+"on "+(list.size()-1+ "pairs !!"));
         FinalCondorcetResultOrdering();
     }
 
     public void DocumentPairCondorcet(String doc1name, String doc2name, ArrayList<RunLineScores> scores1, ArrayList<RunLineScores> scores2)
     {
-        System.out.println("scores1.size(): " + scores1.size() + "scores2.size():" + scores2.size());
         int eval =0;
         int min = (scores1.size() < scores2.size() ? scores1.size() : scores2.size());
-        for(int i = 0; i < min; i++) // @TODO IndexOutOfBound exception: scores1.size may be greater than scores2.size!
+
+        if(scores1.size()!= scores2.size())
+            totalScoreSizeErrors++;
+
+        for(int i = 0; i < min; i++)
+            // @TODO IndexOutOfBound exception: scores1.size may be greater than scores2.size!
         { 
             if(scores1.get(i).Rank() < scores2.get(i).Rank()) eval ++;
             if(scores1.get(i).Rank() > scores2.get(i).Rank()) eval --;

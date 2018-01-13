@@ -1,5 +1,6 @@
 package IO;
 import Base.RunSet;
+
 import java.io.*;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -10,22 +11,22 @@ public class IOManager {
     static final String DefaultInPath = "/results/FusionIn/";
     static final String DefaultOutPath = "/results/FusionOut/";
 
-    BatchRunSet[] _batch;
+    IORunSet[] __ioRunSet;
 
 
     public IOManager()
     {
-        _batch = getBatchSets();
+        __ioRunSet = getSets();
     }
 
-    public List<RunSet> readRunSetList() {
+    public List<RunSet> deserializeAll() {
         List<RunSet> runSets = new ArrayList<>();
 
-        for(BatchRunSet batchSet : _batch)
+        for(IORunSet batchSet : __ioRunSet)
         {
-            try {
-                runSets.add(batchSet.read());
-            } catch (IOException e) {
+            try { runSets.add(batchSet.deserialize()); }
+
+            catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -33,37 +34,56 @@ public class IOManager {
 
     }
 
-    public void writeRunSet(RunSet runSet)
+    public void serialize(RunSet runSet)
     {
         try {
-            BatchRunSet.write(runSet);
+            IORunSet.serialize(runSet);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }
-    public void writeRunSetList(List<RunSet> runSetList)
+
+    public static void serializeAsNormalized(List<RunSet> runSetList)
     {
-       for(RunSet runSet:runSetList)
-           writeRunSet(runSet);
+        for(RunSet runSet:runSetList)
+            try {
+               IORunSet.serializeAsNormlized(runSet);
+            }
+
+            catch (FileNotFoundException e) {
+                if(Settings.ERROR_VERBOSE) System.out.println("Normalization Error");
+                e.printStackTrace();
+            }
+            catch (UnsupportedEncodingException e) {
+
+            if(Settings.ERROR_VERBOSE) System.out.println("Normalization Error");
+            e.printStackTrace();
+            }
     }
 
-    private  BatchRunSet[] getBatchSets(){
+    private  IORunSet[] getSets(){
+
         String path = Paths.get("").toAbsolutePath().toString();
+
         File[] directories = new File(path+DefaultInPath).listFiles(File::isDirectory);
 
         if(directories != null && directories.length >0 ) {
-            _batch = new BatchRunSet[directories.length];
+
+            __ioRunSet = new IORunSet[directories.length];
             int i = 0;
             for (File dir : directories) {
+                File[] runFiles = new File(dir.getAbsolutePath()).listFiles(new FilenameFilter() {
+                    public boolean accept(File dir, String name) {
+                        return  name.toLowerCase().endsWith(".res");
+                    }});
 
-                File[] runFiles = new File(dir.getAbsolutePath()).listFiles(File::isFile);
-                _batch[i] = new BatchRunSet(runFiles, dir.getName());
+                __ioRunSet[i] = new IORunSet(runFiles, dir.getName());
                 i++;
             }
         }
-        return _batch;
+        return __ioRunSet;
 
     }
 

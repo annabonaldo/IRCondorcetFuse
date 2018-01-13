@@ -1,8 +1,9 @@
 package Fusion;
-
 import Base.Run;
 import Base.RunSet;
 import IO.IOManager;
+import IO.Settings;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,40 +13,53 @@ public class FusionManager {
     IOManager ioManager = new IOManager();
     BaseFusionMethod baseFusionMethod;
     Condorcet condorcet;
-    
-    public FusionManager() {
 
-
-    }
+    public FusionManager() { }
 
     public void Import() {
-        _runSetList =  ioManager.readRunSetList();
+        out("Import():: Importing data...");
+        _runSetList =  ioManager.deserializeAll();
 
-        for(RunSet set:_runSetList)
-        {
-            set.printInfo();
-        }
+        out("Import() :: Serializing normalized data...");
+        ioManager.serializeAsNormalized(_runSetList);
+
+        if(Settings.RUN_IN_INFO)
+            for(RunSet set:_runSetList) { set.printInfo(); }
+        out("Import() :: Data imported correctly");
     }
 
     public void Fuse() {
 
-           System.out.println("fuse()");
+           out("Fuse():: fusion started");
             for(RunSet runSet : _runSetList) {
                 List<Run> runList = new ArrayList<>();
+
                 baseFusionMethod = new CombMAXBaseFusionMethod();
                 runList.add(baseFusionMethod.fuse(runSet));
+                out("Fuse():: CombMAX performed ");
+
                 baseFusionMethod = new CombMNZBaseFusionMethod();
                 runList.add(baseFusionMethod.fuse(runSet));
+                out("Fuse():: CombMNZ performed ");
 
                 baseFusionMethod = new CombSUMBaseFusionMethod();
                 runList.add(baseFusionMethod.fuse(runSet));
+                out("Fuse():: CombSUM performed ");
+
                 condorcet = new Condorcet();
                 runList.add(condorcet.fuse(runSet));
+                out("Fuse():: Condorcet performed ");
 
                 RunSet result = new RunSet(runList, runSet.Name());
-                ioManager.writeRunSet(result);
+                ioManager.serialize(result);
+                out("Fuse():: fusion result serialized ");
             }
-        System.out.println("End fuse()");
+    }
+
+
+    private void out(String out) {
+        if(Settings.VERBOSE)
+            System.out.println(out);
     }
 
 }

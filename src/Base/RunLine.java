@@ -10,14 +10,13 @@ import Normalization.MinMax;
 public class RunLine implements Comparable<RunLine> {
 
     public static final String sep = " ";
+
     String    _topicID;
     String    _queryID;
     String    _documentID;
-
     RunLineScores _scores;
 
-    public RunLine (String globalID, RunLineScores scores)
-    {
+    public RunLine (String globalID, RunLineScores scores) {
         _scores = scores;
         String[] fields = globalID.split(sep);
         _documentID = fields[0];
@@ -25,8 +24,7 @@ public class RunLine implements Comparable<RunLine> {
         _topicID = fields[2];
     }
 
-    public RunLine(String line)
-    {
+    public RunLine(String line) {
         String[] line_items= line.split(sep);
 
         _topicID   = line_items[0];
@@ -48,7 +46,6 @@ public class RunLine implements Comparable<RunLine> {
     int       Rank()               { return _scores.Rank(); }
     String    RunID()              { return _scores.RunID(); }
 
-
    // @use    GlobalID is the id we use to merge results of different runs
     String    GlobalID()                 { return DocumentID()+sep+QueryID()+sep+ TopicID(); }
 
@@ -63,8 +60,7 @@ public class RunLine implements Comparable<RunLine> {
         System.out.print("\n");
     }
 
-    public String getRunAsLine()
-    {
+    public String getRunAsLine() {
         return  _topicID.toString() + " " +
                 _queryID.toString() + " " +
                 _documentID + " " +
@@ -77,10 +73,10 @@ public class RunLine implements Comparable<RunLine> {
         return _scores;
     }
 
-    public void normalizeMinMax(MinMax minMax) {
+    public void normalize(MinMax minMax) {
+
         _scores.NormalizeScore(minMax.normalizeScore(_scores.Score()));
     }
-
 
     @Override
     public int compareTo(RunLine runLine) {

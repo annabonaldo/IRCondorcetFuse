@@ -12,11 +12,10 @@ public class Run extends ArrayList<RunLine> {
     private MinMax _minMax;
     private String _name;
 
-    public Run(String name)
-    {
+    public Run(String name) {
         super();
         _name = name;
-        normalizeRunMinMax();
+        normalize();
     }
 
     public MinMax MinMax() { return _minMax; }
@@ -36,7 +35,7 @@ public class Run extends ArrayList<RunLine> {
         System.out.println("Run name : "+ Name()+ " lines: "+this.size());
     }
 
-    void normalizeRunMinMax() {
+    void normalize() {
 
         float max = Float.NEGATIVE_INFINITY;
         float min = Float.POSITIVE_INFINITY;
@@ -50,7 +49,7 @@ public class Run extends ArrayList<RunLine> {
         _minMax = new MinMax(min, max);
 
         for (RunLine item : this) {
-            item.normalizeMinMax(_minMax);
+            item.normalize(_minMax);
         }
 
     }
