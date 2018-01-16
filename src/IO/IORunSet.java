@@ -54,6 +54,7 @@ public class IORunSet {
                 RunLine resItem = new RunLine(str);
                 run.add(resItem);
             }
+            if(Settings.RUN_IN_INFO) System.out.println(run.Name()+" Size : "+ run.size());
             runs.add(run);
         }
 
@@ -75,6 +76,7 @@ public class IORunSet {
             {
                 writer.println(run.get(i).getRunAsLine());
             }
+            writer.close();
 
         }
     }
@@ -97,6 +99,7 @@ public class IORunSet {
             {
                 writer.println(run.get(i).getRunAsLine());
             }
+            writer.close();
 
         }
 
