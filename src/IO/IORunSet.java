@@ -12,7 +12,7 @@ public class IORunSet {
     File[] _files;
     String _testName;
     static final String normPrefix = "NORM_";
-    static final String fileExtension = ".txt";
+    static final String outFileExtension = ".txt";
 
     public IORunSet(File[] files, String dirName) {
        if(Settings.PATH_IN) {
@@ -70,7 +70,9 @@ public class IORunSet {
             directory.mkdir();
 
         for(Run run :runSet.RunList()) {
-           PrintWriter writer = new PrintWriter( (getOutDir(runSet.Name())+run.Name()+fileExtension), "UTF-8");
+
+            String fileName = setExtension(run.Name());
+           PrintWriter writer = new PrintWriter( (getOutDir(runSet.Name())+fileName), "UTF-8");
 
             String str = null;
             for(int i=0; i<run.size(); i++)
@@ -81,6 +83,7 @@ public class IORunSet {
 
         }
     }
+
 
     public static void serializeAsNormlized(RunSet runSet) throws FileNotFoundException, UnsupportedEncodingException {
 
@@ -93,7 +96,8 @@ public class IORunSet {
         if(!normDir.exists()) normDir.mkdir();
 
         for(Run run :runSet.RunList()) {
-            PrintWriter writer = new PrintWriter((IORunSet.getOutDir(normDirRelPath)+run.Name()+fileExtension), "UTF-8");
+            String fileName = setExtension(run.Name());
+            PrintWriter writer = new PrintWriter((IORunSet.getOutDir(normDirRelPath)+fileName), "UTF-8");
 
             String str = null;
             for(int i=0; i<run.size(); i++)
@@ -106,4 +110,14 @@ public class IORunSet {
 
     }
 
+    private static String   setExtension(String fileName)
+    {
+        String file = fileName;
+        if(file.endsWith(".res"))
+           file = file.replace(".res", outFileExtension);
+        else
+            file= file+outFileExtension;
+
+        return file;
+    }
 }
