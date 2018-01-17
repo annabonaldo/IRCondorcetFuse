@@ -23,7 +23,7 @@ public class Run extends ArrayList<RunLine> {
     public String Name() {return _name;}
 
     public void computeRanks() {
-        Collections.sort(this);
+        Collections.sort(this, Collections.reverseOrder());
         for(int i=0; i<this.size(); i++)
         {
             this.get(i)._scores.setRank(i);
