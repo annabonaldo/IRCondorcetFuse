@@ -53,9 +53,9 @@ public class QueryCondorcet {
             if(!this.graph.containsKey(doc2name))
                 this.graph.put(doc2name, new HashSet<String>());
 
-            if(eval >= 0)
+            if(eval > 0)
                 this.graph.get(doc1name).add(doc2name);
-            if(eval <= 0 )
+            if(eval < 0 )
                 this.graph.get(doc2name).add(doc1name);
 
         }
@@ -65,13 +65,6 @@ public class QueryCondorcet {
 
     public  String Query(){return _query; }
 
-    // @desc
-    // return true if docA isBiggerThan docB
-    boolean isABiggerThanB(String docA, String docB)
-    {
-        return  (graph.get(docA).contains(docB)) &&
-                (!graph.get(docB).contains(docA));
-    }
 
     void FinalCondorcetResultOrdering()
     {
