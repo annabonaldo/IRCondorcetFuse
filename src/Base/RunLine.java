@@ -1,6 +1,6 @@
 package Base;
 
-import Normalization.MinMax;
+import Base.Normalization.MinMax;
 
 // @desc rappresentation of a single line of a Run file
 // each line conains:

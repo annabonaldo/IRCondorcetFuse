@@ -9,6 +9,10 @@ public class CombSUMBaseFusionMethod extends BaseFusionMethod {
     // fuse() implements CombSUM fusion:
     // Combined Similarity = SUM(Individual Similarities)
 
+    /**
+     * this is the FusionMethod name.
+     * It is useful to distinguish between method used for Run generation.
+     */
     static String fusionId = "CombSUM";
 
     @Override

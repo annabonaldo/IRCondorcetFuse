@@ -1,13 +1,14 @@
-package Fusion.CondorcetUtils;
+package Fusion.Condorcet;
 
-public class Doc implements  Comparable<Doc>
+public class DocCondorcet implements  Comparable<DocCondorcet>
 {
     int _rank;
     int _score;
     String _docId;
     QueryCondorcet _parentCondorcet;
 
-    Doc(String docId, int rank, QueryCondorcet parent)
+
+    DocCondorcet(String docId, int rank, QueryCondorcet parent)
     {
         _docId = docId;
         _rank = rank;
@@ -32,7 +33,7 @@ public class Doc implements  Comparable<Doc>
     public float Score() {return _score; }
 
     @Override
-    public int compareTo(Doc other) {
+    public int compareTo(DocCondorcet other) {
         final int BEFORE = -1;
         final int EQUAL = 0;
         final int AFTER = 1;

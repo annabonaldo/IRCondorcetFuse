@@ -1,23 +1,21 @@
-package Fusion;
+package Fusion.Condorcet;
 import Base.Run;
 import Base.RunLine;
 import Base.RunLineScores;
 import Base.RunSet;
-import Fusion.CondorcetUtils.Doc;
-import Fusion.CondorcetUtils.QueryCondorcet;
 import IO.Settings;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
-public class Condorcet {
+public class CondorcetFusion {
 
     public static final String fusionID = "CondFuse";
 
     public Run fuse(RunSet runSet) {
 
-        Run run = new Run(Condorcet.fusionID);
+        Run run = new Run(CondorcetFusion.fusionID);
 
         Set<String> queryKeys = runSet.QueryKeys();
 
@@ -41,18 +39,21 @@ public class Condorcet {
             QueryCondorcet condorcet =
                     new QueryCondorcet(query, filteredList);
 
-            ArrayList<Doc> result = condorcet.getCondorcetResultDocArray();
+            ArrayList<DocCondorcet> result = condorcet.getCondorcetResultDocArray();
             addResultToRun(run, result, query);
         }
 
         return run;
     }
 
-    private void addResultToRun(Run run, ArrayList<Doc> result, String queryAndTopic) {
-        for (Doc doc : result) {
+    /**
+    Prova prova prova prova
+     */
+    private void addResultToRun(Run run, ArrayList<DocCondorcet> result, String queryAndTopic) {
+        for (DocCondorcet doc : result) {
 
             String globalID = doc.ID() + RunLine.sep + queryAndTopic;
-            RunLineScores scores = new RunLineScores(Condorcet.fusionID, doc.Rank(), doc.Score());
+            RunLineScores scores = new RunLineScores(CondorcetFusion.fusionID, doc.Rank(), doc.Score());
 
             run.add(new RunLine(globalID, scores));
         }

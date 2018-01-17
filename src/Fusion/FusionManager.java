@@ -1,6 +1,7 @@
 package Fusion;
 import Base.Run;
 import Base.RunSet;
+import Fusion.Condorcet.CondorcetFusion;
 import IO.IOManager;
 import IO.Settings;
 
@@ -12,7 +13,7 @@ public class FusionManager {
     List<RunSet> _runSetList;
     IOManager ioManager = new IOManager();
     BaseFusionMethod baseFusionMethod;
-    Condorcet condorcet;
+    CondorcetFusion condorcet;
 
     public FusionManager() { }
 
@@ -53,9 +54,9 @@ public class FusionManager {
                 }
 
                if(Settings.FuseCONDORCET){
-                   condorcet = new Condorcet();
+                   condorcet = new CondorcetFusion();
                    runList.add(condorcet.fuse(runSet));
-                   out("Fuse():: Condorcet performed ");
+                   out("Fuse():: CondorcetFusion performed ");
                }
 
                 RunSet result = new RunSet(runList, runSet.Name());

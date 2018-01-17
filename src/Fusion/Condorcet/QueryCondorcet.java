@@ -1,4 +1,4 @@
-package Fusion.CondorcetUtils;
+package Fusion.Condorcet;
 
 import Base.RunLineScores;
 
@@ -10,7 +10,7 @@ public class QueryCondorcet {
     HashMap<String, Set<String>> graph;
     String _query;
 
-    ArrayList<Doc> _docArray = new ArrayList<Doc>();
+    ArrayList<DocCondorcet> _docCondorcetArray = new ArrayList<DocCondorcet>();
 
 
     public QueryCondorcet(String query,
@@ -20,15 +20,15 @@ public class QueryCondorcet {
         graph = new HashMap<>();
 
         String doc1name = list.keySet().iterator().next();
-        Doc doc1 = new Doc(doc1name,-1,this);
-        _docArray.add(doc1);
+        DocCondorcet doc1 = new DocCondorcet(doc1name,-1,this);
+        _docCondorcetArray.add(doc1);
 
         for(String doc2name: list.keySet())
         {
             if(doc2name!=doc1name)
             {
-                Doc doc2 = new Doc(doc2name,-1, this);
-                _docArray.add(doc2);
+                DocCondorcet doc2 = new DocCondorcet(doc2name,-1, this);
+                _docCondorcetArray.add(doc2);
                 DocumentPairCondorcet(doc1name, doc2name, list.get(doc1name), list.get(doc2name));
             }
         }
@@ -68,19 +68,19 @@ public class QueryCondorcet {
 
     void FinalCondorcetResultOrdering()
     {
-        Collections.sort(_docArray);
-        for(int i=0; i<_docArray.size(); i++)
+        Collections.sort(_docCondorcetArray);
+        for(int i = 0; i< _docCondorcetArray.size(); i++)
         {
-            _docArray.get(i).setRank(i);
-            _docArray.get(i).setScore(_docArray.size()-i);
+            _docCondorcetArray.get(i).setRank(i);
+            _docCondorcetArray.get(i).setScore(_docCondorcetArray.size()-i);
         }
     }
 
     public  HashMap<String, Set<String>> getLowerDocsMap(){return graph; }
 
 
-    public ArrayList<Doc> getCondorcetResultDocArray() {
-        return _docArray;
+    public ArrayList<DocCondorcet> getCondorcetResultDocArray() {
+        return _docCondorcetArray;
     }
 
     public Map<String, float[]> getMethodComparationMap( List<RunLineScores> scores1, List<RunLineScores> scores2)

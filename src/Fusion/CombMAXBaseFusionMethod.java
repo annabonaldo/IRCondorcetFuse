@@ -4,11 +4,18 @@ import Base.RunLineScores;
 
 import java.util.List;
 
+/**
+ * This class implements CombMAX  base fusion method.
+ * Combined Similarity = MAX(Individual Similarities)
+ */
 public class CombMAXBaseFusionMethod extends BaseFusionMethod {
 
+    /**
+     * this is the FusionMethod name.
+     * It is useful to distinguish between method used for Run generation.
+     */
     static String fusionId = "CombMAX";
-    // fuse() implements CombMAX fusion:
-    // Combined Similarity = MAX(Individual Similarities)
+
     @Override
     protected RunLineScores fuseLine(List<RunLineScores> runLineList) {
 

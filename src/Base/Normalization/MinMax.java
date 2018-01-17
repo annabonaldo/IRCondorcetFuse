@@ -1,4 +1,4 @@
-package Normalization;
+package Base.Normalization;
 
 public class MinMax {
 
