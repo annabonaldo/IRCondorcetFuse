@@ -1,6 +1,6 @@
 
 ## IRCondorcetFuse Repository 
-* [doc](doc/) Contains Code Documnetation. 
+* [doc](doc/) Contains Code Documentation. 
 * [eval](eval/)
 * [results](results/)
 * [scripts](scripts/)
