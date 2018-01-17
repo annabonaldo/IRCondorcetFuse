@@ -45,17 +45,17 @@ public class QueryCondorcet {
         for(Map.Entry<String, float[]> value :pairScores.entrySet())
 
         { 
-            if(value.getValue()[0] < value.getValue()[1]) eval ++;
-            if(value.getValue()[1] < value.getValue()[0]) eval --;
+            if(value.getValue()[0] < value.getValue()[1]) eval ++; // doc0 is better than doc1
+            if(value.getValue()[1] < value.getValue()[0]) eval --; // doc1 is better than doc0
 
             if(!this.graph.containsKey(doc1name))
                 this.graph.put(doc1name, new HashSet<String>());
             if(!this.graph.containsKey(doc2name))
                 this.graph.put(doc2name, new HashSet<String>());
 
-            if(eval > 0)
+            if(eval > 0) // doc0 is better than doc1
                 this.graph.get(doc1name).add(doc2name);
-            if(eval < 0 )
+            if(eval < 0 )// doc1 is better than doc0
                 this.graph.get(doc2name).add(doc1name);
 
         }

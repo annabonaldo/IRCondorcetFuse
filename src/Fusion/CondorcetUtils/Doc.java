@@ -37,16 +37,18 @@ public class Doc implements  Comparable<Doc>
         final int EQUAL = 0;
         final int AFTER = 1;
 
-        boolean GREATERorEQUAL = _parentCondorcet.getLowerDocsMap().
+        boolean thisIsLOWER = _parentCondorcet.getLowerDocsMap().
                                     get(other._docId).contains(this._docId);
 
-        boolean SMALLERorEQUAL = _parentCondorcet.getLowerDocsMap().
+        boolean thisIsGREATER = _parentCondorcet.getLowerDocsMap().
                                     get(this._docId).contains(other._docId);
 
-        if(GREATERorEQUAL    && SMALLERorEQUAL)    return EQUAL;
-        if(GREATERorEQUAL    && (!SMALLERorEQUAL)) return AFTER;
-      //  if((!GREATERorEQUAL) && SMALLERorEQUAL)
-            return BEFORE;
+       // boolean thisIsEQUAL = (!thisIsLOWER && !thisIsGREATER);
+
+        if(thisIsLOWER )  return BEFORE;
+        if(thisIsGREATER) return AFTER;
+
+        return EQUAL;
     }
 
 }
