@@ -45,14 +45,15 @@ public class DocCondorcet implements Comparable<DocCondorcet>
 
     @Override
     public int compareTo(DocCondorcet docCondorcet) {
+        if(this == docCondorcet || this._docId == docCondorcet._docId) return 0;
         int EVAL = 0;
-        boolean thisIsLOWER = _parentCondorcet.getLowerDocsMap().
+        boolean thisIsLower = _parentCondorcet.getLowerDocsMap().
                                     get(docCondorcet._docId).contains(this._docId);
 
-        boolean thisIsGREATER = _parentCondorcet.getLowerDocsMap().
+        boolean thisIsGreater = _parentCondorcet.getLowerDocsMap().
                                     get(this._docId).contains(docCondorcet._docId);
 
-        if(thisIsLOWER)
+        if(thisIsLower)
         {
             for(String lower :_parentCondorcet.getLowerDocsMap().get(docCondorcet._docId) )
             {
@@ -61,7 +62,7 @@ public class DocCondorcet implements Comparable<DocCondorcet>
             }
         }
 
-        if(thisIsGREATER) {
+        if(thisIsGreater) {
             for (String el : _parentCondorcet.getLowerDocsMap().get(this._docId)) {
                 if (!_parentCondorcet.getLowerDocsMap().get(docCondorcet._docId).contains(el))
                     EVAL--;
