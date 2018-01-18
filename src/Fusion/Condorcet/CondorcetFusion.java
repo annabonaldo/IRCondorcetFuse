@@ -15,26 +15,22 @@ public class CondorcetFusion {
 
     public Run fuse(RunSet runSet) {
 
+        // New void Condorcet Run
         Run run = new Run(CondorcetFusion.fusionID);
 
+        // Get all queries into runSet
         Set<String> queryKeys = runSet.QueryKeys();
 
-
+        // Compute fusion for each query
         for (String query : queryKeys) {
 
+            // get the RunLines for current query
             HashMap<String, ArrayList<RunLineScores>> filteredList =
                     runSet.filterOnQuery(query);
 
             if(Settings.RUN_FUSION_DETAIL)
                 System.out.println("QUERY id "+query+ " -- doc n ="+filteredList.size());
 
-            for(String doc : filteredList.keySet())
-            {
-                ArrayList<RunLineScores> scores = filteredList.get(doc);
-                if(Settings.RUN_FUSION_DETAIL)
-                    System.out.println("----------DOCUMENT id "+doc+ " run num ="+scores.size());
-
-            }
 
             QueryCondorcet condorcet =
                     new QueryCondorcet(query, filteredList);
@@ -46,9 +42,6 @@ public class CondorcetFusion {
         return run;
     }
 
-    /**
-    Prova prova prova prova
-     */
     private void addResultToRun(Run run, ArrayList<DocCondorcet> result, String queryAndTopic) {
         for (DocCondorcet doc : result) {
 

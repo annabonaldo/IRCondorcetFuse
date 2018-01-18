@@ -1,6 +1,6 @@
 package Fusion.Condorcet;
 
-public class DocCondorcet implements  Comparable<DocCondorcet>
+public class DocCondorcet implements Comparable<DocCondorcet>
 {
     int _rank;
     int _score;
@@ -32,24 +32,45 @@ public class DocCondorcet implements  Comparable<DocCondorcet>
 
     public float Score() {return _score; }
 
-    @Override
-    public int compareTo(DocCondorcet other) {
-        final int BEFORE = -1;
-        final int EQUAL = 0;
-        final int AFTER = 1;
+    public  boolean isBiggerThan(DocCondorcet other)
+    {
+        return _parentCondorcet.getLowerDocsMap().get(this._docId).contains(other._docId);
 
+    }
+
+    public  boolean isLowerThan(DocCondorcet other)
+    {
+        return _parentCondorcet.getLowerDocsMap().get(other._docId).contains(this._docId);
+    }
+
+    @Override
+    public int compareTo(DocCondorcet docCondorcet) {
+        int EVAL = 0;
         boolean thisIsLOWER = _parentCondorcet.getLowerDocsMap().
-                                    get(other._docId).contains(this._docId);
+                                    get(docCondorcet._docId).contains(this._docId);
 
         boolean thisIsGREATER = _parentCondorcet.getLowerDocsMap().
-                                    get(this._docId).contains(other._docId);
+                                    get(this._docId).contains(docCondorcet._docId);
 
-       // boolean thisIsEQUAL = (!thisIsLOWER && !thisIsGREATER);
+        if(thisIsLOWER)
+        {
+            for(String lower :_parentCondorcet.getLowerDocsMap().get(docCondorcet._docId) )
+            {
+                if(!_parentCondorcet.getLowerDocsMap().get(this._docId).contains(lower))
+                    EVAL++;
+            }
+        }
 
-        if(thisIsLOWER )  return BEFORE;
-        if(thisIsGREATER) return AFTER;
+        if(thisIsGREATER) {
+            for (String el : _parentCondorcet.getLowerDocsMap().get(this._docId)) {
+                if (!_parentCondorcet.getLowerDocsMap().get(docCondorcet._docId).contains(el))
+                    EVAL--;
+            }
+        }
 
-        return EQUAL;
+        // System.out.println(this._docId+ " comparedTo "+ docCondorcet._docId+ " distance = "+resEVAL);
+        return  EVAL;
+
     }
 
 }
