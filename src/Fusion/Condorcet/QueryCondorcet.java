@@ -97,14 +97,13 @@ public class QueryCondorcet {
         ArrayList<DocCondorcet> _docCondorcetArray = new ArrayList<DocCondorcet>();
         _docCondorcetArray.addAll(_docCondorcetMap.values());
         quickSort(_docCondorcetArray,0,_docCondorcetArray.size()-1);
-
+        Collections.reverse(_docCondorcetArray);
         for(int i = 0; i< _docCondorcetArray.size(); i++)
         {
             _docCondorcetArray.get(i).setRank(i);
             _docCondorcetArray.get(i).setScore(_docCondorcetArray.size()-i);
         }
         
-        Collections.reverse(_docCondorcetArray);
         return _docCondorcetArray;
     }
 
