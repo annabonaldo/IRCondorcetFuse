@@ -20,3 +20,8 @@ terrier-core-4.2/.classpath
 terrier-core-4.2/.project
 terrier-core-4.2/.*
 pom.xml
+report/.log
+report/.out
+report/.synctex.gz
+report/.toc
+report/.aux

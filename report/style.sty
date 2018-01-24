@@ -1,0 +1,135 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{graphicx}    
+\usepackage{float}
+\usepackage{hyperref}                   % collegamenti ipertestuali
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage[babel]{csquotes}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage[top=1cm,bottom=4cm,left=80pt,right=80pt]{geometry} %disegna la linea
+\usepackage{listings} %per grandi porzioni di codice
+\usepackage{booktabs,tabularx}
+\usepackage{makeidx}
+\usepackage{fixltx2e}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{color}
+\usepackage[T1]{fontenc}
+\usepackage{svg}
+\usepackage{amsmath}
+\usepackage[toc]{glossaries}
+\usepackage{dirtree}
+\usepackage{listings}
+\usepackage{siunitx}
+\usepackage[official]{eurosym}
+\usepackage[export]{adjustbox}
+\usepackage{calc}
+\usepackage{rotating}
+\usepackage{soul}
+\usepackage{amsmath}
+
+\pagestyle{fancy}
+\setlength{\headheight}{2cm} %settato grandezza header
+
+\renewcommand{\footrulewidth}{0.5pt} %ridefinisco il valore della riga di intestazione
+\renewcommand{\headrulewidth}{0.5pt} %ridefinisco il valore della riga di pie' di pagina
+\addtolength{\headwidth}{\marginparsep}
+\addtolength{\headwidth}{\marginparwidth}
+
+\fancyhead{} %annulla head di default
+\fancyfoot{} %annulla foot di default
+
+
+\newcommand{\complex}[1]{\textit{\color{blue} {#1}}}
+\newcommand{\change}[1]{\textit{ \color{red}** {#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    DOCUMENT TITLE
+
+\newcommand{\doctitle}{\textbf{CondorcetFuse} \\
+	 Condoret voting for run fusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   DOCUMENT SUBTITILE
+\newcommand{\docsubtitle}{Evalutation and comparison of an implementation with orher fusion strateg}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   DOCUMENT FOOTER 
+% If not modified, footer is equal to document subtitle
+\newcommand{\projectfooter}{\docsubtitle}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%	Logo intestazione
+%\rhead{\includegraphics[scale=0.15]{}}
+
+%	footer
+\cfoot{
+	\projectfooter\\
+	{\doctitle}\\
+}
+\rfoot{
+	\thepage\ di \pageref{LastPage}
+}
+
+
+%**************************************************************
+% Impostazioni di hyperref
+%**************************************************************
+\hypersetup{
+	%hyperfootnotes=false,
+	%pdfpagelabels,
+	%draft,	% = elimina tutti i link (utile per stampe in bianco e nero)
+	colorlinks=true,
+	linktocpage=true,
+	pdfstartpage=1,
+	pdfstartview=FitV,
+	% decommenta la riga seguente per avere link in nero (per esempio per la stampa in bianco e nero)
+	%colorlinks=false, linktocpage=false, pdfborder={0 0 0}, pdfstartpage=1, pdfstartview=FitV,
+	breaklinks=true,
+	pdfpagemode=UseNone,
+	pageanchor=true,
+	pdfpagemode=UseOutlines,
+	plainpages=false,
+	bookmarksnumbered,
+	bookmarksopen=true,
+	bookmarksopenlevel=1,
+	hypertexnames=true,
+	pdfhighlight=/O
+}
+\newcommand{\printTitle}{	
+	\begin{titlepage}
+		\begin{center}
+			
+		%	\begin{figure}[h!]	\vspace{5cm}
+		%		\centering
+		%		\includegraphics[width=0.7\linewidth]{}
+		%	\end{figure}
+			\vspace{0.3cm}
+			\hrule
+			\vspace{0.3cm}	
+			\begin{Huge}
+				\doctitle  \\			
+			\end{Huge}
+			\vspace{0.3cm}
+			\begin{Large}
+				\docsubtitle
+			\end{Large}
+			\vspace{0.3cm}
+			
+		\end{center}
+		
+\end{titlepage}}
+
+
+
+
