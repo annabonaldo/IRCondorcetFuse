@@ -8,7 +8,7 @@ public class QueryCondorcet {
     HashMap<String, Set<String>> graph;
     String _query;
 
-    ArrayList<DocCondorcet> _docCondorcetArray = new ArrayList<DocCondorcet>();
+    HashMap<String, DocCondorcet> _docCondorcetMap = new HashMap<String, DocCondorcet>();
 
 
     public QueryCondorcet(String query,
@@ -18,28 +18,27 @@ public class QueryCondorcet {
         _query = query;
         graph = new HashMap<>();
 
-
         // Check all the document pairs
-        for(String doc0name: list.keySet()) {
-
-            if(!this.graph.containsKey(doc0name)) {
-                this.graph.put(doc0name, new HashSet<String>());
-                DocCondorcet doc0 = new DocCondorcet(doc0name,-1,this);
-                _docCondorcetArray.add(doc0);
-            }
-
-            for (String doc1name : list.keySet()) {
-
-                if ((doc1name != doc0name) && (!this.graph.containsKey(doc1name))){
-                        this.graph.put(doc1name, new HashSet<String>());
-                        DocCondorcet doc1 = new DocCondorcet(doc1name,-1,this);
-                        _docCondorcetArray.add(doc1);
-                }
-                    DocumentPairCondorcet(doc0name, doc1name, list.get(doc0name), list.get(doc1name));
-
-            }
+        for(String docname: list.keySet()) { 
+            this.graph.put(docname, new HashSet<String>());
+            DocCondorcet doc0 = new DocCondorcet(docname,-1,this);
+            _docCondorcetMap.put(docname, doc0);
         }
-        for(Map.Entry<String, Set<String>> value :graph.entrySet())
+
+        HashSet<String> list2 = new HashSet<String>(list.keySet());
+        for(String doc0name: list.keySet()) {
+            list2.remove(doc0name);
+            for (String doc1name : list2) {
+                if (doc1name != doc0name) {
+                    DocCondorcet doc1 = new DocCondorcet(doc1name,-1,this);
+                    if(!_docCondorcetMap.containsKey(doc1name)) _docCondorcetMap.put(doc1name, doc1);
+                    DocumentPairCondorcet(doc0name, doc1name, list.get(doc0name), list.get(doc1name));
+                }
+
+            }
+
+        }
+        /*for(Map.Entry<String, Set<String>> value :graph.entrySet())
         {
             System.out.print("K "+value.getKey() +":: ");
             for(String lower : value.getValue())
@@ -47,9 +46,8 @@ public class QueryCondorcet {
                 System.out.print(lower+ " - ");
             }
             System.out.print("\n");
-        }
+        }*/
 
-        FinalCondorcetResultOrdering();
     }
 
     public void DocumentPairCondorcet(String doc0name, String doc1name, List<RunLineScores> scores0, List<RunLineScores> scores1)
@@ -70,39 +68,43 @@ public class QueryCondorcet {
             // KEY = MethodID_1 - VALUE =  (score_for_doc0, score_for_doc1)
             // Compute the Condorcet comparing score differences
 
-            // if score_for_doc0 < score_for_doc1
-            if (value.getValue()[0] <= value.getValue()[1]) eval++; // eval > 0 == doc1 is better
+            // if score_for_doc0 > score_for_doc1
+            if (value.getValue()[0] > value.getValue()[1]) eval++; // eval > 0 == doc0 is better
 
             // if score_for_doc1 < score_for_doc0
-            if (value.getValue()[0] >= value.getValue()[1]) eval--; // eval < 0 == doc0 is better
+            if (value.getValue()[0] <= value.getValue()[1]) eval--; // eval <= 0 == doc1 is better
         }
-            if(!this.graph.containsKey(doc0name))
+            /*if(!this.graph.containsKey(doc0name))
                 this.graph.put(doc0name, new HashSet<String>());
             if(!this.graph.containsKey(doc1name))
-                this.graph.put(doc1name, new HashSet<String>());
+                this.graph.put(doc1name, new HashSet<String>());*/
 
-            if(eval >= 0) // doc0 is better than doc1
-                this.graph.get(doc1name).add(doc0name);
+            if(eval > 0) {
+                this.graph.get(doc1name).add(doc0name); // doc0 is better than doc1
+            }
 
-            if(eval <= 0 )// doc1 is better than doc0
-                this.graph.get(doc0name).add(doc1name);
-
+            else {
+                this.graph.get(doc0name).add(doc1name); // doc1 is better than doc0
+            }
 
     }
 
 
     public  String Query(){return _query; }
 
-
-    void FinalCondorcetResultOrdering()
+    ArrayList<DocCondorcet> FinalCondorcetResultOrdering()
     {
-        Collections.sort(_docCondorcetArray);
-
+        ArrayList<DocCondorcet> _docCondorcetArray = new ArrayList<DocCondorcet>();
+        _docCondorcetArray.addAll(_docCondorcetMap.values());
+        quickSort(_docCondorcetArray,0,_docCondorcetArray.size()-1);
+        Collections.reverse(_docCondorcetArray);
         for(int i = 0; i< _docCondorcetArray.size(); i++)
         {
             _docCondorcetArray.get(i).setRank(i);
             _docCondorcetArray.get(i).setScore(_docCondorcetArray.size()-i);
         }
+        
+        return _docCondorcetArray;
     }
 
 
@@ -110,7 +112,7 @@ public class QueryCondorcet {
 
 
     public ArrayList<DocCondorcet> getCondorcetResultDocArray() {
-        return _docCondorcetArray;
+        return FinalCondorcetResultOrdering();
     }
 
     public Map<String, float[]> getMethodComparationMap( List<RunLineScores> scores_doc0, List<RunLineScores> scores_doc1)
@@ -163,6 +165,35 @@ public class QueryCondorcet {
         return  runMethodsMap;
     }
 
+    private ArrayList<DocCondorcet> quickSort(ArrayList<DocCondorcet> list, int a, int b)
+    {
+        if (a >= b)
+            return list;
+
+        DocCondorcet pivot = list.get(b);
+
+        int left = a;
+        int right = b;
+
+        while (left < right)
+        {
+            while(list.get(left).compareTo(pivot) < 0)
+                left++;
+
+            while(list.get(right).compareTo(pivot) > 0)
+                right--;
+
+            if (right > left);
+            {
+                Collections.swap(list, left, right);
+            }
+        }
+
+        quickSort(list, a, right-1);
+        quickSort(list, right+1, b);
+
+        return list;
+    }
 
 
 }
