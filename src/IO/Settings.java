@@ -14,9 +14,9 @@ public class Settings {
 
     //  to activate/deactivate  each FUSION Method performed during EXECUTION
 
-    public static final Boolean FuseMAX =false;
-    public static final Boolean FuseMNZ =false;
-    public static final Boolean FuseSUM =false;
+    public static final Boolean FuseMAX =true;
+    public static final Boolean FuseMNZ =true;
+    public static final Boolean FuseSUM =true;
     public static final Boolean FuseCONDORCET =true;
 
 

@@ -40,6 +40,6 @@ ylabel('precision')
 xlabel('topics')
 legend(topBest.Properties.VariableNames);
 
-clear;
+%clear;
 
 
