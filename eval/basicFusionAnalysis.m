@@ -1,23 +1,26 @@
+addpath(genpath('~/Desktop/matters'), '-end')
+
 load('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicFusionData.mat');
 
-[measuredRunSet, poolStats, runSetStats, inputParams] = averagePrecision(pool, basicFusionSet);
+[measuredFusionSet, poolStats, runSetStats, inputParams] = averagePrecision(pool, basicFusionSet);
 
-x = mean(measuredRunSet{:, 1:end});
+x = mean(measuredFusionSet{:, 1:end});
 
-meanAP = array2table(x);
-meanAP.Properties.VariableNames = measuredRunSet.Properties.VariableNames;
-meanAP.Properties.RowNames = {'meanAP'};
+meanFusionAP = array2table(x);
+meanFusionAP.Properties.VariableNames = measuredFusionSet.Properties.VariableNames;
+meanFusionAP.Properties.RowNames = {'meanAP'};
 
-measuredRunSet = [measuredRunSet;meanAP];
+measuredFusionSet = [measuredFusionSet;meanFusionAP];
 
-plot(351:400, measuredRunSet{1:50, 1:end});
+plot(351:400, measuredFusionSet{1:50, 1:end});
 title('Precision for the different retrieval methods in different topics');
 ylabel('precision')
 xlabel('topics')
-legend(measuredRunSet.Properties.VariableNames);
+legend(measuredFusionSet.Properties.VariableNames);
 
-%Stampare la Mean average precision come tabella
-measuredRunSet{51, 1:end}
-mean = mean(measuredRunSet{51, 1:end});
+%Stampare la Mean average precision come tabella usa meanFusionAP
+
+save('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicFusionData.mat', ...
+    'meanFusionAP', 'measuredFusionSet', '-append');
 
 clear;

@@ -1,4 +1,4 @@
-%restoredefaultpath;
+restoredefaultpath;
 addpath(genpath('~/Desktop/matters'), '-end')
 %addpath(genpath('/usr/local/MATLAB/R2017b/toolbox/matters'), '-end');
 
@@ -22,24 +22,24 @@ QERunsPath = '~/Desktop/ProgettoIR/IRCondorcetFuse/results/FusionOut/runQE/NORM_
 
 %IMPORT BASIC RUNS
 [basicRunSet, basicRunReport] = importRunsFromDirectoryTRECFormat('Path', basicRunsPath, ...
-    'Identifier', 'basicRuns', 'Delimiter', 'space');
-    %'DocumentOrdering', 'Matters');
+    'Identifier', 'basicRuns', 'Delimiter', 'space', ...
+    'DocumentOrdering', 'Matters');
 
 save('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicRunData.mat', 'pool', ...
     'poolReport', 'basicRunSet', 'basicRunReport');
 
 
 %IMPORT QE RUNS
-[QERunSet, QERunReport] = importRunsFromDirectoryTRECFormat('Path', QERunsPath, ...
-    'Identifier', 'QERuns', 'Delimiter', 'space');
+%[QERunSet, QERunReport] = importRunsFromDirectoryTRECFormat('Path', QERunsPath, ...
+ %   'Identifier', 'QERuns', 'Delimiter', 'space');
     %'DocumentOrdering', 'Matters');
 
-save('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/QERunData.mat', 'pool', 'poolReport', 'QERunSet', 'QERunReport');
+%save('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/QERunData.mat', 'pool', 'poolReport', 'QERunSet', 'QERunReport');
 
 %IMPORT BASIC FUSIONS
 [basicFusionSet, basicFusionReport] = importRunsFromDirectoryTRECFormat('Path', basicFusionPath, ...
-    'Identifier', 'basicFusions', 'Delimiter', 'space');
-    %'DocumentOrdering', 'Matters');
+    'Identifier', 'basicFusions', 'Delimiter', 'space', ...
+    'DocumentOrdering', 'Matters');
 
 save('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicFusionData.mat', 'pool', ...
     'poolReport', 'basicFusionSet', 'basicFusionReport');
