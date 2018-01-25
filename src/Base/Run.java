@@ -77,6 +77,9 @@ public class Run extends ArrayList<RunLine> {
         System.out.println("Run name : "+ Name()+ " lines: "+this.size());
     }
 
+    /**
+     * Perform Run normalization using minimum and maximum score values
+     */
     void normalize() {
 
         float max = Float.NEGATIVE_INFINITY;
