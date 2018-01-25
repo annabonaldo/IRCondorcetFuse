@@ -1,7 +1,7 @@
 addpath(genpath('~/Desktop/matters'), '-end')
 
-load('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicFusionData.mat');
-load('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicRunData.mat');
+load('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicFusionData_10.mat');
+load('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicRunData_10.mat');
 
 %Consider all data
 meanAPAll = [meanRunAP meanFusionAP];
@@ -28,4 +28,4 @@ ylabel('precision')
 xlabel('topics')
 legend(topBest.Properties.VariableNames);
 
-%clear;
+clear;
