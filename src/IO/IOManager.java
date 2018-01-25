@@ -79,7 +79,7 @@ public class IOManager {
             for (File dir : directories) {
                 File[] runFiles = new File(dir.getAbsolutePath()).listFiles(new FilenameFilter() {
                     public boolean accept(File dir, String name) {
-                        return  name.toLowerCase().endsWith(".res");
+                        return  name.endsWith(".res");
                     }});
 
                 __ioRunSet[i] = new IORunSet(runFiles, dir.getName());
@@ -91,13 +91,15 @@ public class IOManager {
     }
 
 
+
     public File[] getDirectorieSubSet() {
         String ABSpath = Paths.get("").toAbsolutePath().toString();
         File[] dir = new File[Settings.SUBSET_FusionInDir.length];
         int i =0;
-       for(String path : Settings.SUBSET_FusionInDir)
-           dir[0] = new File(ABSpath+DefaultInPath+path);
-
+       for(String path : Settings.SUBSET_FusionInDir) {
+           dir[i] = new File(ABSpath + DefaultInPath + path);
+           i++;
+       }
 
         return dir;
     }

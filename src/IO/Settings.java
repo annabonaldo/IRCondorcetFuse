@@ -20,11 +20,13 @@ public class Settings {
     public static final Boolean FuseMIN =true;
     public static final Boolean FuseANZ =true;
     public static final Boolean FuseMED =true;
-    public static final Boolean FuseCONDORCET =false;
+    public static final Boolean FuseCONDORCET =true;
 
 
     public static final Boolean ALLFusionInDir = false;
-    public static final String[] SUBSET_FusionInDir = {"runBasic_2/"};
+    public static final String[] SUBSET_runBasic = {"runBasic_2/", "runBasic_4/","runBasic_6/",
+                                                    "runBasic_8/", "runBasic_10/"};
+    public static final String[] SUBSET_FusionInDir = SUBSET_runBasic;
 
 
 }
