@@ -1,6 +1,6 @@
 addpath(genpath('~/Desktop/matters'), '-end')
 
-load('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicFusionData.mat');
+load('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicFusionData_10.mat');
 
 [measuredFusionSet, poolStats, runSetStats, inputParams] = averagePrecision(pool, basicFusionSet);
 
@@ -20,7 +20,7 @@ legend(measuredFusionSet.Properties.VariableNames);
 
 %Stampare la Mean average precision come tabella usa meanFusionAP
 
-save('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicFusionData.mat', ...
+save('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicFusionData_10.mat', ...
     'meanFusionAP', 'measuredFusionSet', '-append');
 
 clear;

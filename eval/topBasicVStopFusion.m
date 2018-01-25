@@ -1,7 +1,7 @@
 addpath(genpath('~/Desktop/matters'), '-end')
 
-load('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicFusionData.mat');
-load('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicRunData.mat');
+load('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicFusionData_10.mat');
+load('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicRunData_10.mat');
 
 %Select top 5 basic Runs
 bestRunNames = meanRunAP{1, :}';

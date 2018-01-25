@@ -1,6 +1,6 @@
 addpath(genpath('~/Desktop/matters'), '-end')
 
-load('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicRunData.mat');
+load('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicRunData_10.mat');
 
 [measuredRunSet, poolStats, runSetStats, inputParams] = averagePrecision(pool, basicRunSet);
 
@@ -20,7 +20,7 @@ legend(measuredRunSet.Properties.VariableNames);
 
 %Per stampare la Mean average precision come tabella usa meanAP
 
-save('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicRunData.mat', ...
+save('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicRunData_10.mat', ...
     'meanRunAP', 'measuredRunSet', '-append');
 
 clear;
