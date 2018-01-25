@@ -67,15 +67,17 @@
         \hline \\
         \textbf{Basic fusion methods} & \textbf{Description} \\
         \hline \\
-        CombMNZ & Computes a new relevance score for each document d as
-            the sum of the normalized relevance scores given to d by the input
-            systems \\
+        CombMNZ & SUM(Individual similarities)*Nonzero similarities \\
         \hline
-        CombSUM & \\
-        CombMIN & \\
-        CombMAX & \\
-        CombMED & \\
-        CombANZ & \\
+        CombSUM & SUM(Individual similarities) \\
+        \hline
+        CombMIN & MIN(Individual similarities) \\
+        \hline
+        CombMAX & MAX(Individual similarities) \\
+        \hline
+        CombMED & MED(Individual similarities) \\
+        \hline
+        CombANZ & SUM(Individual similarities)/Nonzero similarities \\
         \hline
         \end{tabular}
         \caption{Basic fusion methods used}
@@ -88,10 +90,10 @@
     with every other document in a pair-wise comparison between the input
     systems (i.e. runs).
 
-    \section{Implemention}
+    \section{Implementation}
     %
     %
-    \section{Evalutation}
+    \section{Evaluation}
     % Modelli scelti 
     % Indicizzazione utilizzata 
     		  
