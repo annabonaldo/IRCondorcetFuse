@@ -8,10 +8,27 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class manages RunSet input/output operation and RunSet creation from all .res files contained into
+ * a single Directory placed at path in IOManager.DefaultInPath.
+ */
 public class IORunSet {
+    /**
+     * This field contains all files of the current Runset directory.
+     * Each file is a single Run of current Runset.
+     */
     File[] _files;
+    /**
+     *  is the RunSet name thet correspod to input directory name.
+     *  The input directory is the directory that contains all runs of current RunSet.
+     */
     String _testName;
+    /**
+     * Prefix for output folder that contain normalized input runs.
+     */
     static final String normPrefix = "NORM_";
+    /** Default extention for output Run files
+     **/
     static final String outFileExtension = ".txt";
 
     public IORunSet(File[] files, String dirName) {
@@ -25,11 +42,20 @@ public class IORunSet {
 
     }
 
+    /**
+     * @return the input directory path string.
+     */
     String getInDir(){
         String path = Paths.get("").toAbsolutePath().toString();
         return path+ IOManager.DefaultInPath + _testName ;
     }
 
+    /**
+     * @param dirName is the RunSet's name.
+     *                RunSet fusion output files produced from this RunSet are saved into a folder in
+     *                IOManager.DefaultOutPath that have the same name of the Runset.
+     * @return The path string to the output directory for fusion results.
+     */
     public static String getOutDir(String dirName)
     {
         String path = Paths.get("").toAbsolutePath().toString();
@@ -41,6 +67,12 @@ public class IORunSet {
     }
 
     File[] getFileNames(){ return _files; }
+
+    /** Perform RunSet deserialization using _testName
+     * to identify the correct directory to write output in IOManager.DefaultOutPath.
+     * @return The deserialized RunSet
+     * @throws IOException In case of error in file reading operation.
+     */
 
     public RunSet deserialize() throws IOException {
         List<Run> runs = new ArrayList<Run>();
@@ -63,6 +95,12 @@ public class IORunSet {
 
     }
 
+    /**
+     * Perform RunSet serialization. A RunSet serialization create a folder (if missing) in IOManager.DefaultOutPath.
+     * @param runSet
+     * @throws FileNotFoundException
+     * @throws UnsupportedEncodingException
+     */
     public static void serialize(RunSet runSet) throws FileNotFoundException, UnsupportedEncodingException {
 
         File directory = new File(getOutDir(runSet.Name()));
