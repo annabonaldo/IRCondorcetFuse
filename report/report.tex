@@ -1,25 +1,106 @@
 \input{style.sty}
-	\begin{document}
-	\printTitle
-	\newpage
-	\tableofcontents
-	\newpage
-	%\listoftables
-	%\listoffigures
-	\section{Introduction}
-	\section{Condorcet Fusion}
-	\section{Implemention}
-	%
-	%
-	\section{Evalutation}
-	% Modelli scelti 
-	% Indicizzazione utilizzata 
-		  
-		\subsection{Evaluation Metrics}
-			% Perche abbiamo usato solo la MAP 
-			% Perche' si fanno questi confronti
+
+\begin{document}
+    \printTitle
+    \newpage
+    \tableofcontents
+    \newpage
+    %\listoftables
+    %\listoffigures
+    \section{Abstract}
+    In Information Retrieval, data fusion is the combination of the results
+    of independent searches on a document collection into one single output
+    result set.
+
+    It has been shown in the past that this can greatly improve retrieval
+    effectiveness over that of the individual results.
+
+    The aim of this project is to show a possible implementation of basic
+    fusion strategy and an advanced one.
+
+    %Qualche conclusione
+
+    \section{Introduction}
+
+    Retrieval experiments uses data from the TREC ad hoc collection.
+    
+    The following procedure illustrates the organization of the work:
+
+    \begin{itemize}
+        \item \textbf{Indexing} (with or without query expansion)
+        \item \textbf{Retrieval} (10 different retrieval models)
+        \item \textbf{Fusion strategy} (with or without cutting the run at depth 100)
+            \begin{itemize}
+                \item 6 basic strategies
+                \item Condorcet fusion (advanced strategy)
+            \end{itemize}
+    \end{itemize}
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|}
+        \hline \\
+        \textbf{Retrieval models} \\
+        \hline \\
+        BB2 \\
+        BM25 \\
+        DLH13 \\
+        Hiemstra\_LM \\
+        IFB2 \\
+        TF\_IDF \\
+        DFIC \\
+        DFIZ \\
+        DirichletLM \\
+        InL2 \\
+        \hline
+        \end{tabular}
+        \caption{Retrieval models used}
+    \end{table}
+
+    \section{Basic fusion strategies}
+
+    The following table shows a list of basic fusion methods:
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|p{4cm}|}
+        \hline \\
+        \textbf{Basic fusion methods} & \textbf{Description} \\
+        \hline \\
+        CombMNZ & Computes a new relevance score for each document d as
+            the sum of the normalized relevance scores given to d by the input
+            systems \\
+        \hline
+        CombSUM & \\
+        CombMIN & \\
+        CombMAX & \\
+        CombMED & \\
+        CombANZ & \\
+        \hline
+        \end{tabular}
+        \caption{Basic fusion methods used}
+    \end{table}
+    
+    \section{Condorcet fusion}
+
+    The Condorcet voting algorithm is a majoritarian method which specifies
+    that the ``winner'' of the fusion is the document(s) that beats or ties
+    with every other document in a pair-wise comparison between the input
+    systems (i.e. runs).
+
+    \section{Implemention}
+    %
+    %
+    \section{Evalutation}
+    % Modelli scelti 
+    % Indicizzazione utilizzata 
+    		  
+        \subsection{Evaluation metrics}
+		% Perche abbiamo usato solo la MAP 
+		% Perche' si fanno questi confronti
 			
-		\subsection{Results}
+	    \subsection{Results}
+
 	\section{Conclusions}
 	
 
