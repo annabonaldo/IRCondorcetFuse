@@ -80,8 +80,12 @@ public class RunLine implements Comparable<RunLine> {
 
     @Override
     public int compareTo(RunLine runLine) {
-       float f1=  this.Score();
-       float f2=  runLine.Score();
-       return Float.compare(f1, f2);
+        String value0 = this._topicID.concat(Float.toString(Score()));
+        String value1 = runLine._topicID.concat(Float.toString(runLine.Score()));
+        return value0.compareTo(value1);
+    }
+
+    public void setRank(int rank) {
+        this.getRunLineScores().setRank(rank);
     }
 }

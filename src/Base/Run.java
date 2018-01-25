@@ -2,6 +2,7 @@ package Base;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 import Base.Normalization.*;
 
@@ -47,10 +48,22 @@ public class Run extends ArrayList<RunLine> {
      * and then set RunLine ranks following items order (from the major score to the minor one).
      */
     public void computeRanks() {
-        Collections.sort(this, Collections.reverseOrder());
-        for(int i=0; i<this.size(); i++)
-        {
-            this.get(i)._scores.setRank(i);
+        Collections.sort(this, Comparator.reverseOrder());
+        if(this.size()> 0) {
+            String curTopic = this.get(0)._topicID;
+            int rank = 0;
+            for(RunLine line: this)
+            {
+                if(line._topicID.equals(curTopic)) {
+                    line.setRank(rank);
+                    rank  = rank+1;
+                }
+                else {
+                    curTopic = line._topicID;
+                    rank = 0;
+                    line.setRank(rank);
+                }
+            }
         }
     }
 

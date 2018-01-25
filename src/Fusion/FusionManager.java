@@ -34,34 +34,35 @@ public class FusionManager {
            out("Fuse():: fusion started");
             for(RunSet runSet : _runSetList) {
                 List<Run> runList = new ArrayList<>();
+                System.out.println("|--> Perform all fusion on "+runSet.Name());
 
                 if(Settings.FuseMAX) {
                     baseFusionMethod = new CombMAXBaseFusionMethod();
                     runList.add(baseFusionMethod.fuse(runSet));
-                    out("Fuse():: CombMAX performed ");
+                    out("|  |--> Fuse():: CombMAX performed ");
                 }
 
                 if(Settings.FuseMNZ) {
                     baseFusionMethod = new CombMNZBaseFusionMethod();
                     runList.add(baseFusionMethod.fuse(runSet));
-                    out("Fuse():: CombMNZ performed ");
+                    out("|  |--> Fuse():: CombMNZ performed ");
                 }
 
                 if(Settings.FuseSUM) {
                     baseFusionMethod = new CombSUMBaseFusionMethod();
                     runList.add(baseFusionMethod.fuse(runSet));
-                    out("Fuse():: CombSUM performed ");
+                    out("|  |--> Fuse():: CombSUM performed ");
                 }
 
                if(Settings.FuseCONDORCET){
                    condorcet = new CondorcetFusion();
                    runList.add(condorcet.fuse(runSet));
-                   out("Fuse():: CondorcetFusion performed ");
+                   out("|  |--> Fuse():: CondorcetFusion performed ");
                }
 
                 RunSet result = new RunSet(runList, runSet.Name());
                 ioManager.serialize(result);
-                out("Fuse():: fusion result serialized ");
+                out("|  |--> Fuse():: fusion result serialized ");
             }
     }
 
