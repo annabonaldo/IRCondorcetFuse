@@ -8,7 +8,7 @@ import java.util.List;
  * This class implements CombMAX  base fusion method.
  * Combined Similarity = MAX(Individual Similarities)
  */
-public class CombMAXBaseFusionMethod extends BaseFusionMethod {
+public class CombMAXBaseFusion extends BaseFusion {
 
     /**
      * this is the FusionMethod name.
@@ -35,6 +35,6 @@ public class CombMAXBaseFusionMethod extends BaseFusionMethod {
 
     @Override
     protected String FusionName() {
-        return CombMAXBaseFusionMethod.fusionId;
+        return CombMAXBaseFusion.fusionId;
     }
 }

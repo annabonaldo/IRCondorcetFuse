@@ -4,7 +4,7 @@ import Base.RunLineScores;
 
 import java.util.List;
 
-public class CombSUMBaseFusionMethod extends BaseFusionMethod {
+public class CombSUMBaseFusion extends BaseFusion {
 
     // fuse() implements CombSUM fusion:
     // Combined Similarity = SUM(Individual Similarities)
@@ -32,7 +32,7 @@ public class CombSUMBaseFusionMethod extends BaseFusionMethod {
 
     @Override
     protected String FusionName() {
-        return CombSUMBaseFusionMethod.fusionId;
+        return CombSUMBaseFusion.fusionId;
     }
 
 

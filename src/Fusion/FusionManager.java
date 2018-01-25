@@ -12,7 +12,7 @@ public class FusionManager {
 
     List<RunSet> _runSetList;
     IOManager ioManager = new IOManager();
-    BaseFusionMethod baseFusionMethod;
+    BaseFusion baseFusionMethod;
     CondorcetFusion condorcet;
 
     public FusionManager() { }
@@ -33,25 +33,42 @@ public class FusionManager {
 
            out("Fuse():: fusion started");
             for(RunSet runSet : _runSetList) {
+
                 List<Run> runList = new ArrayList<>();
                 System.out.println("|--> Perform all fusion on "+runSet.Name());
 
                 if(Settings.FuseMAX) {
-                    baseFusionMethod = new CombMAXBaseFusionMethod();
+                    baseFusionMethod = new CombMAXBaseFusion();
                     runList.add(baseFusionMethod.fuse(runSet));
                     out("|  |--> Fuse():: CombMAX performed ");
                 }
 
                 if(Settings.FuseMNZ) {
-                    baseFusionMethod = new CombMNZBaseFusionMethod();
+                    baseFusionMethod = new CombMNZBaseFusion();
                     runList.add(baseFusionMethod.fuse(runSet));
                     out("|  |--> Fuse():: CombMNZ performed ");
                 }
 
                 if(Settings.FuseSUM) {
-                    baseFusionMethod = new CombSUMBaseFusionMethod();
+                    baseFusionMethod = new CombSUMBaseFusion();
                     runList.add(baseFusionMethod.fuse(runSet));
                     out("|  |--> Fuse():: CombSUM performed ");
+                }
+
+                if(Settings.FuseMED) {
+                    baseFusionMethod = new CombMEDBaseFusion();
+                    runList.add(baseFusionMethod.fuse(runSet));
+                    out("|  |--> Fuse():: CombMED performed ");
+                }
+                if(Settings.FuseMIN) {
+                    baseFusionMethod = new CombMINBaseFusion();
+                    runList.add(baseFusionMethod.fuse(runSet));
+                    out("|  |--> Fuse():: CombMIN performed ");
+                }
+                if(Settings.FuseANZ) {
+                    baseFusionMethod = new CombANZBaseFusion();
+                    runList.add(baseFusionMethod.fuse(runSet));
+                    out("|  |--> Fuse():: CombANZ performed ");
                 }
 
                if(Settings.FuseCONDORCET){

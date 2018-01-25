@@ -15,7 +15,7 @@ import java.util.Set;
  * with simple operation on RunLines scores or rank (sum, avg, ...).
  * More advanced fusion method cannot extend this class.
  */
-public abstract class BaseFusionMethod {
+public abstract class BaseFusion {
 
     /** Perform the fusion of all Runs contained into a RunSet.
      *  @param runSet is the RunSet to compute a new fusion from. The input object will be not modified.

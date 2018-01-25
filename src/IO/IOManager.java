@@ -66,8 +66,11 @@ public class IOManager {
     private  IORunSet[] getSets(){
 
         String path = Paths.get("").toAbsolutePath().toString();
-
-        File[] directories = new File(path+DefaultInPath).listFiles(File::isDirectory);
+        File[] directories;
+        if(Settings.ALLFusionInDir)
+             directories = new File(path+DefaultInPath).listFiles(File::isDirectory);
+        else
+            directories  = getDirectorieSubSet();
 
         if(directories != null && directories.length >0 ) {
 
@@ -88,5 +91,15 @@ public class IOManager {
     }
 
 
+    public File[] getDirectorieSubSet() {
+        String ABSpath = Paths.get("").toAbsolutePath().toString();
+        File[] dir = new File[Settings.SUBSET_FusionInDir.length];
+        int i =0;
+       for(String path : Settings.SUBSET_FusionInDir)
+           dir[0] = new File(ABSpath+DefaultInPath+path);
+
+
+        return dir;
+    }
 }
 

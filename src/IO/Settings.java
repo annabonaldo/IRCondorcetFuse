@@ -17,7 +17,14 @@ public class Settings {
     public static final Boolean FuseMAX =true;
     public static final Boolean FuseMNZ =true;
     public static final Boolean FuseSUM =true;
-    public static final Boolean FuseCONDORCET =true;
+    public static final Boolean FuseMIN =true;
+    public static final Boolean FuseANZ =true;
+    public static final Boolean FuseMED =true;
+    public static final Boolean FuseCONDORCET =false;
+
+
+    public static final Boolean ALLFusionInDir = false;
+    public static final String[] SUBSET_FusionInDir = {"runBasic_2/"};
 
 
 }

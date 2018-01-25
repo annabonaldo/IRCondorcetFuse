@@ -8,7 +8,7 @@ import java.util.List;
  * Combined Similarity = SUM(Individual Similarities)*  Number of Non-Zero Similarities
 
  */
-public class CombMNZBaseFusionMethod extends BaseFusionMethod {
+public class CombMNZBaseFusion extends BaseFusion {
     /**
      * This is the FusionMethod name.
      * It is useful to distinguish between method used for Run generation.
@@ -52,6 +52,6 @@ public class CombMNZBaseFusionMethod extends BaseFusionMethod {
      */
     @Override
     protected String FusionName() {
-        return CombMNZBaseFusionMethod.fusionId;
+        return CombMNZBaseFusion.fusionId;
     }
 }
