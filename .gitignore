@@ -11,6 +11,7 @@ terrier-core-4.2/var/index/
 terrier-core-4.2/LICENZE.txt
 terrier-core-4.2/pom.xml
 terrier-core-4.2/README.md
+terrier-core-4.2/var/results/
 out/
 .idea/
 *.class
@@ -25,3 +26,4 @@ report/*.out
 report/*.synctex.gz
 report/*.toc
 report/*.aux
+eval/*.mat
