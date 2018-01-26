@@ -38,10 +38,9 @@
     
     \begin{table}[H]
         \centering
-        \begin{tabular}{|c|}
-        \hline \\
-        \textbf{Retrieval models} \\
-        \hline \\
+        \begin{tabular}{c}
+		\toprule
+        \textbf{Retrieval models} \\ \toprule
         BB2 \\
         BM25 \\
         DLH13 \\
@@ -52,7 +51,7 @@
         DFIZ \\
         DirichletLM \\
         InL2 \\
-        \hline
+        \bottomrule
         \end{tabular}
         \caption{Retrieval models used}
     \end{table}
@@ -63,22 +62,15 @@
 
     \begin{table}[H]
         \centering
-        \begin{tabular}{|c|p{4cm}|}
-        \hline \\
-        \textbf{Basic fusion methods} & \textbf{Description} \\
-        \hline \\
-        CombMNZ & SUM(Individual similarities)*Nonzero similarities \\
-        \hline
-        CombSUM & SUM(Individual similarities) \\
-        \hline
-        CombMIN & MIN(Individual similarities) \\
-        \hline
-        CombMAX & MAX(Individual similarities) \\
-        \hline
-        CombMED & MED(Individual similarities) \\
-        \hline
-        CombANZ & SUM(Individual similarities)/Nonzero similarities \\
-        \hline
+        \begin{tabular}{c p{4cm}}
+        \toprule
+        \textbf{Basic fusion methods} & \textbf{New score} \\ \toprule
+        CombMNZ & SUM(Individual similarities)*Nonzero similarities \\ \hline
+        CombSUM & SUM(Individual similarities) \\ \hline
+        CombMIN & MIN(Individual similarities) \\ \hline
+        CombMAX & MAX(Individual similarities) \\ \hline
+        CombMED & MED(Individual similarities) \\ \hline
+        CombANZ & SUM(Individual similarities)/Nonzero similarities \\ \bottomrule
         \end{tabular}
         \caption{Basic fusion methods used}
     \end{table}
@@ -90,18 +82,71 @@
     with every other document in a pair-wise comparison between the input
     systems (i.e. runs).
 
+	\subsection{The Condorcet Graph}
+
+	Given 10 models of retrieval with n documents, the corresponding
+	Condorcet graph $G = (V, E)$ has one vertex for each of the n documents.
+
+	For each document pair (x, y), there exists an edge from x to
+	y (denoted by $x \rightarrow y$) if x would have at least a score
+    equal as y in a head-to-head contest.
+
+	Cyces can simply be viewed as ties.
+
+	The relative ordering of documents within a cycle is only of
+	secondary importance, whereas their ordering with respect
+	to the rest of the documents is of primary importance.
+
+	\subsection{Condorcet paths}
+
+	A Condorcet-consistent hamiltonian path (or condorcet path) is any
+	hamiltonian path through the Condorcet graph.
+
+	The goal is to efficiently find such a path.
+
     \section{Implementation}
-    %
-    %
+
+    The implementation of Condorcet used quicksort, with the following algorithm
+	as comparing function:
+
+	\begin{lstlisting}
+	count = 0
+	for each of the k search systems do:
+	  if sys i ranks d1 above d2, count++
+	  if sys i ranks d2 above d1, count--
+	  if count > 0, rank d1 better than d2
+	  else rank d2 better than d1
+	\end{lstlisting}
+
     \section{Evaluation}
     % Modelli scelti 
-    % Indicizzazione utilizzata 
-    		  
+    % Indicizzazione utilizzata
+
+	The evaluation criteria based on the given pool used two binary relevance scores:
+	Relevant and Non-Relevant.
+	The documents left out from the pool were considered to be non relevant.
+
         \subsection{Evaluation metrics}
 		% Perche abbiamo usato solo la MAP 
 		% Perche' si fanno questi confronti
-			
+
 	    \subsection{Results}
+
+		\begin{table}[H]
+		    \centering
+		    \begin{tabular}{c p{4cm}}
+		    \toprule
+		    \textbf{Fusion methods} & \textbf{MAP} \\ \toprule
+		    CombMNZ &  \\ \hline
+		    CombSUM &  \\ \hline
+		    CombMIN &  \\ \hline
+		    CombMAX &  \\ \hline
+		    CombMED &  \\ \hline
+		    CombANZ &  \\ \hline
+			Condorcet &  \\ \bottomrule
+		    \end{tabular}
+		    \caption{Mean Average Precision for the 10 fused runs}
+		\end{table}
 
 	\section{Conclusions}
 	
