@@ -24,7 +24,7 @@ public class CombMEDBaseFusion extends BaseFusion{
             scores.add(score.Score());
         }
 
-        int arraySize = scores.size()-1;
+        int arraySize = scores.size();
         boolean oddSize  = ((arraySize % 2) == 1);
 
          if(oddSize)
@@ -34,8 +34,13 @@ public class CombMEDBaseFusion extends BaseFusion{
                 medNormScore = scores.get((arraySize-1)/2);
 
         }
-        else if (arraySize!= 0)
-             medNormScore = (scores.get(arraySize/2)+scores.get((arraySize/2)+1))/2;
+        else {
+             if (arraySize!= 0) {
+                 int i = (arraySize-1)/2;
+                 int j = i+1;
+                 medNormScore = (scores.get(i) + scores.get(j)) / 2.0F;
+             }
+         }
 
         RunLineScores fusedScores = new RunLineScores(fusionId, rank, medNormScore);
         fusedScores.NormalizeScore(medNormScore);
