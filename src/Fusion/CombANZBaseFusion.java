@@ -27,6 +27,7 @@ public class CombANZBaseFusion extends BaseFusion{
             if(score.Score() > 0)
                 nonZeroScores++;
         }
+        if(nonZeroScores == 0 ) nonZeroScores =1;
         anzNormScore = anzNormScore / nonZeroScores;
 
         RunLineScores fusedScores = new RunLineScores(fusionId, rank, anzNormScore);
