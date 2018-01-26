@@ -23,7 +23,7 @@ public class Settings {
     public static final Boolean FuseMIN =true;
     public static final Boolean FuseANZ =true;
     public static final Boolean FuseMED =true;
-    public static final Boolean FuseCONDORCET =false;
+    public static final Boolean FuseCONDORCET =true;
 
 
     public static final Boolean ALLFusionInDir = false;
@@ -33,6 +33,12 @@ public class Settings {
                                                     "runBasic_6/",
                                                     "runBasic_8/",
                                                     "runBasic_10/"};
+    public static final String[] SUBSET_runBasicK100 = {"runBasic_k100_2/",
+                                                    "runBasic_k100_4/",
+                                                    "runBasic_k100_6/",
+                                                    "runBasic_k100_8/",
+                                                    "runBasic_k100_10/"};
+
 
     public static final String[] SUBSET_runNoSW = {     "run_noSW_2/",
                                                         "run_noSW_4/",
@@ -53,8 +59,8 @@ public class Settings {
                                                         "run_noSM_noSW_10/"};
 
 
-   // public static final String[] SUBSET_FusionInDir = join(SUBSET_runBasic, SUBSET_runNoSM_NoSW);
-    public static final String[] SUBSET_FusionInDir = join(SUBSET_runNoSW, SUBSET_runNoSM);
+    public static final String[] SUBSET_FusionInDir = SUBSET_runBasicK100;
+  //  public static final String[] SUBSET_FusionInDir = join(SUBSET_runNoSW, SUBSET_runNoSM);
 
     /**
      * Utility method to execute fusion only on a subset of input directories.

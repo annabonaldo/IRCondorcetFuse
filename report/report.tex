@@ -16,19 +16,22 @@
     effectiveness over that of the individual results.
 
     The aim of this project is to show a possible implementation of basic
-    fusion strategy and an advanced one.
+    fusion strategy and an advanced one: Condorcet fusion.
 
     %Qualche conclusione
 
     \section{Introduction}
 
-    Retrieval experiments uses data from the TREC ad hoc collection.
+    In this project the input documents were taken from the TREC ad hoc collection
+	TIPSTER Collection. The ground-truth and topics files associated were also taken
+	into account during the evaluation phase.
     
     The following procedure illustrates the organization of the work:
 
     \begin{itemize}
         \item \textbf{Indexing} (with or without query expansion)
         \item \textbf{Retrieval} (10 different retrieval models)
+		\item \textbf{Normalization} (min/max normalization)
         \item \textbf{Fusion strategy} (with or without cutting the run at depth 100)
             \begin{itemize}
                 \item 6 basic strategies
@@ -105,6 +108,21 @@
 	The goal is to efficiently find such a path.
 
     \section{Implementation}
+
+	The main project structure is the following:
+	
+	\begin{itemize}
+	\item \textbf{eval/} Contains evaluation scripts.
+	\item \textbf{results/} Contains input and output runs for fusion.
+	\item \textbf{scripts/} Contains indexing and retrieval scripts.
+	\item \textbf{src/} Main directory of the application, contains Java source code.
+		\begin{itemize}
+		\item Base/ Contains definition for run, runset and min/max normalization.
+		\item Fusion/ Contains implementation of basic fusion methods and Condorcet.
+		\item IO/ Manages the input and output of runs.
+		\item Application - the main class.
+		\end{itemize}
+	\end{itemize}
 
     The implementation of Condorcet used quicksort, with the following algorithm
 	as comparing function:
