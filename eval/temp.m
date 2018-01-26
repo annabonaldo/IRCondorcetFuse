@@ -9,46 +9,50 @@ poolPath = '~/Desktop/ProgettoIR/IRCondorcetFuse/data/qrels.trec7.txt';
     {'NotRelevant', 'Relevant'}, 'Delimiter', 'space');
 
 
-runBasic = importRunFromFileTRECFormat('FileName', ...
-    '~/Desktop/ProgettoIR/IRCondorcetFuse/results/FusionOut/runBasic_10/CombMIN.txt', ...
-    'Identifier', strcat('fusedRuns_', int2str(i)), 'Delimiter', 'space', ...
-    'DocumentOrdering', 'Matters'); 
-precisionBasic = averagePrecision(pool, runBasic);
-MAPbasic = mean(precisionBasic{:, 1:end});
+% run_noSM_noSW = importRunsFromDirectoryTRECFormat('Path', ...
+%     '~/Desktop/ProgettoIR/IRCondorcetFuse/results/FusionOut/run_noSM_noSW_10/NORM_run_noSM_noSW_10/', ...
+%     'Identifier', strcat('fusedRuns_', int2str(i)), 'Delimiter', 'space', ...
+%     'DocumentOrdering', 'Matters'); 
+% precision_noSM_noSW = averagePrecision(pool, run_noSM_noSW);
+% MAP_noSM_noSW = mean(precision_noSM_noSW{:, 1:end});
 
-runk100 = importRunFromFileTRECFormat('FileName', ...
-    '~/Desktop/ProgettoIR/IRCondorcetFuse/results/FusionOut/runBasic_k100_10/CombMIN.txt', ...
-    'Identifier', strcat('fusedRuns_', int2str(i)), 'Delimiter', 'space', ...
-    'DocumentOrdering', 'Matters'); 
-precisionk100 = averagePrecision(pool, runk100);
-MAPk100 = mean(precisionk100{:, 1:end});
+% clearAllMemoizedCaches
+% runBasic = importRunsFromDirectoryTRECFormat('Path', ...
+%     '~/Desktop/ProgettoIR/IRCondorcetFuse/results/FusionOut/runBasic_10/NORM_runBasic_10/', ...
+%     'Identifier', strcat('newRuns_', int2str(i)), 'Delimiter', 'space', ...
+%     'DocumentOrdering', 'Matters'); 
+% clearAllMemoizedCaches
+% precisionBasic = averagePrecision(pool, runBasic, 'Verbose', true);
+% clearAllMemoizedCaches
+% MAPBasic = mean(precisionBasic{:, 1:end});
 
-runQE = importRunFromFileTRECFormat('FileName', ...
-    '~/Desktop/ProgettoIR/IRCondorcetFuse/results/FusionOut/runQE_10/CombMED.txt', ...
-    'Identifier', strcat('fusedRuns_', int2str(i)), 'Delimiter', 'space', ...
-    'DocumentOrdering', 'Matters');  
-precisionQE = averagePrecision(pool, runQE);
-MAPqe = mean(precisionQE{:, 1:end});
+
+% runQE = importRunFromFileTRECFormat('FileName', ...
+%     '~/Desktop/ProgettoIR/IRCondorcetFuse/results/FusionOut/runQE_10/NORM_runQE_10/DirichletLM_Bo1bfree_d_3_t_10_8.txt', ...
+%     'Identifier', strcat('fusedRuns_', int2str(i)), 'Delimiter', 'space', ...
+%     'DocumentOrdering', 'Matters');  
+% precisionQE = averagePrecision(pool, runQE);
+% MAPqe = mean(precisionQE{:, 1:end});
     
 
-testNames = {'runBasic', 'runBasic_k100'}; %, 'runQE', 'runQE_k100'};
+testNames = {'run_noSM_noSW', 'run_noSW', 'run_noSM', 'runBasic'}; %'run_noSM_noSW',
 
 figure
 
 for k = 1 : numel(testNames)
     
-    runSet =  table;
+    runSet =  table();
       
    for i=2:2:10 %passo2
             
-        fusionRun = struct;
-        fusionPrecision = table;
-        MAP = struct;
+        fusionRun = struct();
+        fusionPrecision = table();
+        MAP = struct();
         
         myDir = strcat('~/Desktop/ProgettoIR/IRCondorcetFuse/results/FusionOut/', testNames{k}, '_', int2str(i));
 
         fusionRun = importRunsFromDirectoryTRECFormat('Path', myDir, ...
-        'Identifier', strcat('fusedRuns_', int2str(i)), 'Delimiter', 'space', ...
+        'Identifier', strcat('newRun_', int2str(k), int2str(i)), 'Delimiter', 'space', ...
         'DocumentOrdering', 'Matters');  
 
         fusionPrecision = averagePrecision(pool, fusionRun);   
@@ -62,6 +66,8 @@ for k = 1 : numel(testNames)
 
         runSet = horzcat(runSet, MAP); 
         
+        clearvars fusionRun fusionPrecision myDir       
+        
         %runSet.Properties.VariableNames{k} = {strcat('system_N', int2str(i))};
         %MAP.Properties.RowNames = fusedRun.Properties.VariableNames;
         
@@ -73,6 +79,8 @@ for k = 1 : numel(testNames)
    ylabel('MAP')
    xlabel('Number of randomly chosen input systems')
    legend(MAP.Properties.RowNames);
+   
+   clearvars MAP runSet
     
 end
 
