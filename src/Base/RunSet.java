@@ -3,32 +3,53 @@ package Base;
 import java.util.*;
 
 
-//* This class contains a set of Runs.
-// * @param RunSet_globalScoreMap It contains a DICTIONARY computed on multiple Runs that contains
-/// * the list of run we want to merge later) for each RunLine we remember only
-// * one Key (***) and the list of LineScores
-
+/** This class contains a set of Runs.
+*/
 public class RunSet {
-    /**
-     *
-     */
 
-    /*@desc
-      This map contains
-      KEY =  line id : documentID+queryID+topicId (***)
-      VALUE = list of _scores for each RUN
-     */
-
+/**It contains a DICTIONARY computed on multiple Runs that contains
+ * the list of run we want to merge later) for each RunLine we remember only
+ * one Key
+ * @see RunLine#GlobalID()
+ * and the list of LineScores.
+ * This map contains
+ * <ul>
+    <li><em><code> KEY</code>  </em>
+        <code>=  line id : documentID +Runline.sep+ queryID +Runline.sep+ topicId</li></code>
+    <li><em><code> VALUE</code>  </em>
+    <code>= list of _scores for each Run</li></code>
+    </ul>
+ @see RunLine#sep
+ @see Run
+ */
     HashMap<String, ArrayList<RunLineScores>> _globalScoreMap = new HashMap<String, ArrayList<RunLineScores>>();
+
+    /**List of runs
+     */
     List<Run> _runList;
+
+    /**
+     * List of document that are mentioned into Runs in current <code>RunSet</code>.
+     * This data structure is computed <em>only at object construction time </em>.
+     * This ensures correct results and program efficiency.
+     * @see RunSet##docKeys() it is a constant time call.
+     * */
     Set<String> docKeys;
+    /**
+     * List of <code>query - topic </code> pairs that are mentioned into
+     * Runs in current <code>RunSet</code>.
+     * This data structure is computed <em>only at object construction time </em>.
+     * This ensures correct results and program efficiency.
+     * @see RunSet#QueryKeys() it is a constant time call.
+     */
     Set<String> _queryKeys; // query - topics key
 
     String _name;
 
-    //@desc
-    //this constructor bulid the obj
-    // computing  the map form a run list
+    /** Class constructor.
+     * @param  runList list of  <code>Run</code> object.
+     * @param  name <code>RunSet</code> identifier.
+     */
     public RunSet(List<Run> runList, String name) {
         _runList = runList;
 
@@ -55,10 +76,19 @@ public class RunSet {
 
     }
 
+    /**
+     *
+     * @return <code>RunSet</code> identifier.
+     */
     public String Name() {
         return _name;
     }
 
+    /**
+     * @return Union of all <code>RunLine</code> global identifier for <code>Run </code> objects in
+     * this.
+     * @see RunLine#GlobalID() 
+     */
     public Set<String> Keys() {
         return _globalScoreMap.keySet();
     }

@@ -7,11 +7,27 @@ package Base;
 **/
 public class RunLineScores {
 
+    /** Parent Run ID
+     */
     String    _runID;
+    /** Is the current rank value for current run. Set to -1, if not initialized yet.
+     */
     int       _rank;
+    /** Is the current score value for current run.
+     */
     float     _score;
+    /** If set as <code>TRUE</code> the
+     * @see RunLineScores#NormalizeScore(float)  has been called on object.
+     */
     boolean   _normalized;
 
+    /**
+     * Class constructor
+     * @param runID run ID
+     * @param rank rank value.
+     *             If you want to set it as "not initialized" you can pass <code>int rank = -1</code>
+     * @param score score value
+     */
     public RunLineScores(String runID, int rank, float score ) {
         _rank = rank;
         _score = score;
