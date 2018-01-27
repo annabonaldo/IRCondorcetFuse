@@ -5,26 +5,26 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import Base.Normalization.*;
+import IO.IORunSet;
 
 /**
 This class is a retrieval run. Each Run class is made of a list of RunLine.
-   @field  _minMax is the value-pair used in Run normalization process (see normalize() method)
-   @filed  _name is the run name that is the name of the file used to build the Run object.
  */
 public class Run extends ArrayList<RunLine> {
 
     /**
-     is the value-pair used in Run normalization process @see Base.Run#method normalize()
+     is the value-pair used in Run normalization process
+     @see Run#normalize()
         */
     private MinMax _minMax;
 
     /**
     is the run name and corresponds to the run-file name, extension included.
-            */
+     */
     private String _name;
 
     /**
-     * *Class contstructor.
+     * *Class constructor.
      * @param name is the file name from where run data came from.
      */
     public Run(String name) {
@@ -38,7 +38,8 @@ public class Run extends ArrayList<RunLine> {
     public MinMax MinMax() { return _minMax; }
 
     /**
-     *
+     * Getter method for Run name.
+     * @see IORunSet#deserialize()
      * @return the Run name
      */
     public String Name() {return _name;}

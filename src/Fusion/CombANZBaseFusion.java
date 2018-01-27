@@ -5,7 +5,10 @@ import Base.RunLineScores;
 import java.util.List;
 
 /**
- * Created by Anna Bonaldo on 25/01/2018.
+ * This class implements <em><code>CombANZ</code> </em> base fusion method.
+ * <p><code>
+ * Combined Similarity = SUM(Individual Similarities) / num of NonZero Similarities </code>
+ * </p>
  */
 public class CombANZBaseFusion extends BaseFusion{
     /**

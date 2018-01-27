@@ -1,6 +1,6 @@
 package Base;
 
-/** @ desc
+/**
  * this class represents only the "scoring part" of a Run Line the
  * "scoring part" is considered as made of
  * runID, rank, score
@@ -20,21 +20,21 @@ public class RunLineScores {
     }
 
     /**
-     * @ return current line rank
+     * @return current line rank
      */
     public int Rank() {
         return _rank;
     }
 
     /**
-     * @ return current line score
+     * @return current line score
      */
     public float Score() {
         return _score;
     }
 
     /**
-     * @ return current line parent  Run name (ID)
+     * @return current line parent  Run name (ID)
      */
     public String RunID() {
         return _runID;

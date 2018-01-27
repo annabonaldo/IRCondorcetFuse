@@ -5,8 +5,10 @@ import Base.RunLineScores;
 import java.util.List;
 
 /**
- * This class implements CombMAX  base fusion method.
- * Combined Similarity = MAX(Individual Similarities)
+ * This class implements <em><code>CombMAX</code> </em> base fusion method.
+ * <p><code>
+ * Combined Similarity = MAX(Individual Similarities)</code>
+ * </p>
  */
 public class CombMAXBaseFusion extends BaseFusion {
 
@@ -18,8 +20,6 @@ public class CombMAXBaseFusion extends BaseFusion {
 
     @Override
     protected RunLineScores fuseLine(List<RunLineScores> runLineList) {
-
-
         int rank = -1;
         float maxNormScore = 0.0F;
 

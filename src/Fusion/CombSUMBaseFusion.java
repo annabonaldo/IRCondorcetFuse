@@ -4,10 +4,13 @@ import Base.RunLineScores;
 
 import java.util.List;
 
+/**
+ * This class implements <em><code>CombSUM</code> </em> base fusion method.
+ * <p><code>
+ * Combined Similarity = SUM(Individual Similarities) </code>
+ * </p>
+ */
 public class CombSUMBaseFusion extends BaseFusion {
-
-    // fuse() implements CombSUM fusion:
-    // Combined Similarity = SUM(Individual Similarities)
 
     /**
      * this is the FusionMethod name.

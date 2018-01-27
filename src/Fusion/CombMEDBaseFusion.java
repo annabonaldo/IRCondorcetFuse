@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Anna Bonaldo on 25/01/2018.
+ * This class implements <em><code>CombMED</code> </em> base fusion method.
+ * <p><code>
+ * Combined Similarity = MEDIAN(Individual Similarities)</code>
+ * </p>
  */
 public class CombMEDBaseFusion extends BaseFusion{
     /**

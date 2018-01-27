@@ -5,20 +5,23 @@ import Base.Normalization.MinMax;
 /** rappresentation of a single line of a Run file
  * each line conains:topicID queryID documentID rank score runID
  * this class contains also NORMALIZED RANK after normalization computation
- * @field _topicID contains the topic id string (we get it from run file)
- * @field _queryID contains the query id string
- * (it is always the same in terrier run, but it is included here for completeness)
- * @field _documentID it is the document id string (we get it from run file)
- * @field _score is an RunLineScore object that contains all scores and rank information for current document (_documentID) and current topic
- * (_topicID - and _queryID, but this last is always the same!)
  **/
 public class RunLine implements Comparable<RunLine> {
 
     public static final String sep = " ";
-
+    /** Contains the topic id string (we get it from run file)
+     */
     String    _topicID;
+    /**Contains the query id string
+     */
     String    _queryID;
+    /**Is the document id string (we get it from run file)
+     */
     String    _documentID;
+    /** Is an RunLineScore object that contains all scores and rank information for current document (_documentID) and current topic
+     * (_topicID - and _queryID, but this last is always the same!)
+     * @see RunLineScores
+     */
     RunLineScores _scores;
 
     /** Class constructor. To build a new RunLine you must give
@@ -71,8 +74,7 @@ public class RunLine implements Comparable<RunLine> {
     int       Rank()               { return _scores.Rank(); }
     String    RunID()              { return _scores.RunID(); }
 
-    /**@use    GlobalID is the id we use to merge results of different runs
-     *
+    /**GlobalID is the id we use to merge results of different runs
     * @return return string made of:
      * <code>globalID = "documentID"+ sep + "queryID" + sep + "topicID" </code>
      *
@@ -151,7 +153,7 @@ public class RunLine implements Comparable<RunLine> {
      * @param rank
      * @see RunLine#_scores
      * @see RunLineScores#_rank
-     * @see RunLineScores#setRank(int) 
+     * @see RunLineScores#setRank(int)
      */
     public void setRank(int rank) {
         this.getRunLineScores().setRank(rank);

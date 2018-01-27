@@ -3,14 +3,15 @@ package Base;
 import java.util.*;
 
 
-//@desc
-// this class A DICTIONARY computed on multiple Runs
-// (the list of run we want to merge later)
-
-// for each RunLine we remember only
-// one Key (***) and the list of LineScores
+//* This class contains a set of Runs.
+// * @param RunSet_globalScoreMap It contains a DICTIONARY computed on multiple Runs that contains
+/// * the list of run we want to merge later) for each RunLine we remember only
+// * one Key (***) and the list of LineScores
 
 public class RunSet {
+    /**
+     *
+     */
 
     /*@desc
       This map contains

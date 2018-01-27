@@ -4,9 +4,11 @@ import Base.RunLineScores;
 
 import java.util.List;
 import java.util.zip.Inflater;
-
 /**
- * Created by Anna Bonaldo on 25/01/2018.
+ * This class implements <em><code>CombMIN</code> </em> base fusion method.
+ * <p><code>
+ * Combined Similarity = MIN(Individual Similarities)</code>
+ * </p>
  */
 public class CombMINBaseFusion extends BaseFusion{
     /**

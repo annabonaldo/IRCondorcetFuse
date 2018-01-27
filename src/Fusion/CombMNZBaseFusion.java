@@ -3,10 +3,12 @@ package Fusion;
 import Base.RunLineScores;
 
 import java.util.List;
-/**
- * This class implements CombMNZ  base fusion method.
- * Combined Similarity = SUM(Individual Similarities)*  Number of Non-Zero Similarities
 
+/**
+ * This class implements <em><code>CombMAX</code> </em> base fusion method.
+ * <p><code>
+ * Combined Similarity = SUM(Individual Similarities)*  Number of Non-Zero Similarities </code>
+ * </p>
  */
 public class CombMNZBaseFusion extends BaseFusion {
     /**
