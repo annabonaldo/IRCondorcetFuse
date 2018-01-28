@@ -21,6 +21,7 @@
     fusion strategies and compare them to anadvanced one: Condorcet fusion \cite{3}.
 
     In this project the input documents were taken from the TREC TIPSTER Collection using 50 topics (topics 351-400).
+    We used Terrier for retrieval and indexing and Matters for evaluation.
     
     We organized our work as follows:
 
@@ -206,10 +207,23 @@
 	Four out of the top five best systems where fusion systems, with Condorcet Fuse beign the fourth best overall.
 	
 	But, we also noted that the performances of the methods are all very close, and the best and worse topics are the same regardless of the system used.
-
-        \subsection{Evaluation metrics}
-		% Perche abbiamo usato solo la MAP 
-		% Perche' si fanno questi confronti
+	
+	\subsection{Second Analysis}
+	We decided we wanted to test how the performances of the 10 input systems affected the performance of the fusion methods.
+	Furthermore, since Montague and Aslan \cite{3} analyzed the algorithm's performance over the number of input systems, we also tried fusions starting with 2 input systems up to 10.
+	
+	Figure \hyperref[fig:SMSW]{2} shows a comparison between the MAP for the 7 fusion methods over the number of input systems and with different indexing and retrieval settings.
+	
+	Inserire figura di Anna con migliroamenti/peggiormenti al posto di tabelle (che altrimenti andrebbero messe tutte).
+	
+	\begin{figure}
+		\centering				
+		\includegraphics[width=\linewidth]{../eval/results-img-graphs/SMSW.jpg}
+		\captionof {Figure 2: }{MAP depending in the number of input system and indexing and retrieval settings}				
+		\label{fig:SMSW}					
+	\end{figure}
+	
+	
 
 	    \subsection{Results}
 
