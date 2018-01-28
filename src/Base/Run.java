@@ -6,6 +6,7 @@ import java.util.Comparator;
 
 import Base.Normalization.*;
 import IO.IORunSet;
+import IO.Settings;
 
 /**
 This class is a retrieval run. Each Run class is made of a list of RunLine.
@@ -17,6 +18,10 @@ public class Run extends ArrayList<RunLine> {
      @see Run#normalize()
         */
     private MinMax _minMax;
+
+    private StandardDeviation _standardDeviation;
+
+    private Outliers _outliers;
 
     /**
     is the run name and corresponds to the run-file name, extension included.
@@ -30,7 +35,6 @@ public class Run extends ArrayList<RunLine> {
     public Run(String name) {
         super();
         _name = name;
-        normalize();
     }
 
     /**  @return the MinMax object used in Run instance normalization.
@@ -81,21 +85,57 @@ public class Run extends ArrayList<RunLine> {
     /**
      * Perform Run normalization using minimum and maximum score values
      */
-    void normalize() {
+    public void normalize() {
 
-        float max = Float.NEGATIVE_INFINITY;
-        float min = Float.POSITIVE_INFINITY;
+        if (Settings.MinMax || Settings.Outliers) {
 
-        for (RunLine item : this) {
-            float currScore = item.Score();
-            if (currScore < min) min = currScore;
-            if (currScore > max) max = currScore;
+            float max = Float.NEGATIVE_INFINITY;
+            float min = Float.POSITIVE_INFINITY;
+
+            for (RunLine item : this) {
+                float currScore = item.Score();
+                if (currScore < min) min = currScore;
+                if (currScore > max) max = currScore;
+            }
+
+            if (Settings.MinMax) {
+                _minMax = new MinMax(min, max);
+
+                for (RunLine item : this) {
+                    item.normalize(_minMax);
+                }
+            }
+
+            else {
+                _outliers = new Outliers(min, max, 10);
+
+                for (RunLine item : this) {
+                    item.normalize(_outliers);
+                }
+            }
+
         }
 
-        _minMax = new MinMax(min, max);
+        else if (Settings.StandardDeviation) {
+            float sum = 0;
+            for (RunLine item : this) {
+                sum = sum + item.Score();
+            }
 
-        for (RunLine item : this) {
-            item.normalize(_minMax);
+            float mean = sum / this.size();
+
+            float sumSd = 0;
+            for (RunLine item : this) {
+                sumSd = sumSd + (item.Score() - mean)*(item.Score() - mean);
+            }
+
+            float sD = (float) Math.sqrt(sumSd / this.size() -1);
+
+            _standardDeviation = new StandardDeviation(mean, sD);
+
+            for (RunLine item : this) {
+                item.normalize(_standardDeviation);
+            }
         }
 
     }

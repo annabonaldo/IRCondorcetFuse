@@ -1,6 +1,6 @@
 package Base.Normalization;
 
-public class MinMax {
+public class MinMax extends Normalizer {
 
     private final float _minScore;
     private final float _maxScore;
@@ -13,7 +13,7 @@ public class MinMax {
     public final float minScore() { return _minScore; }
     public final float maxScore() { return _maxScore; }
 
-    public final float normalizeScore(float currScore) {
+    public float normalizeScore(float currScore) {
         return ((currScore - _minScore ) / (_maxScore - _minScore));
     }
 }

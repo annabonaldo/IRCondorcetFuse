@@ -1,6 +1,6 @@
 package Base;
 
-import Base.Normalization.MinMax;
+import Base.Normalization.*;
 
 /** rappresentation of a single line of a Run file
  * each line conains:topicID queryID documentID rank score runID
@@ -129,9 +129,9 @@ public class RunLine implements Comparable<RunLine> {
      * @param minMax Is information we use to perform normalization correctly.
      *               @see RunLineScores#NormalizeScore(float)
      */
-    public void normalize(MinMax minMax) {
+    public void normalize(Normalizer normalizer) {
 
-        _scores.NormalizeScore(minMax.normalizeScore(_scores.Score()));
+        _scores.NormalizeScore(normalizer.normalizeScore(_scores.Score()));
     }
 
     /** Allow ordering on

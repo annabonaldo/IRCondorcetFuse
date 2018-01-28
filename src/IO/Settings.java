@@ -15,7 +15,13 @@ public class Settings {
     public  static final Boolean ERROR_VERBOSE = false;
     public  static final Boolean RUN_FUSION_DETAIL =false;
 
-    //  to activate/deactivate  each FUSION Method performed during EXECUTION
+    //  to activate/deactivate each NORMALIZATION Method performed during EXECUTION
+
+    public static final Boolean MinMax = true;
+    public static final Boolean StandardDeviation = false;
+    public static final Boolean Outliers = false;
+
+    //  to activate/deactivate each FUSION Method performed during EXECUTION
 
     public static final Boolean FuseMAX =true;
     public static final Boolean FuseMNZ =true;

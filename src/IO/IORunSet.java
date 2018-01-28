@@ -88,6 +88,7 @@ public class IORunSet {
                 run.add(resItem);
             }
             if(Settings.RUN_IN_INFO) System.out.println(run.Name()+" Size : "+ run.size());
+            run.normalize();
             runs.add(run);
         }
 
