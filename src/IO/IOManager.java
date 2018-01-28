@@ -8,17 +8,38 @@ import java.util.List;
 
 
 public class IOManager {
+    /**
+     * Default path for input RunSet folders.
+     * Input directories containing runset files in TERRIER format.
+     */
     static final String DefaultInPath = "/results/FusionIn/";
+    /**
+     * Default path for output  RunSet  folders. */
     static final String DefaultOutPath = "/results/FusionOut/";
 
+    /**
+     * RunSet to import as fusion input.
+     */
     IORunSet[] __ioRunSet;
 
 
+    /**
+     * Constructor of input-output manager.
+     * Object construction call inner <code>IORunSet[]</code> object configuration.
+     * @see IOManager#getSets()
+     * @see IOManager#__ioRunSet
+     * */
     public IOManager()
     {
         __ioRunSet = getSets();
     }
 
+    /**
+     * Deserialize all
+     * @see IORunSet in this.
+     * @return List<RunSet> the list of dematerialized IORunSet as
+     * @see RunSet s.
+     */
     public List<RunSet> deserializeAll() {
         List<RunSet> runSets = new ArrayList<>();
 
@@ -34,6 +55,11 @@ public class IOManager {
 
     }
 
+    /**
+     * Serialize all
+     * @see IORunSet in this.
+     * @return void
+     */
     public void serialize(RunSet runSet)
     {
         try {
@@ -44,6 +70,15 @@ public class IOManager {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Nomrmalized RunSet object serialization. This method does not overwrite original
+     * <code>RunSet</code> data, but it will create a new folder for normalized objects
+     * in default output path position.
+     * @see IOManager#DefaultOutPath
+     * @param runSetList is the input RunSet (previously normalized) we want to write on
+     *                   files.
+     */
 
     public static void serializeAsNormalized(List<RunSet> runSetList)
     {
@@ -63,6 +98,13 @@ public class IOManager {
             }
     }
 
+    /**
+     * Call IORunSets object configuration.
+     * The IORunSet configuration checks input directories to search for RunSets directories names.
+     * RunSet directories names (and paths) will be useful later in deserialization an RunSet creation.
+     * @return the configured array of IORunSet[]
+     * @see IORunSet[]
+     */
     private  IORunSet[] getSets(){
 
         String path = Paths.get("").toAbsolutePath().toString();
@@ -91,7 +133,12 @@ public class IOManager {
     }
 
 
-
+    /**
+     * Utility method for <code>RunSet</code> subdirectories path building in
+     * default path position.
+     * @see IOManager#DefaultInPath
+     * @return the <code>File[] </code> array containing all subdirectories file paths information.
+     */
     public File[] getDirectorieSubSet() {
         String ABSpath = Paths.get("").toAbsolutePath().toString();
         File[] dir = new File[Settings.SUBSET_FusionInDir.length];
