@@ -22,10 +22,13 @@ topBest.Properties.RowNames=allRuns.Properties.RowNames;
 topBest.Properties.VariableNames=intersect(allRuns.Properties.VariableNames,bestNames.Properties.RowNames);
 
 %plot 5 best models
-plot(351:400, topBest{1:50, 1:end});
-title('Precision for the best retrieval methods in different topics');
+plot(351:400, topBest{1:50, 1:end}, 'Linewidth', 1);
+title('Precision for the best retrieval systems over different topics');
 ylabel('precision')
 xlabel('topics')
 legend(topBest.Properties.VariableNames);
 
 %clear;
+
+% filename = 'firstData.xlsx';
+% writetable(meanAPAll, filename, 'WriteRowNames', true, 'Sheet', 2);

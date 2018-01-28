@@ -33,9 +33,11 @@ poolPath = '~/Desktop/ProgettoIR/IRCondorcetFuse/data/qrels.trec7.txt';
 %     'DocumentOrdering', 'Matters');  
 % precisionQE = averagePrecision(pool, runQE);
 % MAPqe = mean(precisionQE{:, 1:end});
-    
 
-testNames = {'run_noSM_noSW', 'run_noSW', 'run_noSM', 'runBasic'}; %'run_noSM_noSW',
+testNames =  {'run_noSM_noSW', 'run_noSW', 'run_noSM', 'runBasic'};
+
+synTable = array2table(cell(1, length(testNames)));
+synTable.Properties.VariableNames = testNames;
 
 figure
 
@@ -75,14 +77,29 @@ for k = 1 : numel(testNames)
    
    subplot(2,2, k)
    plot(2:2:10, runSet{:, :});
+   axis([2 10 0.12 0.2])
    title(strcat({'Fusions on '}, testNames{k}));
    ylabel('MAP')
    xlabel('Number of randomly chosen input systems')
-   legend(MAP.Properties.RowNames);
+   legend(MAP.Properties.RowNames, 'Location', 'westoutside');
    
+   synTable{1, k} = {runSet};
+      
    clearvars MAP runSet
     
-end
+end 
 
+% filename = 'retrievalData.xlsx';
+% 
+% run_noSM_noSW = synTable.run_noSM_noSW{1, 1};
+% writetable(run_noSM_noSW, filename, 'WriteRowNames', true, 'Sheet', 'run_noSM_noSW');
+% 
+% run_noSW = synTable.run_noSW{1, 1};
+% writetable(run_noSW, filename, 'WriteRowNames', true, 'Sheet', 'run_noSW');
+% 
+% run_noSM = synTable.run_noSM{1, 1};
+% writetable(run_noSM,filename, 'WriteRowNames', true, 'Sheet', 'run_noSM');
+% 
+% runBasic = synTable.runBasic{1, 1};
+% writetable(runBasic,filename, 'WriteRowNames', true, 'Sheet', 'runBasic');
 
-  

@@ -23,4 +23,7 @@ legend(measuredRunSet.Properties.VariableNames);
 save('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicRunData_10.mat', ...
     'meanRunAP', 'measuredRunSet', '-append');
 
+% filename = 'retrievalData.xlsx';
+% writetable(meanRunAP, filename, 'WriteRowNames', true, 'Sheet', '10_models');
+
 clear;
