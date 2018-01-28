@@ -29,6 +29,19 @@ public class FusionManager {
         out("Import() :: Data imported correctly");
     }
 
+    /**
+     * Method to perform fusion on active methods.
+     * @see Settings
+     * @see Settings#FuseMAX
+     * @see Settings#FuseMIN
+     * @see Settings#FuseMED
+     * @see Settings#FuseANZ
+     * @see Settings#FuseMNZ
+     * @see Settings#FuseSUM
+     * @see Settings#FuseCONDORCET
+     * Input file are
+     *
+     */
     public void Fuse() {
 
            out("Fuse():: fusion started");
@@ -83,7 +96,7 @@ public class FusionManager {
             }
     }
 
-
+    /**  Utility method for easy console printing*/
     private void out(String out) {
         if(Settings.VERBOSE)
             System.out.println(out);
