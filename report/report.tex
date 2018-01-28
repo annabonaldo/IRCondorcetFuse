@@ -42,9 +42,9 @@
     \end{itemize}
 
 	\begin{table} [H]
-		\begin{minipage} {0.3\linewidth}
+		\begin{minipage} {0.2\linewidth}
 			\centering
-			\begin{tabular}{c}
+			\begin{tabular}{l}
 				\toprule
 				\textbf{Retrieval models} \\ \toprule
 				BB2 \\
@@ -62,19 +62,22 @@
 			\caption{Retrieval models used}
 			\label{tab:10Mod}
 		\end{minipage}		
-		\begin{minipage} {0.7\linewidth}
+		\begin{minipage} {0.8\linewidth}
 			\centering
-			\begin{tabular}{c p{4cm}}
+			{\def\arraystretch{2}\tabcolsep=10pt
+			\begin{tabular}{l p{5cm}}
 				\toprule
-				\textbf{Basic fusion methods} & \textbf{New score} \\ \toprule
-				CombMNZ & SUM(Individual similarities)*Nonzero similarities \\ \hline
-				CombSUM & SUM(Individual similarities) \\ \hline
-				CombMIN & MIN(Individual similarities) \\ \hline
-				CombMAX & MAX(Individual similarities) \\ \hline
-				CombMED & MED(Individual similarities) \\ \hline
-				CombANZ & SUM(Individual similarities)/Nonzero similarities \\ \bottomrule
-			\end{tabular}
-			\caption{Basic fusion methods used}
+				\textbf{Basic fusion methods} & \textbf{New score formula} \\ \toprule
+				CombMNZ & $(\sum_{i}^{N} s_{i})*(Num~s_{i}\ne 0)$ \\ \hline
+				CombSUM & $ \sum_{i}^{N} s_{i} $ \\ \hline
+				CombMIN & $ min_{i}^{N} {(s_{i})} $ \\ \hline
+				CombMAX & $ min_{i}^{N} {(s_{i})} $  \\ \hline
+				CombMED & $ median_{i}^{N} {(s_{i})} $ \\ \hline
+				CombANZ & $  (\sum_{i}^{N} s_{i}) /
+							(Num ~ s_{i} \ne 0)$   \\ 
+							\bottomrule
+			\end{tabular}}
+			\caption{Basic fusion methods used }
 			\label{tab:6Fus}
 		\end{minipage}		
 	\end{table}
