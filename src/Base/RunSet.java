@@ -74,6 +74,8 @@ public class RunSet {
         _queryKeys = filterUniqueSubkeys(new int[]{1,  2});
         _name = name;
 
+        _runList.forEach(Run::normalize);
+
     }
 
     /**
