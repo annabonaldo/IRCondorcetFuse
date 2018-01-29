@@ -122,7 +122,6 @@ public class IORunSet {
         }
     }
 
-
     /**
      * Write to file <code> RunSet</code> once normalization has been performed.
      * Normalized <code>RunSet</code> serialization does not overwrite input <code>RunSet</code>

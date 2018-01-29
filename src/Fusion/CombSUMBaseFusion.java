@@ -18,6 +18,14 @@ public class CombSUMBaseFusion extends BaseFusion {
      */
     static String fusionId = "CombSUM";
 
+    /**
+     * This method apply the CombSUM fusion:
+     * <p><code>Combined Similarity = SUM(Individual Similarities)</code></p>
+     *
+     * @param runLineList is the list of scores for the set of RunLine
+     *                   we want to fuse together in a unique RunLineScore
+     * @return the fusion result that is a unique RunLineScore, computed combining the input ones.
+     */
     @Override
     protected RunLineScores fuseLine(List<RunLineScores> runLineList) {
 

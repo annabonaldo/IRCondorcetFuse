@@ -20,7 +20,7 @@ public class CombMNZBaseFusion extends BaseFusion {
 
     /**
      * This method apply the CombMNZ fusion:
-     * Combined Similarity = SUM(Individual Similarities)*  Number of Non-Zero Similarities
+     * <p><code>Combined Similarity = SUM(Individual Similarities)*  Number of Non-Zero Similarities</code></p>
      *
      * To compute the fusion score it takes the sum of the scores it get as input and
      * multipy them for the number of non zero input scores.
