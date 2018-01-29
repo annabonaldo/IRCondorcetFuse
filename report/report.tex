@@ -9,21 +9,18 @@
     %\listoffigures
 
     \section{Introduction}
-    
-    In Information Retrieval, data fusion is the combination of the results
-    of independent searches on a document collection into one single output
-    result set.
-    
-    It has been shown in the past that this can greatly improve retrieval
-    effectiveness over that of the individual results.
-    
-    The aim of this work is to show a possible implementation of some basic
-    fusion strategies and compare them to anadvanced one: Condorcet fusion \cite{3}.
-
-    In this project the input documents were taken from the TREC TIPSTER Collection using 50 topics (topics 351-400).
-    We used Terrier for retrieval and indexing and MATTERS for evaluation.
-    
-    We organized our work as follows:
+      Fusion in information retrieval is combination of retrieval results computed with multiple different retrieval systems into one single "fused" result. This process aim to improve basic systems performances. 
+   
+   Some previous results show that this technique  can greatly improve retrieval
+   effectiveness over that of the individual results.
+   
+   The aim of this work is to present a possible implementation of some basic
+   fusion strategies and compare them to an advanced one: Condorcet fusion \cite{3}.
+   
+   In this project the input documents were taken from the TREC TIPSTER Collection using 50 topics (topics 351-400).
+   We used Terrier for retrieval and indexing and MATTERS for evaluation.
+   
+   We organized our work as follows:
 
     \begin{itemize}
         \item \textbf{Indexing:} we created four different indexes:
@@ -83,68 +80,60 @@
 		\end{minipage}		
 	\end{table}
     
-    \section{Condorcet fusion}
-    The Condorcet Fusion strategy considers the ranking of documents from different systems as an instance of the voting problem where documents are candidates and each input retrieval system is a voter.
-    
-    The output of each input system is seen as a list of preferences, where the higher ranked document beats the lower ranked ones.
-    
-    Having the lists of different preferences, Condorcet Fusion orders the documents using the Condorcet voting algorithm, a majoritarian method which specifies
-    that the ``winner'' of the fusion is the document(s) that beats or ties
-    with every other document in a pair-wise comparison between the input
-    systems (i.e. runs).    
-    
+  \section{Condorcet Fusion}
+% The Condorcet Fusion strategy considers the ranking of documents from different systems as an instance of the voting problem where documents are candidates and each input retrieval system is a voter.
 
-	\subsection{The Condorcet Graph}
-	
-	The Condorcet Graph is used to determine the Condorcet winner.
+Condorcet-fuse strategy merges single systems results considering the document ranking problem like a voting problem between different systems. 
 
-	Given 10 models of retrieval with n documents, the corresponding
-	Condorcet graph $G = (V, E)$ has one vertex for each of the n documents.
 
-	For each document pair (x, y), there exists an edge from x to
-	y (denoted by $x \rightarrow y$) if x would receive at least as many votes as y in a head-to-head contest.
+The output of each input system is seen as a list of preferences, where the higher ranked documents beat the lower ranked ones.
 
-	Cycles can simply be viewed as ties.
+The result of Condorcet Fusion is computed like a majoritarian voting between each system preference for each document-query pair. 
+A system preference is its output ranking list for a given query.  
 
-	%The relative ordering of documents within a cycle is only of
-	%secondary importance, whereas their ordering with respect
-	%to the rest of the documents is of primary importance.
 
-	\subsection{Condorcet paths}
+Having the lists of different preferences, Condorcet-fuse orders the documents using the Condorcet voting algorithm, estimating the final ordering for a given document-query pair considering the most voted 
+voted rank between systems' preferences on that pair. 
 
-	A Condorcet-consistent hamiltonian path (or condorcet path) is any
-	hamiltonian path through the Condorcet graph.
 
-	The goal of Condorcet Fusion is to efficiently find such a path and to output the documents in the order they are visited as nodes of the path.
+\subsection{The Condorcet Graph}
 
-    \section{Implementation}
+A Condorcet Graph can be used to represent the majoritarian preference for each document on a given query. 
 
-	We follow the Condorcet Fuse implementation suggested by Montague and Aslam \cite{3}.
-	
-	We choose to assign some dummy relevance score to Condorcet's output, the score assigned is based on the rank.
+Given 10 models of retrieval with n documents, the corresponding
+Condorcet graph $G = (V, E)$ has one vertex for each of the n documents.
 
-    The implementation of Condorcet uses Quicksort, with the following algorithm
-	as comparing function:
+For each document pair (x, y), there exists an edge from x to
+y (denoted by $x \rightarrow y$) if x would receive at least as many votes as y in a head-to-head contest.
+
+Cycles can simply be viewed as ties.
+Montague and Aslam \cite{3} suggest a Condorcet fusion implementation that allow graph nodes ordering in a efficient manner (time $O(n*\log(n))$) .  
 
 	\begin{lstlisting}
-	count = 0
-	for each of the k search systems do:
-	  if sys i ranks d1 above d2, count++
-	  if sys i ranks d2 above d1, count--
-	  if count > 0, rank d1 better than d2
-	  else rank d2 better than d1
-	\end{lstlisting}
-	
-	For more information on the code, see \href{https://github.com/annabonaldo/IRCondorcetFuse/blob/master/README.md}{README} in repository.
+count = 0
+for each of the k search systems do:
 
+if (sys_i ranks d1 above d2)
+count = count+1 
+if (sys_i ranks d2 above d1)
+count = count-1 
+
+if (count > 0)
+rank d1 better than d2
+else 
+rank d2 better than d2 
+
+\end{lstlisting}
+
+For more information on the code, see \href{https://github.com/annabonaldo/IRCondorcetFuse/blob/master/README.md}{README} in our {\href{https://github.com/annabonaldo/IRCondorcetFuse}{code repository }
     \section{Evaluation}
     % Modelli scelti 
     % Indicizzazione utilizzata
 
-	The evaluation criteria based on the given pool uses a binary relevance score:
+	The evaluation criteria based on the given \textbf{pool uses a binary relevance score}:
 	Relevant and Non-Relevant.
 	The documents left out from the pool are considered to be Non-Relevant.
-	We decided to use Average Precision to evaluate a run on the set of topics and Mean Average Precision to evaluate a run between different retrieval systems. We always work on normalized data.
+	We decided to use \textbf{Average Precision} to evaluate a run on the set of topics and \textbf{Mean Average Precision} to evaluate a run between different retrieval systems. We always work on normalized data.
 	
 	We first did an analysis considering the 10 models presented in Table \ref{tab:10Mod} running retrieval and indexing with Terrier's default settings (that is, using both the Porter Stemmer and a stop list) and the fusion's given these 10 input systems.
 	
