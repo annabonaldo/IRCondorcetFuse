@@ -15,9 +15,9 @@ public class RunSet {
  * This map contains
  * <ul>
     <li><em><code> KEY</code>  </em>
-        <code>=  line id : documentID +Runline.sep+ queryID +Runline.sep+ topicId</li></code>
+        <code>=  line id : documentID +Runline.sep+ queryID +Runline.sep+ topicId</code> </li>
     <li><em><code> VALUE</code>  </em>
-    <code>= list of _scores for each Run</li></code>
+    <code>= list of _scores for each Run</code> </li>
     </ul>
  @see RunLine#sep
  @see Run
@@ -32,7 +32,7 @@ public class RunSet {
      * List of document that are mentioned into Runs in current <code>RunSet</code>.
      * This data structure is computed <em>only at object construction time </em>.
      * This ensures correct results and program efficiency.
-     * @see RunSet##docKeys() it is a constant time call.
+     * @see RunSet#docKeys it is a constant time call.
      * */
     Set<String> docKeys;
     /**

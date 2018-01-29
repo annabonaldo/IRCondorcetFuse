@@ -25,8 +25,7 @@ public class RunLine implements Comparable<RunLine> {
     RunLineScores _scores;
 
     /** Class constructor. To build a new RunLine you must give
-     * information about query, topic and dcoument (
-     * @see RunLine#GlobalID()  and about
+     * information about query, topic and dcoument (<code>RunLine.GlobalID()</code>   and about
      * score and rank they get for the current retrieval (scores).
      * @param globalID The global id is the string that includes all RunLine ids. It is build as:
      *                 <code>globalID = "documentID"+ sep + "queryID" + sep + "topicID" </code>
@@ -35,6 +34,7 @@ public class RunLine implements Comparable<RunLine> {
      * @param scores The score object contains all information about current document scores
      *               and rank for curret query and topic.
      *               @see RunLineScores
+     *               @see RunLine#GlobalID()
      * */
     public RunLine (String globalID, RunLineScores scores) {
         _scores = scores;
@@ -101,8 +101,8 @@ public class RunLine implements Comparable<RunLine> {
      * You can use it to print a RunLine to file in Terrier format.
      * @return The object rappresentation in Terrier run line format. This one is:
      * <code> "topicID" + sep + "queryID" + sep +"documentID"+ sep + "score" + sep + "rank"+ "RunID "</code>
-     * It is the same format we use on
-     * @see RunLine#RunLine(String)  to build the object.
+     * It is the same format we use on <code>RunLine(String)</code> constructor to build the object.
+     * @see RunLine#RunLine(String)
      */
     public String getRunAsLine() {
         return  _topicID.toString() + " " +
@@ -124,21 +124,24 @@ public class RunLine implements Comparable<RunLine> {
 
     /**
      * Perform normalization on this RunLine scores, calling normalization on inner
+     * @param normalizer object that manage normalization data and execution.
      * @see RunLineScores
      * @see RunLine#_scores .
-     * @param minMax Is information we use to perform normalization correctly.
-     *               @see RunLineScores#NormalizeScore(float)
+     * @see Run#_minMax
+     * @see RunLineScores#NormalizeScore(float)
+     * @see Normalizer
      */
     public void normalize(Normalizer normalizer) {
-
         _scores.NormalizeScore(normalizer.normalizeScore(_scores.Score()));
     }
 
     /** Allow ordering on
-     * @see RunLine object.
-     * We order them into a
-     * @see Run object. We order them on decreasing score and ascending rank documents of the same
+     * <code>Run</code> object. object.
+     * We order them into a <code>Run</code> object.
+     * We order them on decreasing score and ascending rank documents of the same
      * group of query-topic.
+     * @see Run object.
+
      **/
     @Override
     public int compareTo(RunLine runLine) {
@@ -150,7 +153,7 @@ public class RunLine implements Comparable<RunLine> {
     /**
      * Setter for RunLine rank value. This is the position of current document in retrieval
      * run for current query-topic.
-     * @param rank
+     * @param rank new rank value.
      * @see RunLine#_scores
      * @see RunLineScores#_rank
      * @see RunLineScores#setRank(int)
