@@ -1,4 +1,0 @@
-1 Q0 D 0 36.0 CombMNZ
-1 Q0 B 1 21.0 CombMNZ
-1 Q0 C 2 18.0 CombMNZ
-1 Q0 A 3 15.0 CombMNZ

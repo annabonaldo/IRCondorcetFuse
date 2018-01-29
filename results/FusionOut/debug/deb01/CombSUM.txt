@@ -1,4 +1,0 @@
-1 Q0 D 0 14.0 CombSUM
-1 Q0 B 1 9.0 CombSUM
-1 Q0 C 2 8.0 CombSUM
-1 Q0 A 3 7.0 CombSUM
