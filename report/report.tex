@@ -178,20 +178,20 @@ For more information on the code, see \href{https://github.com/annabonaldo/IRCon
 					CombMIN & 0.1515 \\							
 					\bottomrule
 				\end{tabular}
-			\captionof {Table 3: }{Retrieval systems sorted by descreasing MAP}
+			\captionof {Table 3: }{Retrieval systems sorted by decreasing MAP}
 			\label{tab:17SysMAP}
 		\end{minipage}			
 	\end{figure}
 
 	\subsubsection{Results Analysis}
 	The results of these first tests show that it is generally convenient to use a fusion method.
-	Four out of the top five best systems where fusion systems, with Condorcet Fuse beign the fourth best overall.
+	Four out of the top five best systems where fusion systems, with Condorcet Fuse being the fourth best overall.
 	
 	But, we also noted that the performances of the methods are all very close, and the best and worse topics are the same regardless of the system used.
 	
 	\subsection{Further Analysis}
 	We decided we wanted to test how the performances of the 10 input systems affected the performance of the fusion methods.
-	Furthermore, since Montague and Aslan \cite{3} analyzed the algorithm's performance over the number of input systems, we also tried fusions starting with 2 input systems up to 10.
+	Furthermore, since Montague and Aslam \cite{3} analyzed the algorithm's performance over the number of input systems, we also tried fusions starting with 2 input systems up to 10.
 	
 	\subsubsection{Analysis over increasing number of inputs}	
 	Figure \ref{fig:4x4comp} shows a comparison between the MAP for the 7 fusion methods over the number of input systems and with different indexing and retrieval settings.
@@ -208,7 +208,7 @@ For more information on the code, see \href{https://github.com/annabonaldo/IRCon
 	We expected the stop list to be more defining than the stemmer, so we performed some further analysis focusing on what affected more the fusions.
 	
 	\subsubsection{Analysis on the indexing and retrieval settings}
-	We wanted to see how the indexing and retrieval settings affect the fusions' perfomances. Furthermore, we wanted to understand the relationship between the models' and the fusions' performances.
+	We wanted to see how the indexing and retrieval settings affect the fusions' performances. Furthermore, we wanted to understand the relationship between the models' and the fusions' performances.
 	We chose to focus on the fusions performed over 10 input systems. 
 	
 	Figure \ref{fig:MAPMod} shows the MAP's values for the 10 models over different indexing and retrieval settings, while Figure \ref{fig:MAPFus} shows the performance of the fusion  method of over the same 10 models with the same settings. CombMIN is not in the graph because of its poor performances and to have a better comparison between the 2 Figures.
