@@ -109,22 +109,29 @@ y (denoted by $x \rightarrow y$) if x would receive at least as many votes as y 
 Cycles can simply be viewed as ties.
 Montague and Aslam \cite{3} suggest a Condorcet fusion implementation that allow graph nodes ordering in a efficient manner (time $O(n*\log(n))$) .  
 
-	\begin{lstlisting}
-count = 0
-for each of the k search systems do:
+\section{Implementation}
 
-if (sys_i ranks d1 above d2)
-count = count+1 
-if (sys_i ranks d2 above d1)
-count = count-1 
+We follow the Condorcet Fuse implementation suggested by Montague and Aslam \cite{3}.
 
-if (count > 0)
-rank d1 better than d2
-else 
-rank d2 better than d2 
+We choose to assign some dummy relevance score to Condorcet's output, the score is assigned based on the rank.
 
+The implementation of Condorcet uses Quicksort, with the following algorithm
+as comparing function:
+
+\hfill
+\begin{lstlisting}
+	count = 0
+	for each of the k search systems do:
+
+		if (sys_i ranks d1 above d2)  count = count+1 
+		if (sys_i ranks d2 above d1)  count = count-1 
+
+		if (count > 0)  rank d1 better than d2
+		else  rank d2 better than d2 
+		
 \end{lstlisting}
-
+\hfill
+\\
 For more information on the code, see \href{https://github.com/annabonaldo/IRCondorcetFuse/blob/master/README.md}{README} in our {\href{https://github.com/annabonaldo/IRCondorcetFuse}{code repository }
     \section{Evaluation}
     % Modelli scelti 
