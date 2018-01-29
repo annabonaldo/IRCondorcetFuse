@@ -189,7 +189,7 @@
 					CombMIN & 0.1515 \\							
 					\bottomrule
 				\end{tabular}
-			\captionof {Table 3:}{Retrieval systems sorted by descreasing MAP}
+			\captionof {Table 3: }{Retrieval systems sorted by descreasing MAP}
 			\label{tab:17SysMAP}
 		\end{minipage}			
 	\end{figure}
@@ -239,8 +239,9 @@
 		\end{minipage}
 	\end{figure}
 
-	The fusions' performances strongly depend on the input systems' performances. Both in the 10 models and in the fusions the best settings were achieved without the stoplist and with both stoplist and stemmer.
-	This lead us to conclude that, in our collection and with the models selected, the stoplist does't really affect the performance.
+	The fusions' performances strongly depend on the input systems' performances. Both in the 10 models and in the fusions the best settings were achieved without the stop list and with both stop list and stemmer.
+	Adding the stop list to the stemmer doesn't change significantly the performance, and neither does using just the stop list compared to using an empty pipeline.
+	This lead us to conclude that, in our collection and with the models selected, the stop list doesn't really affect the performance.
 	
 	Still, even though the fusions' performance may seem very similar to the models' one, the maximum and minimum MAP values are higher, and we noted a smaller variance between methods. 
 
@@ -250,26 +251,26 @@
 	
 	Figures \ref{fig:MINincr}, \ref{fig:MEANincr} and \ref{fig:MAXincr} show how, over different retrieval and indexing settings, the fusion methods improve compared to the respective MIN, MEAN and MAX models' MAP.
 	
-	\begin{minipage}[H]{0.5\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{../eval/results-img-graphs/incrementFromMIN.png}
-		\caption{Increment of the MIN MAP value compared to the MIN of the input models over different indexing and retrieval settings}				
-		\label{fig:MINincr}
-	\end{minipage}
-	\begin{minipage}[H]{0.5\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{../eval/results-img-graphs/incrementFromMEAN.png}
-		\caption{Increment of the MEAN MAP value compared to the MEAN of the input models over different indexing and retrieval settings}				
-		\label{fig:MEANincr}
-	\end{minipage}
-	\begin{minipage}[H]{0.5\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{../eval/results-img-graphs/incrementFromMAX.png}
-		\caption{Increment of the MAX MAP value compared to the MAX of the input models over different indexing and retrieval settings}				
-		\label{fig:MAXincr}
-	\end{minipage}
-
-\hfill
+	\begin{figure}	
+		\begin{minipage}[H]{0.5\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{../eval/results-img-graphs/incrementFromMIN.png}
+			\caption{Increment of the MIN MAP value compared to the MIN of the input models over different indexing and retrieval settings}				
+			\label{fig:MINincr}
+		\end{minipage}
+		\begin{minipage}[H]{0.5\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{../eval/results-img-graphs/incrementFromMEAN.png}
+			\caption{Increment of the MEAN MAP value compared to the MEAN of the input models over different indexing and retrieval settings}				
+			\label{fig:MEANincr}
+		\end{minipage}
+		\begin{minipage}[H]{0.5\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{../eval/results-img-graphs/incrementFromMAX.png}
+			\caption{Increment of the MAX MAP value compared to the MAX of the input models over different indexing and retrieval settings}				
+			\label{fig:MAXincr}
+		\end{minipage}
+	\end{figure}
 	
 	These results show how there is always at least one fusion method that outperforms the "basic" models, even if the improvement is usually quite small.
 	Condorcet ranks above the majority of fusion methods, bringing the biggest improvement when the input models are obtained with just the stemmer or with both the stemmer and the stop list.	
@@ -277,7 +278,7 @@
 	\section{Conclusions}
 	We implemented and tested different fusion methods. Our evaluation shows that, even if small, fusion methods actually improve the performance of the single models.
 	
-	But, the improvement isn't very big and it strongly depends on the performance of the input models, that is if the input models already have a good performance, the fusion will be better.
+	But, the improvement isn't very big and it strongly depends on the performance of the input models, that is if the input models already have a good performance, the fusion will be better. Instead, the number of input system didn't affect the overall performances.
 	
 	Some fusion methods are clearly worse than others (like CombMIN), being always outperformed, while CondFuse is usually quite good, being one of the top fusion methods tested.
 
