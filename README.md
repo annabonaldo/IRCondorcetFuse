@@ -2,7 +2,8 @@
 # IRCondorcetFuse Repository 
 * :file_folder: [javadoc](javadoc/)  
    Contains Code Documentation. 
-* :file_folder: [eval](eval/)
+* :file_folder: [eval](eval/) 
+   Contains matlab scripts for fusion result evaluation. Evaluation scripts are based on [MATTERS MatLab Toolkit](http://matters.dei.unipd.it/) . 
 * :open_file_folder: [results](results/)  
    - :open_file_folder: [FusionIn](results/FusionIn/)  
    Contains all the run set used as input for fusion.  
