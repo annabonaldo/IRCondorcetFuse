@@ -63,7 +63,8 @@ public class RunLineScores {
 
     /**
      * Set the normalized score on Score fileld.
-     * @param normalizedScore
+     * @param normalizedScore score value after normalization is performed on this object.
+     *                        We want to update previous unnormalized valued with this methods.
      */
     public void NormalizeScore(float normalizedScore) {
         this._score = normalizedScore;

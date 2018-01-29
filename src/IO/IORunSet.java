@@ -19,7 +19,7 @@ public class IORunSet {
      */
     File[] _files;
     /**
-     *  is the RunSet name thet correspod to input directory name.
+     *  is the RunSet name that corresponds to input directory name.
      *  The input directory is the directory that contains all runs of current RunSet.
      */
     String _testName;
@@ -97,9 +97,9 @@ public class IORunSet {
 
     /**
      * Perform RunSet serialization. A RunSet serialization create a folder (if missing) in IOManager.DefaultOutPath.
-     * @param runSet
-     * @throws FileNotFoundException
-     * @throws UnsupportedEncodingException
+     * @param runSet <code>RunSet</code> we want to serialize.
+     * @throws FileNotFoundException for error in file writing process
+     * @throws UnsupportedEncodingException File writing error
      */
     public static void serialize(RunSet runSet) throws FileNotFoundException, UnsupportedEncodingException {
 
@@ -123,6 +123,14 @@ public class IORunSet {
     }
 
 
+    /**
+     * Write to file <code> RunSet</code> once normalization has been performed.
+     * Normalized <code>RunSet</code> serialization does not overwrite input <code>RunSet</code>
+     * files.
+     * @param runSet The <em>normalized</em> <code>RunSet</code> we want to serialized.
+     * @throws FileNotFoundException Output file/directory not found
+     * @throws UnsupportedEncodingException File writing error
+     */
     public static void serializeAsNormlized(RunSet runSet) throws FileNotFoundException, UnsupportedEncodingException {
 
         String normDirRelPath = runSet.Name()+"/"+ normPrefix+runSet.Name();
@@ -148,6 +156,13 @@ public class IORunSet {
 
     }
 
+    /**
+     * Setting file output extension. Output file extension is
+     * decided in parameter
+     * @see IORunSet#outFileExtension
+     * @param fileName the name of file we want to add extension string
+     * @return the filename extension with default extension added.
+     */
     private static String   setExtension(String fileName)
     {
         String file = fileName;

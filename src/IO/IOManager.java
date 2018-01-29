@@ -37,7 +37,7 @@ public class IOManager {
     /**
      * Deserialize all
      * @see IORunSet in this.
-     * @return List<RunSet> the list of dematerialized IORunSet as
+     * @return  the list of dematerialized IORunSet as
      * @see RunSet s.
      */
     public List<RunSet> deserializeAll() {
@@ -57,8 +57,8 @@ public class IOManager {
 
     /**
      * Serialize all
+     * @param  runSet is the obcjet we want to serialize.
      * @see IORunSet in this.
-     * @return void
      */
     public void serialize(RunSet runSet)
     {
