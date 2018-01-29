@@ -18,12 +18,10 @@ ylabel('precision')
 xlabel('topics')
 legend(measuredRunSet.Properties.VariableNames);
 
-%Per stampare la Mean average precision come tabella usa meanAP
-
 save('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicRunData_10.mat', ...
     'meanRunAP', 'measuredRunSet', '-append');
 
 %  filename = 'retrievalData.xlsx';
 %  writetable(meanRunAP, filename, 'WriteRowNames', true, 'Sheet', '10_models');
 
-%clear;
+clear;

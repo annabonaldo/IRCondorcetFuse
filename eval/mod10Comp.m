@@ -8,9 +8,7 @@ RunsPath = '~/Desktop/ProgettoIR/IRCondorcetFuse/results/FusionOut/';
     'testPool', 'RelevanceGrades', 0:1, 'RelevanceDegrees',...
     {'NotRelevant', 'Relevant'}, 'Delimiter', 'space');
 
-
 %IMPORT MODELS
-
 folderNames = {'run_noSM_noSW_10/NORM_run_noSM_noSW_10', 'run_noSW_10/NORM_run_noSW_10',...
     'run_noSM_10/NORM_run_noSM_10', 'runBasic_10/NORM_runBasic_10', };
 
@@ -48,4 +46,4 @@ end
 % filename = 'retrievalData.xlsx';
 % writetable(runSet, filename, 'WriteRowNames', true, 'Sheet', 'modelsComp');
 
-%clear;
+clear;

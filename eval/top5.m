@@ -28,7 +28,7 @@ ylabel('precision')
 xlabel('topics')
 legend(topBest.Properties.VariableNames);
 
-%clear;
-
 % filename = 'firstData.xlsx';
 % writetable(meanAPAll, filename, 'WriteRowNames', true, 'Sheet', 2);
+
+clear;

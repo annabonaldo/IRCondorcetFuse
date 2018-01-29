@@ -18,8 +18,6 @@ ylabel('precision')
 xlabel('topics')
 legend(measuredFusionSet.Properties.VariableNames);
 
-%Stampare la Mean average precision come tabella usa meanFusionAP
-
 save('~/Desktop/ProgettoIR/IRCondorcetFuse/eval/basicFusionData_10.mat', ...
     'meanFusionAP', 'measuredFusionSet', '-append');
 

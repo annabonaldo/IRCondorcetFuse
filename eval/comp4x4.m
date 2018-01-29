@@ -8,32 +8,6 @@ poolPath = '~/Desktop/ProgettoIR/IRCondorcetFuse/data/qrels.trec7.txt';
     'testPool', 'RelevanceGrades', 0:1, 'RelevanceDegrees',...
     {'NotRelevant', 'Relevant'}, 'Delimiter', 'space');
 
-
-% run_noSM_noSW = importRunsFromDirectoryTRECFormat('Path', ...
-%     '~/Desktop/ProgettoIR/IRCondorcetFuse/results/FusionOut/run_noSM_noSW_10/NORM_run_noSM_noSW_10/', ...
-%     'Identifier', strcat('fusedRuns_', int2str(i)), 'Delimiter', 'space', ...
-%     'DocumentOrdering', 'Matters'); 
-% precision_noSM_noSW = averagePrecision(pool, run_noSM_noSW);
-% MAP_noSM_noSW = mean(precision_noSM_noSW{:, 1:end});
-
-% clearAllMemoizedCaches
-% runBasic = importRunsFromDirectoryTRECFormat('Path', ...
-%     '~/Desktop/ProgettoIR/IRCondorcetFuse/results/FusionOut/runBasic_10/NORM_runBasic_10/', ...
-%     'Identifier', strcat('newRuns_', int2str(i)), 'Delimiter', 'space', ...
-%     'DocumentOrdering', 'Matters'); 
-% clearAllMemoizedCaches
-% precisionBasic = averagePrecision(pool, runBasic, 'Verbose', true);
-% clearAllMemoizedCaches
-% MAPBasic = mean(precisionBasic{:, 1:end});
-
-
-% runQE = importRunFromFileTRECFormat('FileName', ...
-%     '~/Desktop/ProgettoIR/IRCondorcetFuse/results/FusionOut/runQE_10/NORM_runQE_10/DirichletLM_Bo1bfree_d_3_t_10_8.txt', ...
-%     'Identifier', strcat('fusedRuns_', int2str(i)), 'Delimiter', 'space', ...
-%     'DocumentOrdering', 'Matters');  
-% precisionQE = averagePrecision(pool, runQE);
-% MAPqe = mean(precisionQE{:, 1:end});
-
 testNames =  {'run_noSM_noSW', 'run_noSM', 'run_noSW', 'runBasic'};
 
 synTable = array2table(cell(1, length(testNames)));
@@ -70,9 +44,6 @@ for k = 1 : numel(testNames)
         
         clearvars fusionRun fusionPrecision myDir       
         
-        %runSet.Properties.VariableNames{k} = {strcat('system_N', int2str(i))};
-        %MAP.Properties.RowNames = fusedRun.Properties.VariableNames;
-        
    end
    
    subplot(2,2, k)
@@ -102,4 +73,5 @@ end
 % 
 % runBasic = synTable.runBasic{1, 1};
 % writetable(runBasic,filename, 'WriteRowNames', true, 'Sheet', 'runBasic');
-% 
+
+clear;
