@@ -1,6 +1,6 @@
 
 # IRCondorcetFuse Repository 
-* :file_folder: [doc](doc/)  
+* :file_folder: [javadoc](javadoc/)  
    Contains Code Documentation. 
 * :file_folder: [eval](eval/)
 * :open_file_folder: [results](results/)  
@@ -30,7 +30,26 @@
           + :page_facing_up: ***CondFuse.txt*** Fusion run made with Condorcet fusion method. 
     
 * :file_folder: [scripts](scripts/)  
-   Contains script to get retrieval runs usin Terrier. 
+   Contains script to get retrieval runs using Terrier. 
+   Collection must be placed on folder data/Tipster to be found correctly by scripts. 
+   
+    + :repeat: [index_basic.sh](scripts/index_basic.sh)
+    Indexing collection **with stemmer (PorterStemmer) and stoplist**. 
+    + :repeat: [index_noSM.sh](scripts/index_noSM.sh)
+    Indexing collection **without** stemmer and **with stoplist**. 
+    + :repeat: [index_noSW.sh](scripts/index_noSW.sh)
+    Indexing collection **with stemmer** (PorterStemmer) and **without** stoplist. 
+    + :repeat: [index_noSMnoSW.sh](scripts/index_noSMnoSW.sh)
+    Indexing collection **without** stemmer and **without** stoplist. 
+    + :repeat: [retrieval_basic.sh](scripts/retrieval_basic.sh)
+     Launch retrieval on indexing made with  **with stemmer (PorterStemmer) and stoplist**. 
+    + :repeat: [retrieval_noSM.sh](scripts/retrieval_noSM.sh)
+      Launch retrieval on indexing made with  **without** stemmer and **with stoplist**
+    + :repeat: [retrieval_noSW.sh](scripts/retrieval_noSW.sh)
+    Launch retrieval on indexing made with **with stemmer** (PorterStemmer) and **without** stoplist. 
+    + :repeat: [retrieval_noSM_noSW.sh](scripts/retrieval_noSM_noSW.sh)
+    Launch retrieval on indexing made with **without** stemmer and **without** stoplist.
+   
 * :file_folder: [src](src/)  
    Contains Java source code. 
 * :file_folder: [terrier-core-4.2](terrier-core-4.2/)  
@@ -39,8 +58,8 @@
 
 
 # Code Documentation 
-  For the **Code Documentation** see the [doc](doc/) directory.  
-  Here you get all the code documentation generated with JavaDoc. You can expolore it opening the [Doc Main Page](doc/index.html) file in your browser. 
+  For the **Code Documentation** see the [javadoc](javadoc/) directory.  
+  Here you get all the code documentation generated with JavaDoc. You can expolore it opening the [Doc Main Page](javadoc/index.html) file in your browser. 
 
 # Configuring Retieval with Terrier 
 The directory [terrier-core-4.2](terrier-core-4.2/) does not contains all terrier and collection files to allow the scripts into [scripts](scripts/) working correctly. 
