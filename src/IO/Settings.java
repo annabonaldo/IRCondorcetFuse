@@ -6,9 +6,9 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class Settings {
+    //region DEBUG FEATURES
     public  static final Boolean VERBOSE = true;
     public  static final Boolean RUN_IN_INFO = false;
-
     /**  to activate/deactivate  path-printing on terminal for input files (for debug scope)*/
     public  static final Boolean PATH_IN = false;
     /** to activate/deactivate  path-printing on terminal for output files (for debug scope)*/
@@ -23,6 +23,9 @@ public class Settings {
     /** to activate/deactivate imported run info on terminal (for debug scope)*/
     public  static final Boolean RUN_FUSION_DETAIL =false;
 
+    //endregion DEBUG FEATURES
+
+    //region NORMALIZATION FEATURES
     /**  to set normalization as MinMax normalization.
      * Only one normalization method should be activated at each time */
     public static final Boolean MinMax = true;
@@ -31,8 +34,9 @@ public class Settings {
     public static final Boolean StandardDeviation = false;
 
     public static final Boolean Outliers = false;
+    //endregion NORMALIZATION FEATURES
 
-
+    //region ACTIVATE/DEACTIVATE FUSION METHODS
     // ACTIVATE / DEACTIVATE FUSION METHOD EXECUTED ON INPUT RUNS
     /** to activate/deactivate CombMAX method on input RunSet
      * More than one method can be activated at each time
@@ -76,8 +80,9 @@ public class Settings {
      * @see FusionManager#Fuse()
      * @see Fusion.Condorcet.CondorcetFusion */
     public static final Boolean FuseCONDORCET =true;
+    //endregion ACTIVATE/DEACTIVATE FUSION METHODS
 
-
+    //region INPUT DIRECTORIES SETTINGS
     /** Setting all directories in default path as fusion input
      * @see IOManager#DefaultInPath
      * */
@@ -90,12 +95,6 @@ public class Settings {
                                                     "runBasic_8/",
                                                     "runBasic_10/"};
 
-    /** RunBasic with cut-off at k = 100 group directories names */
-    public static final String[] SUBSET_runBasicK100 = {"runBasic_k100_2/",
-                                                    "runBasic_k100_4/",
-                                                    "runBasic_k100_6/",
-                                                    "runBasic_k100_8/",
-                                                    "runBasic_k100_10/"};
 
     /** Without StopList  group directories names */
     public static final String[] SUBSET_runNoSW = {     "run_noSW_2/",
@@ -120,8 +119,7 @@ public class Settings {
 
     /** Directory in default path take as input for <code>Settings.ALLFusionInDir = false;</code>
      * @see Settings#ALLFusionInDir */
-    public static final String[] SUBSET_FusionInDir = SUBSET_runBasicK100;
-  //  public static final String[] SUBSET_FusionInDir = join(SUBSET_runNoSW, SUBSET_runNoSM);
+    public static final String[] SUBSET_FusionInDir = join(SUBSET_runNoSW, SUBSET_runNoSM);
 
     /**
      * Utility method to execute fusion only on a subset of input directories.
@@ -135,4 +133,5 @@ public class Settings {
         return Stream.concat(streamA, streamB).toArray(String[]::new);
     }
 
+    //endregion INPUT DIRECTORIES SETTINGS
 }

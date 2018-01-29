@@ -80,7 +80,6 @@ public class RunLineScores {
      * Print info. Useful for debug purposes
      */
     public void PrintInline() {
-
         System.out.print("|| RUN "+this._runID+ "= "+ Float.toString(Score()));
     }
 }

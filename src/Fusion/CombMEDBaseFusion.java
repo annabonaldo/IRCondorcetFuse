@@ -17,6 +17,13 @@ public class CombMEDBaseFusion extends BaseFusion{
      * It is useful to distinguish between method used for Run generation.
      */
     static String fusionId = "CombMED";
+
+    /**
+     * Line fusion implementation for CombMED method
+     * @param runLineList is the list of scores for the set of RunLine
+     *                   we want to fuse together in a unique RunLineScore.
+     * @return the computed <code> RunLineScore </code> that is the fusion result
+     */
     @Override
     protected RunLineScores fuseLine(List<RunLineScores> runLineList) {
         int rank = -1;
