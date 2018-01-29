@@ -24,10 +24,10 @@ public class IORunSet {
      */
     String _testName;
     /**
-     * Prefix for output folder that contain normalized input runs.
+     * Prefix for output folder that contains normalized input runs.
      */
     static final String normPrefix = "NORM_";
-    /** Default extention for output Run files
+    /** Default extension for output Run files
      **/
     static final String outFileExtension = ".txt";
 

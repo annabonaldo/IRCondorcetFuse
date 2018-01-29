@@ -2,9 +2,9 @@ package Base;
 
 import Base.Normalization.*;
 
-/** rappresentation of a single line of a Run file
- * each line conains:topicID queryID documentID rank score runID
- * this class contains also NORMALIZED RANK after normalization computation
+/** Representation of a single line of a Run file;
+ * each line contains:topicID queryID documentID rank score runID
+ * this class contains also the NORMALIZED RANK obtained after normalization
  **/
 public class RunLine implements Comparable<RunLine> {
 

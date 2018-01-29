@@ -57,7 +57,7 @@ public class IOManager {
 
     /**
      * Serialize all
-     * @param  runSet is the obcjet we want to serialize.
+     * @param  runSet is the object we want to serialize.
      * @see IORunSet in this.
      */
     public void serialize(RunSet runSet)
@@ -72,9 +72,9 @@ public class IOManager {
     }
 
     /**
-     * Nomrmalized RunSet object serialization. This method does not overwrite original
+     * Nomrmalized RunSet object serialization. This method does not overwrite the original
      * <code>RunSet</code> data, but it will create a new folder for normalized objects
-     * in default output path position.
+     * in the default output path position.
      * @see IOManager#DefaultOutPath
      * @param runSetList is the input RunSet (previously normalized) we want to write on
      *                   files.

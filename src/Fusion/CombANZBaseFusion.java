@@ -17,7 +17,7 @@ public class CombANZBaseFusion extends BaseFusion{
 
 
     /**
-     * This method apply the CombMAX fusion:
+     * This method applies the CombMAX fusion:
      * <p><code>Combined Similarity = SUM(Individual Similarities) / num of NonZero Similarities </code></p>
      *
      * @param runLineList is the list of scores for the set of RunLine
@@ -45,7 +45,7 @@ public class CombANZBaseFusion extends BaseFusion{
         return fusedScores;
     }
 
-    /** This method is usefull to distinguish between method used for Run generation. It
+    /** This method is useful to distinguish between the methods used for Run generation. It
      * @return "CombANZ", that is the class fusionId.
      */
     @Override

@@ -14,7 +14,7 @@ import java.util.List;
 public class CombMEDBaseFusion extends BaseFusion{
     /**
      * This is the FusionMethod name.
-     * It is useful to distinguish between method used for Run generation.
+     * It is useful to distinguish between the methods used for Run generation.
      */
     static String fusionId = "CombMED";
 
@@ -58,7 +58,7 @@ public class CombMEDBaseFusion extends BaseFusion{
         return fusedScores;
     }
 
-    /** This method is usefull to distinguish between method used for Run generation. It
+    /** This method is useful to distinguish between method used for Run generation. It
      * @return "CombMED", that is the class fusionId.
      */
     @Override

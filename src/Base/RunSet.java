@@ -8,7 +8,7 @@ import java.util.*;
 public class RunSet {
 
 /**It contains a DICTIONARY computed on multiple Runs that contains
- * the list of run we want to merge later) for each RunLine we remember only
+ * the list of runs we want to merge later. For each RunLine we remember only
  * one Key
  * @see RunLine#GlobalID()
  * and the list of LineScores.
@@ -29,14 +29,14 @@ public class RunSet {
     List<Run> _runList;
 
     /**
-     * List of document that are mentioned into Runs in current <code>RunSet</code>.
+     * List of documents that are retrieved by the runs in current <code>RunSet</code>.
      * This data structure is computed <em>only at object construction time </em>.
      * This ensures correct results and program efficiency.
      * @see RunSet#docKeys it is a constant time call.
      * */
     Set<String> docKeys;
     /**
-     * List of <code>query - topic </code> pairs that are mentioned into
+     * List of <code>query - topic </code> pairs that are present into
      * Runs in current <code>RunSet</code>.
      * This data structure is computed <em>only at object construction time </em>.
      * This ensures correct results and program efficiency.

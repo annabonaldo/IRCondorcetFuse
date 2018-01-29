@@ -10,14 +10,14 @@ public class RunLineScores {
     /** Parent Run ID
      */
     String    _runID;
-    /** Is the current rank value for current run. Set to -1, if not initialized yet.
+    /** Is the current rank value in the current run. Set to -1, if not initialized yet.
      */
     int       _rank;
-    /** Is the current score value for current run.
+    /** Is the current score value in the current run.
      */
     float     _score;
     /** If set as <code>TRUE</code> the
-     * @see RunLineScores#NormalizeScore(float)  has been called on object.
+     * @see RunLineScores#NormalizeScore(float) has been called on object.
      */
     boolean   _normalized;
 
@@ -57,14 +57,14 @@ public class RunLineScores {
     }
 
     /**
-     * @param rank The updated Runk of the Runline..
+     * @param rank The updated Rank of the Runline.
      */
     public void setRank(int rank) {  _rank = rank;   }
 
     /**
-     * Set the normalized score on Score fileld.
-     * @param normalizedScore score value after normalization is performed on this object.
-     *                        We want to update previous unnormalized valued with this methods.
+     * Set the normalized score on Score field.
+     * @param normalizedScore the score value after normalization is performed on this object.
+     *                        We want to update previously non-normalized values with this method.
      */
     public void NormalizeScore(float normalizedScore) {
         this._score = normalizedScore;
@@ -72,7 +72,7 @@ public class RunLineScores {
     }
 
     /** @return return TRUE if the the NormalizeScore() method has been called on this object,
-     * and normalized value of score has been set.
+     * and the score's normalized value has been set.
      */
     public boolean isNormalized() { return _normalized; }
 

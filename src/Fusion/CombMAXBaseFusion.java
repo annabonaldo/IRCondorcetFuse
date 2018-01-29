@@ -12,7 +12,7 @@ public class CombMAXBaseFusion extends BaseFusion {
 
     /**
      * this is the FusionMethod name.
-     * It is useful to distinguish between method used for Run generation.
+     * It is useful to distinguish between the methods used for Run generation.
      */
     static String fusionId = "CombMAX";
 

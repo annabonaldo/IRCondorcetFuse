@@ -15,11 +15,11 @@ public class FusionManager {
     List<RunSet> _runSetList;
 
     /** Input-Output manager to get <code>RunSet</code> data from files (deserialization)
-     * and that serialize results once fusion has been performed.
+     * and that serialized results once the fusion has been performed.
      */
     IOManager _ioManager = new IOManager();
 
-    /** Class constructor; it calls default constructor for all its fields.
+    /** Class constructor; it calls the default constructors for all its fields.
      * Importing operation are delegated to <code>IOManager </code> object.
      * @see FusionManager#_ioManager
      * @see IOManager#deserializeAll()
@@ -41,7 +41,7 @@ public class FusionManager {
     }
 
     /**
-     * Method to perform fusion on active methods.
+     * Methods to perform fusion on active methods.
      * @see Settings
      * @see Settings#FuseMAX
      * @see Settings#FuseMIN

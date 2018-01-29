@@ -12,7 +12,7 @@ import java.util.Set;
 public class CondorcetFusion {
 
     /** Fusion method identifier.
-     * It is useful to specify method we used to
+     * It is used to specify the method we used to
      *  crete a fused run once we have serialized it to file */
     public static final String fusionID = "CondFuse";
 
@@ -53,11 +53,11 @@ public class CondorcetFusion {
      * Utility method to add a new <code>RunLine</code> to output  <code>Run</code>.
      * @param run fused run. We want to add some <code>RunLine</code> to it,
      *            once we have computed them.
-     * @param result it is the data structure we that contains information
+     * @param result it is the data structure that contains the information
      *               computed by condorcet fusion for each document for a given query-topic.
      *               In this method we translate this information to a <code>RunLine</code> object
      *               and then we add it to the final <code>Run</code> object.
-     * @param queryAndTopic it is the query-topic pair wa want to work on. In this method we work on
+     * @param queryAndTopic it is the query-topic pair we want to work on. In this method we work on
      *                      adding result for all documents of this query-topic pair.
      */
     private void addResultToRun(Run run, ArrayList<DocCondorcet> result, String queryAndTopic) {

@@ -11,14 +11,14 @@ import java.util.Set;
 
 /**
  * This is an abstract class for Base fusion methods.
- * Base fusion method are really simple fusion method that can combine RunLine from different Run instance
+ * Base fusion methods are really simple fusion methods that can combine RunLine from different Run instances
  * with simple operation on RunLines scores or rank (sum, avg, ...).
- * More advanced fusion method cannot extend this class.
+ * More advanced fusion methods cannot extend this class.
  */
 public abstract class BaseFusion {
 
     /** Perform the fusion of all Runs contained into a RunSet.
-     *  @param runSet is the RunSet to compute a new fusion from. The input object will be not modified.
+     *  @param runSet is the RunSet used to compute a new fusion. The input object will not be modified.
      *  @return The Run created combining all Runs into the input RunSet together.
      */
     public Run fuse(RunSet runSet) {
@@ -40,7 +40,7 @@ public abstract class BaseFusion {
     }
 
     /**
-     * Abstract method each fusion method need to specify.
+     * Abstract method each fusion method need to implement.
      * @param runLineList is the list of scores for the set of RunLine
      *                   we want to fuse together in a unique RunLineScore.
      * @return The fused score. The fusion result score is a unique RunLineScore, computed combining the input ones.

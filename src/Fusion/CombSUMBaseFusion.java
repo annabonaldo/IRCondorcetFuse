@@ -14,12 +14,12 @@ public class CombSUMBaseFusion extends BaseFusion {
 
     /**
      * this is the FusionMethod name.
-     * It is useful to distinguish between method used for Run generation.
+     * It is useful to distinguish between the methods used for Run generation.
      */
     static String fusionId = "CombSUM";
 
     /**
-     * This method apply the CombSUM fusion:
+     * This method applies the CombSUM fusion:
      * <p><code>Combined Similarity = SUM(Individual Similarities)</code></p>
      *
      * @param runLineList is the list of scores for the set of RunLine
