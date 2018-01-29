@@ -167,18 +167,16 @@
 		\item We computed the AP and the MAP for the 7 fusion models (6 basic and Condorcet);
 		\item We selected the 5 systems with the best MAP values.
 	\end{enumerate}
-	Figure \hyperref[fig:top5AP]{1} shows the Average Precision for the top 5 best systems, while Table \ref{tab:17SysMAP} shows the MAP for all of them.
+	Figure \ref{fig:top5AP} shows the Average Precision for the top 5 best systems, while Table \hyperref[tab:17SysMAP]{3} shows the MAP for all of them.
 	
-		\begin{table}[H]
-			\begin{minipage}{0.7\linewidth}
-				\centering				
-				\includegraphics[width=\linewidth]{../eval/results-img-graphs/top5.jpg}
-				\captionof{Figure 1: }{AP over 50 topics for the 5 best systems}				
-				\label{fig:top5AP}					
-			\end{minipage}
-		\hfill	
-			\begin{minipage}{0.3\linewidth}
-				\begin{tabular}{c c}
+	\begin{figure}[H]
+		\begin{minipage}{0.7\textwidth}				
+			\includegraphics[width=\linewidth]{../eval/results-img-graphs/top5.jpg}
+			\caption{AP over 50 topics for the 5 best systems}
+			\label{fig:top5AP}
+		\end{minipage}
+		\begin{minipage}{0.3\textwidth}
+			\begin{tabular}{c c}
 					\toprule
 					\textbf{Systems} & \textbf{MAP}\\ \toprule
 					CombSUM & 0.1909 \\
@@ -200,10 +198,10 @@
 					CombMIN & 0.1515 \\							
 					\bottomrule
 				\end{tabular}
-			\caption{Retrieval systems sorted by descreasing MAP}
+			\captionof {Table 3:}{Retrieval systems sorted by descreasing MAP}
 			\label{tab:17SysMAP}
-			\end{minipage}			
-	\end{table}
+		\end{minipage}			
+	\end{figure}
 
 	\subsubsection{Results Analysis}
 	The results of these first tests show that it is generally convenient to use a fusion method.
@@ -211,40 +209,46 @@
 	
 	But, we also noted that the performances of the methods are all very close, and the best and worse topics are the same regardless of the system used.
 	
-	\subsection{Second Analysis}
+	\subsection{Further Analysis}
 	We decided we wanted to test how the performances of the 10 input systems affected the performance of the fusion methods.
 	Furthermore, since Montague and Aslan \cite{3} analyzed the algorithm's performance over the number of input systems, we also tried fusions starting with 2 input systems up to 10.
 	
-	Figure \hyperref[fig:SMSW]{2} shows a comparison between the MAP for the 7 fusion methods over the number of input systems and with different indexing and retrieval settings.
+	\subsubsection{Analysis over increasing number of inputs}	
+	Figure \ref{fig:4x4comp} shows a comparison between the MAP for the 7 fusion methods over the number of input systems and with different indexing and retrieval settings.
 	
-	Inserire figura di Anna con migliroamenti/peggiormenti al posto di tabelle (che altrimenti andrebbero messe tutte).
-	
-	\begin{figure}
+	\begin{figure}[H]
 		\centering				
-		\includegraphics[width=\linewidth]{../eval/results-img-graphs/SMSW.jpg}
-		\captionof {Figure 2: }{MAP depending in the number of input system and indexing and retrieval settings}				
-		\label{fig:SMSW}					
+		\includegraphics[width=\linewidth]{../eval/results-img-graphs/4x4comp.jpg}
+		\caption{MAP depending in the number of input system and indexing and retrieval settings}				
+		\label{fig:4x4comp}					
 	\end{figure}
-	
-	
 
-	    \subsection{Results}
+	We noted that the number of input system doesn't much affect the performances of the fusion methods. The main difference was given by the indexing and retrieval settings. In particular, having neither the stemmer or the stoplist was similar to having just the stop list, while having both stemmer and stoplist was more similar to just having the stemmer.
+	
+	We expected the stop list to be more defining than the stemmer, so we performed some further analysis focusing on what affected more the fusions.
+	
+	\subsubsection{Analysis on the indexing and retrieval settings}
+	We wanted to see how the indexing and retrieval settings affect the fusions' perfomances. Furthermore, we wanted to understand the relationship between the models' and the fusions' performances.
+	Since generally the best fusions were the ones performed over 10 input systems, we just focused on them. 
+	
+	\begin{figure}[H]
+		\begin{minipage}{0.5\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{../eval/results-img-graphs/MAPModSMSW.png}
+			\caption{MAP for the retrieval models over different indexing and retrieval settings}				
+			\label{fig:MAPMod}
+		\end{minipage}
+		\begin{minipage}{0.5\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{../eval/results-img-graphs/MAPFusSMSW.png}
+			\caption{MAP for the fusions over different indexing and retrieval settings}				
+			\label{fig:MAPFus}
+		\end{minipage}
+	\end{figure}
 
-		\begin{table}[H]
-		    \centering
-		    \begin{tabular}{c p{4cm}}
-		    \toprule
-		    \textbf{Fusion methods} & \textbf{MAP} \\ \toprule
-		    CombMNZ &  \\ \hline
-		    CombSUM &  \\ \hline
-		    CombMIN &  \\ \hline
-		    CombMAX &  \\ \hline
-		    CombMED &  \\ \hline
-		    CombANZ &  \\ \hline
-			Condorcet &  \\ \bottomrule
-		    \end{tabular}
-		    \caption{Mean Average Precision for the 10 fused runs}
-		\end{table}
+	\subsubsection{Analysis on the performance's improvement using fusions}
+	
+	Grafici che mostrano i miglioramenti/peggioramenti
 
 	\section{Conclusions}
 	

@@ -34,7 +34,7 @@ poolPath = '~/Desktop/ProgettoIR/IRCondorcetFuse/data/qrels.trec7.txt';
 % precisionQE = averagePrecision(pool, runQE);
 % MAPqe = mean(precisionQE{:, 1:end});
 
-testNames =  {'run_noSM_noSW', 'run_noSW', 'run_noSM', 'runBasic'};
+testNames =  {'run_noSM_noSW', 'run_noSM', 'run_noSW', 'runBasic'};
 
 synTable = array2table(cell(1, length(testNames)));
 synTable.Properties.VariableNames = testNames;
@@ -76,12 +76,12 @@ for k = 1 : numel(testNames)
    end
    
    subplot(2,2, k)
-   plot(2:2:10, runSet{:, :});
-   axis([2 10 0.12 0.2])
-   title(strcat({'Fusions on '}, testNames{k}));
+   plot(2:2:10, runSet{:, :}, 'Linewidth', 1);
+   axis([2 10 0.1 0.2])
+   title(strcat({'Fusions on '}, testNames{k}),'Interpreter', 'none');
    ylabel('MAP')
    xlabel('Number of randomly chosen input systems')
-   legend(MAP.Properties.RowNames, 'Location', 'westoutside');
+   legend(MAP.Properties.RowNames, 'Location', 'best');
    
    synTable{1, k} = {runSet};
       
@@ -102,4 +102,4 @@ end
 % 
 % runBasic = synTable.runBasic{1, 1};
 % writetable(runBasic,filename, 'WriteRowNames', true, 'Sheet', 'runBasic');
-
+% 
